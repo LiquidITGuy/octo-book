@@ -232,7 +232,8 @@ export default {
         this.pagination = response.data.pagination
         this.searchResults = {
           totalBooks: response.data.pagination.totalBooks,
-          query: query
+          query: query,
+          offline: response.data.offline || false // Récupérer l'indicateur hors ligne
         }
       } catch (error) {
         console.error('Erreur lors de la recherche:', error)
@@ -433,6 +434,20 @@ export default {
 .search-info strong {
   font-weight: 400;
   color: #0E2356;
+}
+
+.offline-search-badge {
+  display: inline-block;
+  margin-left: 1rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .book-header {
