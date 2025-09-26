@@ -45,9 +45,9 @@
               <h2>{{ book.title }}</h2>
               <span 
                 :class="['availability-badge', book.disponible ? 'available' : 'unavailable']"
-                :aria-label="book.disponible ? 'Livre disponible' : 'Livre non disponible'"
+                :aria-label="book.disponible ? 'Livre disponible' : 'Livre archivé'"
               >
-                {{ book.disponible ? 'Disponible' : 'Non disponible' }}
+                {{ book.disponible ? 'Disponible' : 'Archive' }}
               </span>
             </div>
             <p class="authors" aria-label="Auteurs">
