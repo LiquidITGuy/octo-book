@@ -1,6 +1,6 @@
 // Service Worker pour Octo Books PWA
-const CACHE_NAME = 'octo-books-v1';
-const API_CACHE_NAME = 'octo-books-api-v1';
+const CACHE_NAME = 'octo-books-v2';
+const API_CACHE_NAME = 'octo-books-api-v2';
 
 // Assets à mettre en cache (network-first)
 const STATIC_ASSETS = [
@@ -53,11 +53,11 @@ self.addEventListener('fetch', (event) => {
   // API calls - différentes stratégies selon l'endpoint
   if (url.origin === 'http://localhost:3200' || url.pathname.startsWith('/api/')) {
     
-    // Liste des livres - Stale While Revalidate
+    // Liste des livres - Network First
     // Détecte /api/books avec ou sans paramètres de query, mais pas /api/books/ID
     if (url.pathname === '/api/books' || url.pathname.match(/^\/api\/books\/search\//) || url.pathname.match(/^\/api\/books\/tag\//)) {
-      console.log('Service Worker: Liste des livres - Stale While Revalidate');
-      event.respondWith(staleWhileRevalidate(event.request, API_CACHE_NAME));
+      console.log('Service Worker: Liste des livres - Network First');
+      event.respondWith(networkFirstAPI(event.request, API_CACHE_NAME));
       return;
     }
     
@@ -129,7 +129,34 @@ async function cacheFirst(request, cacheName) {
   }
 }
 
-// Stratégie Stale While Revalidate (pour la liste des livres)
+// Stratégie Network First (pour les API de listes de livres)
+async function networkFirstAPI(request, cacheName) {
+  try {
+    console.log('Network First API: Tentative réseau pour', request.url);
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      const cache = await caches.open(cacheName);
+      console.log('Network First API: Mise en cache de la réponse');
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.log('Network First API: Échec réseau, tentative cache pour', request.url, error);
+    const cachedResponse = await caches.match(request);
+    
+    if (cachedResponse) {
+      console.log('Network First API: Réponse depuis le cache');
+      return cachedResponse;
+    }
+    
+    console.log('Network First API: Aucune réponse disponible');
+    throw error;
+  }
+}
+
+// Stratégie Stale While Revalidate (pour autres API)
 async function staleWhileRevalidate(request, cacheName) {
   const cachedResponse = await caches.match(request);
   

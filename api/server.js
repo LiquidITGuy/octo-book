@@ -24,6 +24,13 @@ const loadBooks = () => {
 // Route pour obtenir tous les livres avec pagination
 app.get('/api/books', (req, res) => {
   try {
+    // En-têtes de cache pour Network First
+    res.set({
+      'Cache-Control': 'public, max-age=300, stale-while-revalidate=86400', // 5 min fresh, 24h stale
+      'ETag': `books-${Date.now()}`, // ETag simple basé sur le timestamp
+      'Last-Modified': new Date().toUTCString()
+    });
+
     const books = loadBooks();
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -80,6 +87,13 @@ app.get('/api/books/:id', (req, res) => {
 // Route pour rechercher des livres par titre, auteur, tags, résumé ou description
 app.get('/api/books/search/:query', (req, res) => {
   try {
+    // En-têtes de cache pour Network First
+    res.set({
+      'Cache-Control': 'public, max-age=300, stale-while-revalidate=86400', // 5 min fresh, 24h stale
+      'ETag': `search-${req.params.query}-${Date.now()}`,
+      'Last-Modified': new Date().toUTCString()
+    });
+
     const books = loadBooks();
     const query = req.params.query.toLowerCase();
     const page = parseInt(req.query.page) || 1;
@@ -148,6 +162,13 @@ app.get('/api/tags', (req, res) => {
 // Route pour obtenir les livres par tag avec pagination
 app.get('/api/books/tag/:tag', (req, res) => {
   try {
+    // En-têtes de cache pour Network First
+    res.set({
+      'Cache-Control': 'public, max-age=300, stale-while-revalidate=86400', // 5 min fresh, 24h stale
+      'ETag': `tag-${req.params.tag}-${Date.now()}`,
+      'Last-Modified': new Date().toUTCString()
+    });
+
     const books = loadBooks();
     const tag = decodeURIComponent(req.params.tag);
     const page = parseInt(req.query.page) || 1;
