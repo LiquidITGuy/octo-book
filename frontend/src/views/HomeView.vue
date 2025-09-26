@@ -25,8 +25,8 @@
       <div v-else-if="error" class="error card">
         <h2>⚠️ {{ error }}</h2>
         <p v-if="error.includes('API')">
-          <strong>Assurez-vous que l'API est démarrée :</strong><br>
-          <code>cd api && npm start</code>
+          <strong>Votre donnée n'est malheureusement pas en cache</strong><br>
+          <span>Rééssayez en ligne ou consultez un autre contenu pour le moment</span>
         </p>
       </div>
 
