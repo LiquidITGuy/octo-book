@@ -151,9 +151,10 @@ describe('API Service', () => {
   describe('Validation des données', () => {
     it('devrait valider les objets de réponse', () => {
       const isValidResponse = (response) => {
-        return !!(response && 
-                 typeof response === 'object' && 
-                 response.data !== undefined)
+        if (!response || typeof response !== 'object') {
+          return false
+        }
+        return response.data !== undefined
       }
       
       expect(isValidResponse({ data: {} })).toBe(true)
