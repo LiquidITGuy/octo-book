@@ -7,7 +7,8 @@
     "longSummary": "Ce livre explore en profondeur les principes fondamentaux de l'architecture logicielle moderne. De la conception de microservices à l'implémentation de patterns architecturaux complexes, les auteurs partagent leur expertise acquise au fil de nombreux projets. Vous découvrirez comment créer des systèmes résilients, comment gérer la complexité technique et comment faire évoluer votre architecture au fil du temps. Avec de nombreux exemples pratiques et des études de cas réels, cet ouvrage est indispensable pour tout architecte logiciel souhaitant perfectionner ses compétences.",
     "downloadLink": "https://example.com/downloads/architecture-logicielle.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=1",
-    "tags": ["architecture", "software", "design patterns", "microservices"]
+    "tags": ["architecture", "software", "design patterns", "microservices"],
+    "disponible": true
   },
   {
     "id": "2",
@@ -17,7 +18,8 @@
     "longSummary": "Le mouvement DevOps a révolutionné la façon dont nous développons et déployons les applications. Ce livre vous guide à travers les aspects culturels et techniques de cette transformation. Sophie Leroy, experte reconnue dans le domaine, partage les meilleures pratiques pour mettre en place une culture DevOps efficace. Vous apprendrez à automatiser vos pipelines de déploiement, à implémenter l'intégration continue, et à créer une collaboration harmonieuse entre les équipes de développement et d'opérations. Un must-have pour toute organisation souhaitant accélérer sa livraison logicielle.",
     "downloadLink": "https://example.com/downloads/devops-culture.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=2",
-    "tags": ["devops", "culture", "automation", "ci/cd"]
+    "tags": ["devops", "culture", "automation", "ci/cd"],
+    "disponible": false
   },
   {
     "id": "3",
@@ -27,7 +29,8 @@
     "longSummary": "L'intelligence artificielle transforme notre société, mais soulève également de nombreuses questions éthiques. Ce livre examine les défis moraux posés par l'IA et propose des frameworks pour développer des systèmes responsables. Les auteurs explorent les biais algorithmiques, la transparence des modèles, la protection de la vie privée et l'impact social de l'IA. Avec des exemples concrets et des recommandations pratiques, cet ouvrage s'adresse aux développeurs, aux décideurs et à tous ceux qui s'intéressent à l'avenir de l'intelligence artificielle. Un guide essentiel pour naviguer dans l'ère de l'IA responsable.",
     "downloadLink": "https://example.com/downloads/ia-ethique.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=3",
-    "tags": ["ai", "ethics", "machine learning", "responsibility"]
+    "tags": ["ai", "ethics", "machine learning", "responsibility"],
+    "disponible": true
   },
   {
     "id": "4",
@@ -37,7 +40,8 @@
     "longSummary": "La sécurité des applications web est plus critique que jamais. Ce livre couvre l'ensemble des vulnérabilités courantes et les techniques de protection les plus efficaces. Thomas Schneider, expert en cybersécurité, détaille les attaques OWASP Top 10, les méthodes de test de sécurité et les bonnes pratiques de développement sécurisé. Vous apprendrez à identifier les failles de sécurité, à implémenter des mécanismes de défense robustes et à créer une culture de sécurité au sein de votre équipe. Avec des exercices pratiques et des outils concrets, ce livre est indispensable pour tout développeur soucieux de la sécurité.",
     "downloadLink": "https://example.com/downloads/securite-web.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=4",
-    "tags": ["security", "web", "owasp", "cybersecurity"]
+    "tags": ["security", "web", "owasp", "cybersecurity"],
+    "disponible": true
   },
   {
     "id": "5",
@@ -47,7 +51,8 @@
     "longSummary": "La data science est au cœur de la transformation numérique des entreprises. Ce livre vous accompagne dans votre parcours, de l'analyse exploratoire des données jusqu'à la mise en production de modèles de machine learning. Les auteurs partagent leur expérience pratique avec des projets réels, des techniques d'analyse avancées et des outils modernes comme Python, R et les plateformes cloud. Vous découvrirez comment nettoyer et préparer vos données, comment choisir les bons algorithmes et comment évaluer la performance de vos modèles. Un guide complet pour devenir un data scientist accompli.",
     "downloadLink": "https://example.com/downloads/data-science-pratique.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=5",
-    "tags": ["data science", "machine learning", "python", "analytics"]
+    "tags": ["data science", "machine learning", "python", "analytics"],
+    "disponible": false
   },
   {
     "id": "6",
@@ -57,7 +62,8 @@
     "longSummary": "L'agilité ne se limite pas aux petites équipes. Ce livre explore comment adapter les méthodes agiles aux grandes organisations et aux projets complexes. Les auteurs présentent les frameworks SAFe, LeSS et Spotify Model, avec leurs avantages et leurs défis. Vous apprendrez à gérer les dépendances entre équipes, à maintenir la cohérence architecturale et à préserver l'esprit agile malgré la taille. Avec des études de cas détaillées et des retours d'expérience, cet ouvrage est essentiel pour les leaders souhaitant transformer leur organisation à grande échelle.",
     "downloadLink": "https://example.com/downloads/agilite-grande-echelle.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=6",
-    "tags": ["agile", "scrum", "safe", "transformation"]
+    "tags": ["agile", "scrum", "safe", "transformation"],
+    "disponible": true
   },
   {
     "id": "7",
@@ -67,7 +73,8 @@
     "longSummary": "L'architecture cloud native représente l'avenir du développement logiciel. Ce livre vous guide dans la conception d'applications optimisées pour les environnements cloud. Les auteurs explorent les patterns cloud native, les technologies de conteneurisation, l'orchestration avec Kubernetes et les architectures serverless. Vous découvrirez comment tirer parti de l'élasticité du cloud, comment gérer la résilience et comment optimiser les coûts. Avec des exemples pratiques sur AWS, Azure et Google Cloud, cet ouvrage est indispensable pour tout architecte travaillant dans le cloud.",
     "downloadLink": "https://example.com/downloads/cloud-native.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=7",
-    "tags": ["cloud", "kubernetes", "containers", "serverless"]
+    "tags": ["cloud", "kubernetes", "containers", "serverless"],
+    "disponible": false
   },
   {
     "id": "8",
@@ -77,7 +84,8 @@
     "longSummary": "L'expérience utilisateur est devenue un facteur clé de succès pour toute application. Ce livre s'adresse aux développeurs qui souhaitent améliorer leurs compétences en design UX. Emma Thompson, designer UX expérimentée, partage les principes fondamentaux du design centré utilisateur. Vous apprendrez à conduire des recherches utilisateur, à créer des personas, à prototyper efficacement et à tester vos interfaces. Avec des outils pratiques et des méthodes éprouvées, ce livre vous aidera à créer des produits qui ravissent vos utilisateurs.",
     "downloadLink": "https://example.com/downloads/ux-design-dev.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=8",
-    "tags": ["ux", "design", "user experience", "interface"]
+    "tags": ["ux", "design", "user experience", "interface"],
+    "disponible": true
   },
   {
     "id": "9",
@@ -87,7 +95,8 @@
     "longSummary": "La blockchain révolutionne de nombreux secteurs, des services financiers à la supply chain. Ce livre démystifie cette technologie complexe et vous guide dans son implémentation. Les auteurs expliquent les concepts fondamentaux de la cryptographie, les mécanismes de consensus et les différents types de blockchain. Vous découvrirez comment développer des smart contracts, comment créer votre propre cryptomonnaie et comment intégrer la blockchain dans vos applications. Avec des exemples sur Ethereum, Bitcoin et d'autres plateformes, cet ouvrage est parfait pour les développeurs curieux de cette technologie disruptive.",
     "downloadLink": "https://example.com/downloads/blockchain-crypto.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=9",
-    "tags": ["blockchain", "cryptocurrency", "smart contracts", "ethereum"]
+    "tags": ["blockchain", "cryptocurrency", "smart contracts", "ethereum"],
+    "disponible": true
   },
   {
     "id": "10",
@@ -97,7 +106,8 @@
     "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
     "downloadLink": "https://example.com/downloads/green-it.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=10",
-    "tags": ["green it", "sustainability", "environment", "eco-design"]
+    "tags": ["green it", "sustainability", "environment", "eco-design"],
+    "disponible": false
   },
   {
     "id": "11",
@@ -107,7 +117,8 @@
     "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
     "downloadLink": "https://example.com/downloads/green-it.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=10",
-    "tags": ["green it", "sustainability", "environment", "eco-design"]
+    "tags": ["green it", "sustainability", "environment", "eco-design"],
+    "disponible": true
   },
   {
     "id": "12",
@@ -117,7 +128,8 @@
     "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
     "downloadLink": "https://example.com/downloads/green-it.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=10",
-    "tags": ["green it", "sustainability", "environment", "eco-design"]
+    "tags": ["green it", "sustainability", "environment", "eco-design"],
+    "disponible": false
   },
   {
     "id": "13",
@@ -127,7 +139,8 @@
     "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
     "downloadLink": "https://example.com/downloads/green-it.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=10",
-    "tags": ["green it", "sustainability", "environment", "eco-design"]
+    "tags": ["green it", "sustainability", "environment", "eco-design"],
+    "disponible": true
   },
   {
     "id": "14",
@@ -137,7 +150,8 @@
     "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
     "downloadLink": "https://example.com/downloads/green-it.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=10",
-    "tags": ["green it", "sustainability", "environment", "eco-design"]
+    "tags": ["green it", "sustainability", "environment", "eco-design"],
+    "disponible": false
   },
   {
     "id": "15",
@@ -147,6 +161,7 @@
     "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
     "downloadLink": "https://example.com/downloads/green-it.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=10",
-    "tags": ["green it", "sustainability", "environment", "eco-design"]
+    "tags": ["green it", "sustainability", "environment", "eco-design"],
+    "disponible": true
   }
 ]

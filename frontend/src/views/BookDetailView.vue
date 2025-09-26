@@ -36,7 +36,15 @@
 
         <div class="book-details">
           <header class="book-header">
-            <h1>{{ book.title }}</h1>
+            <div class="title-section">
+              <h1>{{ book.title }}</h1>
+              <span 
+                :class="['availability-badge', book.disponible ? 'available' : 'unavailable']"
+                :aria-label="book.disponible ? 'Livre disponible' : 'Livre non disponible'"
+              >
+                {{ book.disponible ? 'Disponible' : 'Non disponible' }}
+              </span>
+            </div>
             <div class="authors">
               <strong>Auteur{{ book.authors.length > 1 ? 's' : '' }} :</strong>
               {{ book.authors.join(', ') }}
@@ -61,9 +69,23 @@
           </div>
 
           <div class="book-actions">
-            <a :href="book.downloadLink" class="btn btn-download" target="_blank" rel="noopener noreferrer">
+            <a 
+              v-if="book.disponible"
+              :href="book.downloadLink" 
+              class="btn btn-download" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               📥 Télécharger le livre
             </a>
+            <button 
+              v-else
+              class="btn btn-disabled" 
+              disabled
+              title="Ce livre n'est pas disponible actuellement"
+            >
+              📥 Non disponible
+            </button>
             <router-link to="/books" class="btn btn-secondary">
               ← Retour aux livres
             </router-link>
@@ -89,7 +111,9 @@
           </div>
           <div class="meta-item">
             <strong>Disponible :</strong>
-            <span class="available">✅ Oui</span>
+            <span :class="book.disponible ? 'available' : 'unavailable'">
+              {{ book.disponible ? '✅ Oui' : '❌ Non' }}
+            </span>
           </div>
         </div>
       </div>
@@ -254,6 +278,54 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.title-section h1 {
+  margin: 0;
+  flex: 1;
+}
+
+.availability-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.availability-badge.available {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.availability-badge.unavailable {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-disabled {
+  background-color: rgba(102, 126, 234, 0.3) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.btn-disabled:hover {
+  background-color: rgba(102, 126, 234, 0.3) !important;
+  transform: none !important;
+}
+
 .authors {
   color: #667eea;
   font-size: 1.1rem;
@@ -346,6 +418,11 @@ export default {
   font-weight: 500;
 }
 
+.unavailable {
+  color: #e74c3c !important;
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .book-content {
     grid-template-columns: 1fr;
@@ -360,6 +437,16 @@ export default {
 
   .book-details {
     padding: 1.5rem;
+  }
+
+  .title-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .availability-badge {
+    align-self: flex-start;
   }
 
   .book-actions {

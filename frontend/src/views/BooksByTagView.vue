@@ -1,8 +1,11 @@
 <template>
   <div class="container">
     <div>
-      <h1>Notre collection de livres</h1>
-      <p>Découvrez tous nos ouvrages techniques et méthodologiques</p>
+      <h1>Livres avec le tag "{{ currentTag }}"</h1>
+      <p v-if="!loading && !error">
+        {{ totalBooks }} livre{{ totalBooks > 1 ? 's' : '' }} trouvé{{ totalBooks > 1 ? 's' : '' }}
+      </p>
+      <router-link to="/books" class="back-link">← Retour à tous les livres</router-link>
     </div>
 
     <div v-if="loading" class="loading">
@@ -52,15 +55,16 @@
             </p>
             <p class="summary">{{ book.summary }}</p>
             <div class="tags" role="list" aria-label="Tags du livre">
-              <router-link 
+              <span 
                 v-for="tag in book.tags" 
                 :key="tag" 
-                :to="`/tag/${encodeURIComponent(tag)}`"
-                class="tag tag-link"
+                class="tag"
+                :class="{ 'tag-current': tag === currentTag }"
                 role="listitem"
+                @click="navigateToTag(tag)"
               >
                 {{ tag }}
-              </router-link>
+              </span>
             </div>
             <div class="book-actions">
               <router-link 
@@ -113,7 +117,8 @@
 
     <div v-else class="card" style="text-align: center; padding: 4rem 2rem;">
       <h2>📚 Aucun livre trouvé</h2>
-      <p>Il n'y a pas de livres disponibles pour le moment.</p>
+      <p>Il n'y a pas de livres avec le tag "{{ currentTag }}" pour le moment.</p>
+      <router-link to="/books" class="btn">Voir tous les livres</router-link>
     </div>
   </div>
 </template>
@@ -122,41 +127,52 @@
 import { booksApi } from '@/services/api'
 
 export default {
-  name: 'BooksView',
+  name: 'BooksByTagView',
   data() {
     return {
       books: [],
       pagination: null,
       loading: true,
       error: null,
-      currentPage: 1
+      currentPage: 1,
+      currentTag: '',
+      totalBooks: 0
     }
   },
   async mounted() {
+    this.currentTag = this.$route.params.tag
     // Récupérer la page depuis l'URL
     const page = parseInt(this.$route.query.page) || 1
     this.currentPage = page
-    await this.loadBooks(page)
+    await this.loadBooksByTag(this.currentTag, page)
   },
   watch: {
+    '$route.params.tag'(newTag) {
+      if (newTag !== this.currentTag) {
+        this.currentTag = newTag
+        this.currentPage = 1
+        this.loadBooksByTag(newTag, 1)
+      }
+    },
     '$route.query.page'(newPage) {
       const page = parseInt(newPage) || 1
       if (page !== this.currentPage) {
         this.currentPage = page
-        this.loadBooks(page)
+        this.loadBooksByTag(this.currentTag, page)
       }
     }
   },
   methods: {
-    async loadBooks(page = 1) {
+    async loadBooksByTag(tag, page = 1) {
       try {
         this.loading = true
         this.error = null
-        const response = await booksApi.getBooks(page, 10)
+        const response = await booksApi.getBooksByTag(tag, page, 10)
         this.books = response.data.books
         this.pagination = response.data.pagination
+        this.totalBooks = response.data.pagination.totalBooks
       } catch (error) {
-        console.error('Erreur lors du chargement des livres:', error)
+        console.error('Erreur lors du chargement des livres par tag:', error)
         if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
           this.error = 'Impossible de se connecter à l\'API'
         } else {
@@ -168,7 +184,19 @@ export default {
     },
     goToPage(page) {
       if (page !== this.currentPage) {
-        this.$router.push({ query: { page: page.toString() } })
+        this.$router.push({ 
+          name: 'books-by-tag', 
+          params: { tag: this.currentTag },
+          query: { page: page.toString() } 
+        })
+      }
+    },
+    navigateToTag(tag) {
+      if (tag !== this.currentTag) {
+        this.$router.push({ 
+          name: 'books-by-tag', 
+          params: { tag: tag }
+        })
       }
     },
     getPageNumbers() {
@@ -252,6 +280,23 @@ export default {
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
+.back-link {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .pagination-info {
   text-align: center;
   margin-bottom: 2rem;
@@ -262,16 +307,24 @@ export default {
   font-size: 0.9rem;
 }
 
+.tag-current {
+  background-color: #667eea !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.tag {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background-color: #667eea;
+  color: white;
+  transform: translateY(-1px);
+}
+
 @media (max-width: 768px) {
-  .books-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .book-thumbnail {
-    height: 200px;
-  }
-
   .book-header {
     flex-direction: column;
     align-items: flex-start;
@@ -280,6 +333,15 @@ export default {
 
   .availability-badge {
     align-self: flex-start;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .book-thumbnail {
+    height: 200px;
   }
 
   .pagination {

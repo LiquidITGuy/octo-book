@@ -39,7 +39,8 @@ app.get('/api/books', (req, res) => {
       authors: book.authors,
       summary: book.summary,
       thumbnail: book.thumbnail,
-      tags: book.tags
+      tags: book.tags,
+      disponible: book.disponible
     }));
 
     res.json({
@@ -95,7 +96,8 @@ app.get('/api/books/search/:query', (req, res) => {
       authors: book.authors,
       summary: book.summary,
       thumbnail: book.thumbnail,
-      tags: book.tags
+      tags: book.tags,
+      disponible: book.disponible
     }));
 
     res.json({
@@ -152,7 +154,8 @@ app.get('/api/books/tag/:tag', (req, res) => {
       authors: book.authors,
       summary: book.summary,
       thumbnail: book.thumbnail,
-      tags: book.tags
+      tags: book.tags,
+      disponible: book.disponible
     }));
 
     res.json({
