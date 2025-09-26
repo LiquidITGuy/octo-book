@@ -30,19 +30,37 @@
       <div class="books-grid">
         <article v-for="book in books" :key="book.id" class="book-card card">
           <div class="book-thumbnail">
-            <img :src="book.thumbnail" :alt="book.title" loading="lazy" />
+            <img 
+              :src="book.thumbnail" 
+              :alt="`Couverture du livre ${book.title}`" 
+              loading="lazy"
+              @error="handleImageError"
+            />
           </div>
           <div class="book-info">
             <h2>{{ book.title }}</h2>
-            <p class="authors">
+            <p class="authors" aria-label="Auteurs">
               {{ book.authors.join(', ') }}
             </p>
             <p class="summary">{{ book.summary }}</p>
-            <div class="tags">
-              <span v-for="tag in book.tags" :key="tag" class="tag">{{ tag }}</span>
+            <div class="tags" role="list" aria-label="Tags du livre">
+              <span 
+                v-for="tag in book.tags" 
+                :key="tag" 
+                class="tag"
+                role="listitem"
+              >
+                {{ tag }}
+              </span>
             </div>
             <div class="book-actions">
-              <router-link :to="`/books/${book.id}`" class="btn">Voir le détail</router-link>
+              <router-link 
+                :to="`/books/${book.id}`" 
+                class="btn"
+                :aria-label="`Voir les détails du livre ${book.title}`"
+              >
+                Voir le détail
+              </router-link>
             </div>
           </div>
         </article>
@@ -54,6 +72,7 @@
           v-if="pagination.hasPrev" 
           @click="goToPage(pagination.currentPage - 1)"
           class="pagination-link"
+          aria-label="Aller à la page précédente"
         >
           ← Précédent
         </button>
@@ -64,16 +83,19 @@
             v-if="typeof pageNum === 'number'"
             @click="goToPage(pageNum)"
             :class="['pagination-link', { current: pageNum === pagination.currentPage }]"
+            :aria-label="`Aller à la page ${pageNum}`"
+            :aria-current="pageNum === pagination.currentPage ? 'page' : undefined"
           >
             {{ pageNum }}
           </button>
-          <span v-else class="pagination-ellipsis">...</span>
+          <span v-else class="pagination-ellipsis" aria-hidden="true">...</span>
         </template>
 
         <button 
           v-if="pagination.hasNext" 
           @click="goToPage(pagination.currentPage + 1)"
           class="pagination-link"
+          aria-label="Aller à la page suivante"
         >
           Suivant →
         </button>
@@ -174,6 +196,11 @@ export default {
       }
       
       return pages
+    },
+    handleImageError(event) {
+      // Masquer l'image en cas d'erreur de chargement
+      event.target.style.display = 'none'
+      // Le CSS affichera automatiquement l'icône de fallback
     }
   }
 }

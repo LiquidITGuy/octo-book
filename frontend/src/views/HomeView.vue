@@ -14,7 +14,7 @@
 
     <!-- Featured Books -->
     <section id="featured" class="featured-section">
-      <h2 style="text-align: center; color: white; font-size: 2.5rem; margin-bottom: 2rem; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">
+      <h2>
         Livres à la une
       </h2>
       

@@ -1,4 +1,4 @@
-/* Reset et base */
+/* Reset et base - Charte Graphique Octo Premium */
 * {
   margin: 0;
   padding: 0;
@@ -6,270 +6,358 @@
 }
 
 html {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
 }
 
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #ffffff;
   min-height: 100vh;
-  color: #333;
+  color: #0E2356;
+  font-weight: 300;
 }
 
 #app {
   min-height: 100vh;
 }
 
-/* Header inspiré d'Octo */
+/* Typographie Premium - Capitales avec espacement large */
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 300;
+  color: #0E2356;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* Header minimaliste */
 .header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 1rem 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 2rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .header-content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #667eea;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #0E2356;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
+/* Élément géométrique wireframe pour le logo */
 .logo::before {
-  content: "📚";
-  font-size: 2rem;
+  content: "";
+  width: 32px;
+  height: 32px;
+  border: 2px solid #0E2356;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #0E2356;
+  border-radius: 2px;
 }
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   list-style: none;
 }
 
 .nav a {
-  color: #333;
+  color: #586586;
   text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 1rem 0;
+  border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
 }
 
 .nav a:hover,
 .nav a.router-link-active {
-  background: #667eea;
-  color: white;
-  transform: translateY(-2px);
+  color: #0E2356;
+  border-bottom-color: #0E2356;
 }
 
-/* Container principal */
+/* Container principal avec beaucoup d'espace blanc */
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 4rem;
 }
 
-/* Cards style Octo */
+/* Cards minimalistes */
 .card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 3rem;
+  margin-bottom: 3rem;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #0E2356;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #0E2356;
+  box-shadow: 0 0 0 1px #0E2356;
 }
 
-/* Boutons style Octo */
+/* Boutons minimalistes */
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: #0E2356;
   text-decoration: none;
-  border-radius: 25px;
-  font-weight: 500;
+  border: 2px solid #0E2356;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   transition: all 0.3s ease;
-  border: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  margin: 0.5rem;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  background: #0E2356;
+  color: #ffffff;
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.2);
-  color: #333;
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-color: #586586;
+  color: #586586;
 }
 
 .btn-secondary:hover {
-  background: rgba(102, 126, 234, 0.1);
+  background: #586586;
+  color: #ffffff;
 }
 
 .btn-download {
-  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  border-color: #0E2356;
+  color: #0E2356;
 }
 
 .btn-download:hover {
-  box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+  background: #0E2356;
+  color: #ffffff;
 }
 
-/* Grid responsive */
+/* Grid minimaliste avec espacement généreux */
 .grid {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 4rem;
+  margin-bottom: 6rem;
 }
 
-/* Tags */
+/* Tags minimalistes */
 .tag {
   display: inline-block;
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
+  background: transparent;
+  color: #0E2356;
+  border: 1px solid #0E2356;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
   margin: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 300;
 }
 
-/* Pagination */
+/* Pagination géométrique */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  margin: 3rem 0;
+  gap: 1rem;
+  margin: 6rem 0;
   flex-wrap: wrap;
 }
 
 .pagination-link {
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
+  padding: 1rem;
   text-decoration: none;
-  color: #333;
-  background: rgba(255, 255, 255, 0.9);
+  color: #4a5568;
+  background: transparent;
+  border: 1px solid #e2e8f0;
   transition: all 0.3s ease;
-  font-weight: 500;
-  min-width: 44px;
+  font-weight: 300;
+  min-width: 48px;
   text-align: center;
-  border: none;
   cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
 }
 
 .pagination-link:hover {
-  background: #667eea;
-  color: white;
-  transform: translateY(-2px);
+  border-color: #0E2356;
+  color: #0E2356;
 }
 
 .pagination-link.current {
-  background: #667eea;
-  color: white;
-  cursor: default;
+  background: #0E2356;
+  color: #ffffff;
+  border-color: #0E2356;
 }
 
 .pagination-ellipsis {
-  padding: 0.75rem 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
+  padding: 1rem 0.5rem;
+  color: #a0aec0;
 }
 
-/* Loading et erreurs */
+/* États de chargement et erreurs */
 .loading {
   text-align: center;
-  padding: 3rem;
-  color: white;
-  font-size: 1.2rem;
+  padding: 6rem;
+  color: #586586;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .error {
-  background: rgba(231, 76, 60, 0.1);
-  border: 1px solid rgba(231, 76, 60, 0.3);
-  color: #e74c3c;
-  padding: 1rem;
-  border-radius: 10px;
-  margin: 1rem 0;
+  background: transparent;
+  border: 1px solid #e53e3e;
+  color: #e53e3e;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 300;
 }
 
-/* Hero section */
+/* Hero section minimaliste */
 .hero {
   text-align: center;
-  padding: 4rem 0;
-  margin-bottom: 3rem;
+  padding: 8rem 0;
+  margin-bottom: 6rem;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .hero-content h1 {
-  font-size: 3rem;
-  color: white;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  font-size: 3.5rem;
+  color: #0E2356;
+  margin-bottom: 2rem;
+  font-weight: 100;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 2rem;
-  max-width: 600px;
+  font-size: 1.1rem;
+  color: #586586;
+  margin-bottom: 3rem;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 2;
 }
 
 .hero-actions {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-/* Book cards */
+/* Book cards wireframe */
 .book-card {
   display: flex;
   flex-direction: column;
   height: 100%;
   transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  padding: 2rem;
+  background: #ffffff;
 }
 
 .book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #0E2356;
+  box-shadow: 0 0 0 1px #0E2356;
 }
 
+/* Vignettes des livres avec images réelles */
 .book-thumbnail {
   width: 100%;
   height: 250px;
+  margin-bottom: 2rem;
+  position: relative;
   overflow: hidden;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+  background: #f7fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-thumbnail img {
@@ -279,8 +367,32 @@ body {
   transition: transform 0.3s ease;
 }
 
-.book-card:hover .book-thumbnail img {
+.book-thumbnail:hover img {
   transform: scale(1.05);
+}
+
+/* Fallback pour les images qui ne se chargent pas */
+.book-thumbnail::before {
+  content: "📚";
+  font-size: 3rem;
+  color: #0E2356;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-thumbnail img[src=""],
+.book-thumbnail img:not([src]) {
+  display: none;
+}
+
+.book-thumbnail img[src=""]:before,
+.book-thumbnail img:not([src]):before {
+  opacity: 1;
 }
 
 .book-info {
@@ -291,56 +403,81 @@ body {
 
 .book-info h2,
 .book-info h3 {
-  color: #333;
-  margin-bottom: 0.5rem;
-  font-size: 1.4rem;
-  line-height: 1.3;
+  color: #0E2356;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 300;
 }
 
 .authors {
-  color: #667eea;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
+  color: #0E2356;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .summary {
-  color: #666;
-  margin-bottom: 1.5rem;
+  color: #586586;
+  margin-bottom: 2rem;
   flex: 1;
-  line-height: 1.5;
+  line-height: 1.8;
+  font-weight: 300;
 }
 
 .tags {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .book-actions {
   margin-top: auto;
 }
 
-/* Responsive */
+/* Éléments géométriques décoratifs */
+.geometric-element {
+  position: absolute;
+  border: 1px solid #e2e8f0;
+  pointer-events: none;
+}
+
+.geometric-element.circle {
+  border-radius: 50%;
+}
+
+.geometric-element.square {
+  border-radius: 2px;
+}
+
+/* Responsive avec espacement préservé */
 @media (max-width: 768px) {
   .header-content {
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+    padding: 0 2rem;
   }
 
   .nav {
-    gap: 1rem;
+    gap: 2rem;
   }
 
   .container {
-    padding: 1rem;
+    padding: 2rem;
   }
 
   .grid,
   .books-grid {
     grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero {
+    padding: 4rem 0;
   }
 
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .hero-content p {
@@ -353,18 +490,56 @@ body {
   }
 
   .pagination {
-    gap: 0.25rem;
+    gap: 0.5rem;
   }
 
   .pagination-link {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .card {
+    padding: 2rem;
+  }
+  
   .pagination-link {
     padding: 0.5rem;
     min-width: 40px;
   }
+  
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Animation subtile pour les éléments interactifs */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.book-card {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Focus states pour l'accessibilité */
+.btn:focus,
+.pagination-link:focus,
+.nav a:focus {
+  outline: 2px solid #0E2356;
+  outline-offset: 2px;
 }
