@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 3200;
 app.use(cors());
 app.use(express.json());
 
+// Servir les fichiers statiques du frontend
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
 // Charger les données des livres
 const loadBooks = () => {
   try {
@@ -214,6 +217,16 @@ app.get('/api/books/tag/:tag', (req, res) => {
 // Route de santé
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'API des livres fonctionnelle' });
+});
+
+// Middleware catch-all pour servir l'application Vue.js (doit être en dernier)
+app.use((req, res, next) => {
+  // Si la requête ne commence pas par /api et n'est pas un fichier statique
+  if (!req.path.startsWith('/api') && !req.path.includes('.')) {
+    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  } else {
+    next();
+  }
 });
 
 // Démarrage du serveur

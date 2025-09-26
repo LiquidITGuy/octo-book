@@ -1,0 +1,39 @@
+# Fichiers et dossiers à ignorer lors du build Docker
+
+# Node modules (seront installés dans le container)
+node_modules/
+frontend/node_modules/
+api/node_modules/
+
+# Fichiers de build locaux
+frontend/dist/
+frontend/.vite/
+
+# Fichiers de développement
+.git/
+.gitignore
+README.md
+.env.local
+.env.development
+
+# Fichiers de logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers temporaires
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Fichiers de test
+coverage/
+.nyc_output/
+
+# Fichiers de cache
+.cache/
+.parcel-cache/

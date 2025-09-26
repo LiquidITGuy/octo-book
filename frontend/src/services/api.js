@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'http://localhost:3200'
+// En production, utiliser une URL relative pour que Nginx puisse faire le proxy
+// En développement, utiliser l'URL complète
+const API_BASE_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3200'
 
 const api = axios.create({
   baseURL: API_BASE_URL,
