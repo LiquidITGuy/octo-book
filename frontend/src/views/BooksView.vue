@@ -41,6 +41,9 @@
             <p>
               <strong>{{ searchResults.totalBooks || 0 }}</strong> résultat(s) pour 
               "<strong>{{ currentSearchQuery }}</strong>"
+              <span v-if="searchResults.offline" class="offline-search-badge">
+                📡 Recherche hors ligne
+              </span>
             </p>
           </div>
         </div>

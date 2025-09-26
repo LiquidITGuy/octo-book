@@ -131,6 +131,8 @@ async function cacheFirst(request, cacheName) {
 
 // Stratégie Network First (pour les API de listes de livres)
 async function networkFirstAPI(request, cacheName) {
+  const url = new URL(request.url);
+  
   try {
     console.log('Network First API: Tentative réseau pour', request.url);
     const networkResponse = await fetch(request);
@@ -144,6 +146,14 @@ async function networkFirstAPI(request, cacheName) {
     return networkResponse;
   } catch (error) {
     console.log('Network First API: Échec réseau, tentative cache pour', request.url, error);
+    
+    // Si c'est une recherche et qu'on est hors ligne, faire une recherche locale
+    if (url.pathname.match(/^\/api\/books\/search\//)) {
+      console.log('Network First API: Recherche hors ligne activée');
+      return await performOfflineSearch(request, cacheName);
+    }
+    
+    // Pour les autres requêtes, essayer le cache normal
     const cachedResponse = await caches.match(request);
     
     if (cachedResponse) {
@@ -154,6 +164,116 @@ async function networkFirstAPI(request, cacheName) {
     console.log('Network First API: Aucune réponse disponible');
     throw error;
   }
+}
+
+// Fonction de recherche hors ligne dans le cache
+async function performOfflineSearch(request, cacheName) {
+  const url = new URL(request.url);
+  const searchQuery = decodeURIComponent(url.pathname.split('/').pop()).toLowerCase();
+  const page = parseInt(url.searchParams.get('page')) || 1;
+  const limit = parseInt(url.searchParams.get('limit')) || 10;
+  
+  console.log('Recherche hors ligne pour:', searchQuery, 'page:', page);
+  
+  try {
+    // Récupérer tous les livres depuis le cache
+    const allBooks = await getAllBooksFromCache(cacheName);
+    
+    if (!allBooks || allBooks.length === 0) {
+      console.log('Aucun livre en cache pour la recherche hors ligne');
+      throw new Error('Aucune donnée en cache');
+    }
+    
+    // Filtrer les livres selon la requête de recherche
+    const filteredBooks = allBooks.filter(book => 
+      book.title.toLowerCase().includes(searchQuery) ||
+      book.authors.some(author => author.toLowerCase().includes(searchQuery)) ||
+      book.tags.some(tag => tag.toLowerCase().includes(searchQuery)) ||
+      book.summary.toLowerCase().includes(searchQuery) ||
+      (book.longSummary && book.longSummary.toLowerCase().includes(searchQuery))
+    );
+    
+    // Pagination
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+    
+    // Retourner sans longSummary pour la cohérence avec l'API
+    const booksWithoutLongSummary = paginatedBooks.map(book => ({
+      id: book.id,
+      title: book.title,
+      authors: book.authors,
+      summary: book.summary,
+      thumbnail: book.thumbnail,
+      tags: book.tags,
+      disponible: book.disponible
+    }));
+    
+    // Créer une réponse similaire à l'API
+    const responseData = {
+      books: booksWithoutLongSummary,
+      query: searchQuery,
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(filteredBooks.length / limit),
+        totalBooks: filteredBooks.length,
+        hasNext: endIndex < filteredBooks.length,
+        hasPrev: page > 1
+      },
+      offline: true // Indicateur que c'est une recherche hors ligne
+    };
+    
+    console.log(`Recherche hors ligne: ${filteredBooks.length} résultats trouvés pour "${searchQuery}"`);
+    
+    // Créer une réponse HTTP
+    return new Response(JSON.stringify(responseData), {
+      status: 200,
+      statusText: 'OK',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Offline-Search': 'true'
+      }
+    });
+    
+  } catch (error) {
+    console.error('Erreur lors de la recherche hors ligne:', error);
+    throw error;
+  }
+}
+
+// Fonction pour récupérer tous les livres depuis le cache
+async function getAllBooksFromCache(cacheName) {
+  const cache = await caches.open(cacheName);
+  const requests = await cache.keys();
+  const allBooks = [];
+  
+  // Parcourir toutes les requêtes en cache pour trouver les listes de livres
+  for (const request of requests) {
+    const url = new URL(request.url);
+    
+    // Chercher les réponses de listes de livres (pas les détails individuels)
+    if (url.pathname === '/api/books' || url.pathname.match(/^\/api\/books\/tag\//)) {
+      try {
+        const response = await cache.match(request);
+        if (response) {
+          const data = await response.json();
+          if (data.books && Array.isArray(data.books)) {
+            // Ajouter les livres à notre collection, en évitant les doublons
+            data.books.forEach(book => {
+              if (!allBooks.find(existingBook => existingBook.id === book.id)) {
+                allBooks.push(book);
+              }
+            });
+          }
+        }
+      } catch (error) {
+        console.warn('Erreur lors de la lecture du cache pour:', request.url, error);
+      }
+    }
+  }
+  
+  console.log(`Récupéré ${allBooks.length} livres depuis le cache pour la recherche hors ligne`);
+  return allBooks;
 }
 
 // Stratégie Stale While Revalidate (pour autres API)
