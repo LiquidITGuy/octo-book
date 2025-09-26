@@ -1,6 +1,7 @@
 // Service Worker pour Octo Books PWA
 const CACHE_NAME = 'octo-books-v2';
 const API_CACHE_NAME = 'octo-books-api-v2';
+const IMAGE_CACHE_NAME = 'octo-books-images-v2';
 
 // Assets à mettre en cache (network-first)
 const STATIC_ASSETS = [
@@ -34,7 +35,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME && cacheName !== API_CACHE_NAME) {
+          if (cacheName !== CACHE_NAME && cacheName !== API_CACHE_NAME && cacheName !== IMAGE_CACHE_NAME) {
             console.log('Service Worker: Suppression ancien cache', cacheName);
             return caches.delete(cacheName);
           }
@@ -49,6 +50,15 @@ self.addEventListener('activate', (event) => {
 // Stratégies de cache
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
+  
+  // Images - Cache First
+  if (event.request.destination === 'image' || 
+      url.pathname.match(/\.(jpg|jpeg|png|gif|webp|svg|ico)$/i) ||
+      url.hostname === 'octo.com' && url.pathname.includes('/assets/publications-categories-images/')) {
+    console.log('Service Worker: Image - Cache First');
+    event.respondWith(cacheFirstImage(event.request, IMAGE_CACHE_NAME));
+    return;
+  }
   
   // API calls - différentes stratégies selon l'endpoint
   if (url.origin === 'http://localhost:3200' || url.pathname.startsWith('/api/')) {
@@ -125,6 +135,35 @@ async function cacheFirst(request, cacheName) {
     return networkResponse;
   } catch (error) {
     console.log('Cache First: Échec réseau et pas de cache', error);
+    throw error;
+  }
+}
+
+// Stratégie Cache First (pour les images)
+async function cacheFirstImage(request, cacheName) {
+  const cachedResponse = await caches.match(request);
+  
+  if (cachedResponse) {
+    console.log('Cache First Image: Image servie depuis le cache');
+    return cachedResponse;
+  }
+  
+  try {
+    console.log('Cache First Image: Téléchargement de l\'image depuis le réseau');
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      const cache = await caches.open(cacheName);
+      console.log('Cache First Image: Mise en cache de l\'image');
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.log('Cache First Image: Échec réseau et pas de cache pour l\'image', error);
+    
+    // Optionnel : retourner une image placeholder en cas d'échec
+    // return new Response('', { status: 404, statusText: 'Image not found' });
     throw error;
   }
 }
