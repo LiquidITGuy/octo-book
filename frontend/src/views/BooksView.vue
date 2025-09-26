@@ -189,11 +189,16 @@ export default {
     await this.loadBooks(page)
   },
   watch: {
-    '$route.query.page'(newPage) {
+    '$route.query.page'(newPage, oldPage) {
       const page = parseInt(newPage) || 1
-      if (page !== this.currentPage) {
+      const oldPageNum = parseInt(oldPage) || 1
+      
+      // Comparer avec l'ancienne page de l'URL, pas avec currentPage qui peut déjà être mis à jour
+      if (page !== oldPageNum) {
         this.currentPage = page
         this.loadBooks(page)
+        // Remonter en haut de page
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     }
   },
@@ -202,6 +207,7 @@ export default {
       try {
         this.loading = true
         this.error = null
+        this.currentPage = page
         const response = await booksApi.getBooks(page, 10)
         this.books = response.data.books
         this.pagination = response.data.pagination
@@ -226,6 +232,7 @@ export default {
         this.error = null
         this.isSearchMode = true
         this.currentSearchQuery = query
+        this.currentPage = page
         
         const response = await booksApi.searchBooks(query, page, 10)
         this.books = response.data.books
@@ -233,7 +240,7 @@ export default {
         this.searchResults = {
           totalBooks: response.data.pagination.totalBooks,
           query: query,
-          offline: response.data.offline || false // Récupérer l'indicateur hors ligne
+          offline: response.data.offline || false
         }
       } catch (error) {
         console.error('Erreur lors de la recherche:', error)
@@ -284,6 +291,8 @@ export default {
         if (this.isSearchMode) {
           // En mode recherche, effectuer une nouvelle recherche pour la page demandée
           this.performSearch(page)
+          // Remonter en haut de page pour la recherche
+          window.scrollTo({ top: 0, behavior: 'smooth' })
         } else {
           // En mode normal, naviguer vers la page
           this.$router.push({ query: { page: page.toString() } })
