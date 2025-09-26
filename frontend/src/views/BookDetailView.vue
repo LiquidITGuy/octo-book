@@ -97,6 +97,19 @@
               ← Retour aux livres
             </router-link>
           </div>
+
+          <!-- Partage social -->
+          <div class="book-share">
+            <SocialShare
+              :book-title="book.title"
+              :book-summary="book.summary"
+              :book-url="getBookUrl()"
+              :book-image="book.thumbnail"
+              :authors="book.authors"
+              :tags="book.tags"
+              @share="handleShare"
+            />
+          </div>
         </div>
       </div>
 
@@ -133,13 +146,26 @@ import { booksApi } from '@/services/api'
 import FavoriteButton from '@/components/FavoriteButton.vue'
 import SkeletonLoader from '@/components/SkeletonLoader.vue'
 import LazyImage from '@/components/LazyImage.vue'
+import SocialShare from '@/components/SocialShare.vue'
+import { useSocialShare, useOpenGraph } from '@/composables/useSocialShare'
 
 export default {
   name: 'BookDetailView',
   components: {
     FavoriteButton,
     SkeletonLoader,
-    LazyImage
+    LazyImage,
+    SocialShare
+  },
+  setup() {
+    const { trackShare } = useSocialShare()
+    const { updateMetaTags, resetMetaTags } = useOpenGraph()
+    
+    return {
+      trackShare,
+      updateMetaTags,
+      resetMetaTags
+    }
   },
   data() {
     return {
@@ -171,6 +197,17 @@ export default {
         this.error = null
         const response = await booksApi.getBookById(bookId)
         this.book = response.data
+        
+        // Mettre à jour les meta tags Open Graph
+        if (this.book) {
+          this.updateMetaTags({
+            title: this.book.title,
+            summary: this.book.summary,
+            thumbnail: this.book.thumbnail,
+            authors: this.book.authors,
+            url: this.getBookUrl()
+          })
+        }
       } catch (error) {
         console.error('Erreur lors du chargement du livre:', error)
         if (error.response?.status === 404) {
@@ -187,7 +224,26 @@ export default {
     getLongSummaryParagraphs() {
       if (!this.book?.longSummary) return []
       return this.book.longSummary.split('\n').filter(p => p.trim())
+    },
+    getBookUrl() {
+      return `${window.location.origin}/books/${this.book?.id}`
+    },
+    handleShare(shareData) {
+      // Enrichir les données de partage avec l'ID du livre
+      const enrichedData = {
+        ...shareData,
+        bookId: this.book?.id
+      }
+      
+      // Tracker le partage
+      this.trackShare(enrichedData)
+      
+      console.log('Livre partagé:', enrichedData)
     }
+  },
+  beforeUnmount() {
+    // Réinitialiser les meta tags quand on quitte la page
+    this.resetMetaTags()
   }
 }
 </script>
@@ -414,6 +470,12 @@ export default {
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.book-share {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
 }
 
 .book-meta {
