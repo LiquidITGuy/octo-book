@@ -14,8 +14,8 @@
       </div>
     </section>
 
-    <div v-if="loading" class="loading">
-      Chargement de vos favoris...
+    <div v-if="loading">
+      <SkeletonLoader type="books-grid" :count="6" />
     </div>
 
     <div v-else-if="error" class="error card">
@@ -27,10 +27,9 @@
       <div class="books-grid">
         <article v-for="book in favoriteBooks" :key="book.id" class="book-card card">
           <div class="book-thumbnail">
-            <img 
+            <LazyImage 
               :src="book.thumbnail" 
-              :alt="`Couverture du livre ${book.title}`" 
-              loading="lazy"
+              :alt="`Couverture du livre ${book.title}`"
               @error="handleImageError"
             />
           </div>
@@ -97,11 +96,15 @@ import { ref, computed, onMounted } from 'vue'
 import { useFavorites } from '@/composables/useFavorites'
 import { booksApi } from '@/services/api'
 import FavoriteButton from '@/components/FavoriteButton.vue'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
+import LazyImage from '@/components/LazyImage.vue'
 
 export default {
   name: 'FavoritesView',
   components: {
-    FavoriteButton
+    FavoriteButton,
+    SkeletonLoader,
+    LazyImage
   },
   setup() {
     const { favorites, favoritesCount, clearFavorites } = useFavorites()
@@ -150,8 +153,9 @@ export default {
       }
     }
 
-    const handleImageError = (event) => {
-      event.target.style.display = 'none'
+    const handleImageError = () => {
+      // Géré automatiquement par le composant LazyImage
+      console.log('Erreur de chargement d\'image dans les favoris')
     }
 
     onMounted(() => {

@@ -50,8 +50,8 @@
       </div>
     </section>
 
-    <div v-if="loading" class="loading">
-      {{ isSearchMode ? 'Recherche en cours...' : 'Chargement des livres...' }}
+    <div v-if="loading">
+      <SkeletonLoader type="books-grid" :count="10" />
     </div>
 
     <div v-else-if="error" class="error card">
@@ -75,10 +75,9 @@
       <div class="books-grid">
         <article v-for="book in books" :key="book.id" class="book-card card">
           <div class="book-thumbnail">
-            <img 
+            <LazyImage 
               :src="book.thumbnail" 
-              :alt="`Couverture du livre ${book.title}`" 
-              loading="lazy"
+              :alt="`Couverture du livre ${book.title}`"
               @error="handleImageError"
             />
           </div>
@@ -169,11 +168,15 @@
 <script>
 import { booksApi } from '@/services/api'
 import FavoriteButton from '@/components/FavoriteButton.vue'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
+import LazyImage from '@/components/LazyImage.vue'
 
 export default {
   name: 'BooksView',
   components: {
-    FavoriteButton
+    FavoriteButton,
+    SkeletonLoader,
+    LazyImage
   },
   data() {
     return {
@@ -341,10 +344,9 @@ export default {
       
       return pages
     },
-    handleImageError(event) {
-      // Masquer l'image en cas d'erreur de chargement
-      event.target.style.display = 'none'
-      // Le CSS affichera automatiquement l'icône de fallback
+    handleImageError() {
+      // Géré automatiquement par le composant LazyImage
+      console.log('Erreur de chargement d\'image')
     }
   }
 }

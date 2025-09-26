@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div v-if="loading" class="loading">
-      Chargement du livre...
+    <div v-if="loading">
+      <SkeletonLoader type="book-detail" />
     </div>
 
     <div v-else-if="error" class="error-section">
@@ -31,7 +31,11 @@
       <!-- Contenu principal -->
       <div class="book-content">
         <div class="book-image">
-          <img :src="book.thumbnail" :alt="book.title" />
+          <LazyImage 
+            :src="book.thumbnail" 
+            :alt="book.title"
+            :show-error-text="true"
+          />
         </div>
 
         <div class="book-details">
@@ -127,11 +131,15 @@
 <script>
 import { booksApi } from '@/services/api'
 import FavoriteButton from '@/components/FavoriteButton.vue'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
+import LazyImage from '@/components/LazyImage.vue'
 
 export default {
   name: 'BookDetailView',
   components: {
-    FavoriteButton
+    FavoriteButton,
+    SkeletonLoader,
+    LazyImage
   },
   data() {
     return {

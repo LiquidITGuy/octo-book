@@ -35,6 +35,7 @@ import OfflineIndicator from './components/OfflineIndicator.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
 import { useTheme } from './composables/useTheme'
 import { useFavorites } from './composables/useFavorites'
+import { usePerformance } from './composables/usePerformance'
 
 export default {
   name: 'App',
@@ -45,15 +46,22 @@ export default {
   setup() {
     const { initTheme } = useTheme()
     const { initFavorites, favoritesCount } = useFavorites()
+    const { metrics, logMetrics } = usePerformance()
 
     onMounted(() => {
       // Initialiser le thème et les favoris au démarrage
       initTheme()
       initFavorites()
+
+      // Logger les métriques après un délai pour laisser l'app se charger
+      setTimeout(() => {
+        logMetrics()
+      }, 2000)
     })
 
     return {
-      favoritesCount
+      favoritesCount,
+      metrics
     }
   },
   methods: {
