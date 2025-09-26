@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3200;
 
 // Middleware
 app.use(cors());
@@ -124,6 +124,50 @@ app.get('/api/tags', (req, res) => {
     res.json({ tags: allTags.sort() });
   } catch (error) {
     console.error('Erreur lors de la récupération des tags:', error);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+// Route pour obtenir les livres par tag avec pagination
+app.get('/api/books/tag/:tag', (req, res) => {
+  try {
+    const books = loadBooks();
+    const tag = decodeURIComponent(req.params.tag);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    
+    // Filtrer les livres par tag
+    const filteredBooks = books.filter(book => 
+      book.tags.some(bookTag => bookTag.toLowerCase() === tag.toLowerCase())
+    );
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+    
+    // Retourner uniquement les informations de base (sans longSummary)
+    const booksWithoutLongSummary = paginatedBooks.map(book => ({
+      id: book.id,
+      title: book.title,
+      authors: book.authors,
+      summary: book.summary,
+      thumbnail: book.thumbnail,
+      tags: book.tags
+    }));
+
+    res.json({
+      books: booksWithoutLongSummary,
+      tag: tag,
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(filteredBooks.length / limit),
+        totalBooks: filteredBooks.length,
+        hasNext: endIndex < filteredBooks.length,
+        hasPrev: page > 1
+      }
+    });
+  } catch (error) {
+    console.error('Erreur lors de la récupération des livres par tag:', error);
     res.status(500).json({ error: 'Erreur serveur' });
   }
 });

@@ -98,5 +98,55 @@
     "downloadLink": "https://example.com/downloads/green-it.pdf",
     "thumbnail": "https://picsum.photos/300/400?random=10",
     "tags": ["green it", "sustainability", "environment", "eco-design"]
+  },
+  {
+    "id": "11",
+    "title": "Green IT et Développement Durable",
+    "authors": ["Camille Verdier", "Lars Andersen"],
+    "summary": "Développer des solutions numériques respectueuses de l'environnement.",
+    "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
+    "downloadLink": "https://example.com/downloads/green-it.pdf",
+    "thumbnail": "https://picsum.photos/300/400?random=10",
+    "tags": ["green it", "sustainability", "environment", "eco-design"]
+  },
+  {
+    "id": "12",
+    "title": "Green IT et Développement Durable",
+    "authors": ["Camille Verdier", "Lars Andersen"],
+    "summary": "Développer des solutions numériques respectueuses de l'environnement.",
+    "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
+    "downloadLink": "https://example.com/downloads/green-it.pdf",
+    "thumbnail": "https://picsum.photos/300/400?random=10",
+    "tags": ["green it", "sustainability", "environment", "eco-design"]
+  },
+  {
+    "id": "13",
+    "title": "Green IT et Développement Durable",
+    "authors": ["Camille Verdier", "Lars Andersen"],
+    "summary": "Développer des solutions numériques respectueuses de l'environnement.",
+    "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
+    "downloadLink": "https://example.com/downloads/green-it.pdf",
+    "thumbnail": "https://picsum.photos/300/400?random=10",
+    "tags": ["green it", "sustainability", "environment", "eco-design"]
+  },
+  {
+    "id": "14",
+    "title": "Green IT et Développement Durable",
+    "authors": ["Camille Verdier", "Lars Andersen"],
+    "summary": "Développer des solutions numériques respectueuses de l'environnement.",
+    "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
+    "downloadLink": "https://example.com/downloads/green-it.pdf",
+    "thumbnail": "https://picsum.photos/300/400?random=10",
+    "tags": ["green it", "sustainability", "environment", "eco-design"]
+  },
+  {
+    "id": "15",
+    "title": "Green IT et Développement Durable",
+    "authors": ["Camille Verdier", "Lars Andersen"],
+    "summary": "Développer des solutions numériques respectueuses de l'environnement.",
+    "longSummary": "Le numérique représente une part croissante de notre empreinte carbone. Ce livre explore comment développer des solutions plus respectueuses de l'environnement. Les auteurs présentent les principes du Green IT, les techniques d'éco-conception et les méthodes de mesure de l'impact environnemental. Vous apprendrez à optimiser la consommation énergétique de vos applications, à choisir des technologies plus durables et à sensibiliser vos équipes aux enjeux environnementaux. Avec des études de cas concrets et des outils pratiques, cet ouvrage est essentiel pour tout professionnel IT soucieux de l'avenir de notre planète.",
+    "downloadLink": "https://example.com/downloads/green-it.pdf",
+    "thumbnail": "https://picsum.photos/300/400?random=10",
+    "tags": ["green it", "sustainability", "environment", "eco-design"]
   }
 ]
