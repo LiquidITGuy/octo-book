@@ -18,9 +18,9 @@ export const booksApi = {
     return api.get(`/api/books/${id}`)
   },
 
-  // Rechercher des livres
-  searchBooks(query) {
-    return api.get(`/api/books/search/${encodeURIComponent(query)}`)
+  // Rechercher des livres avec pagination
+  searchBooks(query, page = 1, limit = 10) {
+    return api.get(`/api/books/search/${encodeURIComponent(query)}?page=${page}&limit=${limit}`)
   },
 
   // Récupérer tous les tags

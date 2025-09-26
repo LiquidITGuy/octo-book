@@ -1,12 +1,54 @@
 <template>
   <div class="container">
-    <div>
-      <h1>Notre collection de livres</h1>
-      <p>Découvrez tous nos ouvrages techniques et méthodologiques</p>
-    </div>
+    <!-- Hero Section avec titre et recherche intégrée -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Notre collection de livres</h1>
+        <p>Découvrez tous nos ouvrages techniques et méthodologiques</p>
+        
+        <!-- Barre de recherche intégrée -->
+        <div class="search-container">
+          <div class="search-wrapper">
+            <input
+              v-model="searchQuery"
+              @input="onSearchInput"
+              @keyup.enter="performSearch"
+              type="text"
+              placeholder="Rechercher dans les titres, descriptions, résumés..."
+              class="search-input"
+              aria-label="Recherche de livres"
+            />
+            <button 
+              @click="performSearch"
+              class="search-button"
+              :disabled="!searchQuery.trim()"
+              aria-label="Lancer la recherche"
+            >
+              🔍
+            </button>
+            <button 
+              v-if="isSearchMode"
+              @click="clearSearch"
+              class="clear-button"
+              aria-label="Effacer la recherche"
+            >
+              ✕
+            </button>
+          </div>
+          
+          <!-- Indicateur de recherche -->
+          <div v-if="isSearchMode" class="search-info">
+            <p>
+              <strong>{{ searchResults.totalBooks || 0 }}</strong> résultat(s) pour 
+              "<strong>{{ currentSearchQuery }}</strong>"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div v-if="loading" class="loading">
-      Chargement des livres...
+      {{ isSearchMode ? 'Recherche en cours...' : 'Chargement des livres...' }}
     </div>
 
     <div v-else-if="error" class="error card">
@@ -129,7 +171,12 @@ export default {
       pagination: null,
       loading: true,
       error: null,
-      currentPage: 1
+      currentPage: 1,
+      searchQuery: '',
+      currentSearchQuery: '',
+      isSearchMode: false,
+      searchResults: {},
+      searchTimeout: null
     }
   },
   async mounted() {
@@ -166,9 +213,77 @@ export default {
         this.loading = false
       }
     },
+    
+    async performSearch(page = 1) {
+      const query = this.searchQuery.trim()
+      if (!query) return
+
+      try {
+        this.loading = true
+        this.error = null
+        this.isSearchMode = true
+        this.currentSearchQuery = query
+        
+        const response = await booksApi.searchBooks(query, page, 10)
+        this.books = response.data.books
+        this.pagination = response.data.pagination
+        this.searchResults = {
+          totalBooks: response.data.pagination.totalBooks,
+          query: query
+        }
+      } catch (error) {
+        console.error('Erreur lors de la recherche:', error)
+        if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
+          this.error = 'Impossible de se connecter à l\'API'
+        } else {
+          this.error = 'Erreur lors de la recherche'
+        }
+      } finally {
+        this.loading = false
+      }
+    },
+
+    onSearchInput() {
+      // Debounce la recherche automatique
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout)
+      }
+      
+      // Si le champ est vide, effacer la recherche
+      if (!this.searchQuery.trim()) {
+        this.clearSearch()
+        return
+      }
+
+      // Recherche automatique après 500ms d'inactivité
+      this.searchTimeout = setTimeout(() => {
+        this.performSearch()
+      }, 500)
+    },
+
+    clearSearch() {
+      this.searchQuery = ''
+      this.currentSearchQuery = ''
+      this.isSearchMode = false
+      this.searchResults = {}
+      this.currentPage = 1
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout)
+      }
+      // Recharger la liste complète des livres
+      this.loadBooks(1)
+    },
+
     goToPage(page) {
       if (page !== this.currentPage) {
-        this.$router.push({ query: { page: page.toString() } })
+        this.currentPage = page
+        if (this.isSearchMode) {
+          // En mode recherche, effectuer une nouvelle recherche pour la page demandée
+          this.performSearch(page)
+        } else {
+          // En mode normal, naviguer vers la page
+          this.$router.push({ query: { page: page.toString() } })
+        }
       }
     },
     getPageNumbers() {
@@ -216,6 +331,107 @@ export default {
 </script>
 
 <style scoped>
+/* Styles pour la recherche intégrée au hero */
+.search-container {
+  max-width: 700px;
+  margin: 3rem auto 0;
+}
+
+.search-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0;
+  padding: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+  border-color: #0E2356;
+  box-shadow: 0 0 0 1px #0E2356;
+}
+
+.search-input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: #0E2356;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #586586;
+  font-weight: 300;
+}
+
+.search-button, .clear-button {
+  padding: 1rem 1.5rem;
+  border: 2px solid #0E2356;
+  background: transparent;
+  color: #0E2356;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.search-button:hover:not(:disabled) {
+  background: #0E2356;
+  color: #ffffff;
+}
+
+.search-button:disabled {
+  border-color: #e2e8f0;
+  color: #a0aec0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.clear-button {
+  border-color: #586586;
+  color: #586586;
+  font-weight: 400;
+}
+
+.clear-button:hover {
+  background: #586586;
+  color: #ffffff;
+}
+
+.search-info {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0E2356;
+}
+
+.search-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.search-info strong {
+  font-weight: 400;
+  color: #0E2356;
+}
+
 .book-header {
   display: flex;
   justify-content: space-between;
@@ -258,11 +474,34 @@ export default {
 }
 
 .pagination-info p {
-  color: rgba(255, 255, 255, 0.8);
+  color: #586586;
   font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
+  .search-container {
+    max-width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .search-input {
+    font-size: 16px; /* Évite le zoom sur iOS */
+  }
+
+  .search-button, .clear-button {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .search-info {
+    max-width: 100%;
+    margin-top: 0.75rem;
+  }
+
   .books-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -293,6 +532,16 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .search-container {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .search-button, .clear-button {
+    min-width: 44px;
+    padding: 0.75rem 0.5rem;
+  }
+
   .books-grid {
     grid-template-columns: 1fr;
   }

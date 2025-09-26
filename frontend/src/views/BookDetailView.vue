@@ -219,31 +219,34 @@ export default {
 }
 
 .breadcrumb {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
 .breadcrumb a {
-  color: rgba(255, 255, 255, 0.8);
+  color: #586586;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .breadcrumb a:hover {
-  color: white;
+  color: #0E2356;
 }
 
 .separator {
-  margin: 0 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0.75rem;
+  color: #a0aec0;
 }
 
 .current {
-  color: white;
-  font-weight: 500;
+  color: #0E2356;
+  font-weight: 400;
 }
 
 .book-content {
@@ -271,11 +274,22 @@ export default {
 }
 
 .book-details {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  padding: 2.5rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 3rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.book-details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #0E2356;
+  opacity: 1;
 }
 
 .title-section {

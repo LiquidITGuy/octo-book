@@ -77,20 +77,28 @@ app.get('/api/books/:id', (req, res) => {
   }
 });
 
-// Route pour rechercher des livres par titre, auteur ou tags
+// Route pour rechercher des livres par titre, auteur, tags, résumé ou description
 app.get('/api/books/search/:query', (req, res) => {
   try {
     const books = loadBooks();
     const query = req.params.query.toLowerCase();
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
     
     const filteredBooks = books.filter(book => 
       book.title.toLowerCase().includes(query) ||
       book.authors.some(author => author.toLowerCase().includes(query)) ||
-      book.tags.some(tag => tag.toLowerCase().includes(query))
+      book.tags.some(tag => tag.toLowerCase().includes(query)) ||
+      book.summary.toLowerCase().includes(query) ||
+      book.longSummary.toLowerCase().includes(query)
     );
 
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+
     // Retourner sans longSummary pour la recherche
-    const booksWithoutLongSummary = filteredBooks.map(book => ({
+    const booksWithoutLongSummary = paginatedBooks.map(book => ({
       id: book.id,
       title: book.title,
       authors: book.authors,
@@ -102,7 +110,14 @@ app.get('/api/books/search/:query', (req, res) => {
 
     res.json({
       books: booksWithoutLongSummary,
-      total: filteredBooks.length
+      query: query,
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(filteredBooks.length / limit),
+        totalBooks: filteredBooks.length,
+        hasNext: endIndex < filteredBooks.length,
+        hasPrev: page > 1
+      }
     });
   } catch (error) {
     console.error('Erreur lors de la recherche:', error);
