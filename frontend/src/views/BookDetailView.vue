@@ -254,19 +254,6 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.book-header {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
-}
-
-.book-header h1 {
-  color: #333;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
 .authors {
   color: #667eea;
   font-size: 1.1rem;
@@ -375,10 +362,6 @@ export default {
     padding: 1.5rem;
   }
 
-  .book-header h1 {
-    font-size: 2rem;
-  }
-
   .book-actions {
     flex-direction: column;
   }
@@ -393,10 +376,7 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .book-header h1 {
-    font-size: 1.5rem;
-  }
-
+ 
   .book-details {
     padding: 1rem;
   }

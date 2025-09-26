@@ -42,7 +42,7 @@ npm install
 npm start
 ```
 
-L'API sera disponible sur `http://localhost:3001`
+L'API sera disponible sur `http://localhost:3200`
 
 ### 2. Démarrer le front-end
 
@@ -70,16 +70,16 @@ Le site sera disponible sur `http://localhost:3000`
 
 ```bash
 # Récupérer les 10 premiers livres
-curl http://localhost:3001/api/books
+curl http://localhost:3200/api/books
 
 # Récupérer la page 2
-curl http://localhost:3001/api/books?page=2
+curl http://localhost:3200/api/books?page=2
 
 # Détail du livre avec l'ID 1
-curl http://localhost:3001/api/books/1
+curl http://localhost:3200/api/books/1
 
 # Rechercher des livres
-curl http://localhost:3001/api/books/search/devops
+curl http://localhost:3200/api/books/search/devops
 ```
 
 ## 🎨 Design et charte graphique

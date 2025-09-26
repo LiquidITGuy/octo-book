@@ -42,7 +42,14 @@
             </p>
             <p class="summary">{{ book.summary }}</p>
             <div class="tags">
-              <span v-for="tag in book.tags" :key="tag" class="tag">{{ tag }}</span>
+              <router-link 
+                v-for="tag in book.tags" 
+                :key="tag" 
+                :to="`/tag/${encodeURIComponent(tag)}`"
+                class="tag tag-link"
+              >
+                {{ tag }}
+              </router-link>
             </div>
             <div class="book-actions">
               <router-link :to="`/books/${book.id}`" class="btn">Voir le détail</router-link>

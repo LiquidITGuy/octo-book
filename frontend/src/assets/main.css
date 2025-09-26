@@ -93,17 +93,6 @@ p {
   display: inline-block;
 }
 
-.logo::after {
-  content: "";
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  width: 16px;
-  height: 16px;
-  border: 1px solid #0E2356;
-  border-radius: 2px;
-}
-
 .nav {
   display: flex;
   gap: 3rem;
@@ -233,6 +222,24 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 300;
+}
+
+/* Tags cliquables */
+.tag-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tag-link:hover {
+  background: #0E2356;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.tag-link:focus {
+  outline: 2px solid #0E2356;
+  outline-offset: 2px;
 }
 
 /* Pagination géométrique */
@@ -542,4 +549,57 @@ p {
 .nav a:focus {
   outline: 2px solid #0E2356;
   outline-offset: 2px;
+}
+
+/* Transitions de page - Respectueuses de l'accessibilité */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.page-enter-to,
+.page-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Désactiver les transitions pour les utilisateurs qui préfèrent un mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .page-enter-from,
+  .page-leave-to,
+  .page-enter-to,
+  .page-leave-from {
+    transform: none !important;
+  }
+  
+  /* Désactiver aussi les autres animations pour l'accessibilité */
+  .card,
+  .book-card {
+    animation: none !important;
+  }
+  
+  .book-thumbnail img,
+  .btn,
+  .nav a,
+  .card,
+  .tag-link,
+  .pagination-link {
+    transition: none !important;
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="books-header">
+    <div>
       <h1>Notre collection de livres</h1>
       <p>Découvrez tous nos ouvrages techniques et méthodologiques</p>
     </div>
@@ -44,14 +44,15 @@
             </p>
             <p class="summary">{{ book.summary }}</p>
             <div class="tags" role="list" aria-label="Tags du livre">
-              <span 
+              <router-link 
                 v-for="tag in book.tags" 
                 :key="tag" 
-                class="tag"
+                :to="`/tag/${encodeURIComponent(tag)}`"
+                class="tag tag-link"
                 role="listitem"
               >
                 {{ tag }}
-              </span>
+              </router-link>
             </div>
             <div class="book-actions">
               <router-link 
@@ -207,24 +208,6 @@ export default {
 </script>
 
 <style scoped>
-.books-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem 0;
-}
-
-.books-header h1 {
-  font-size: 3rem;
-  color: white;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.books-header p {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
 .pagination-info {
   text-align: center;
   margin-bottom: 2rem;
@@ -236,14 +219,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .books-header h1 {
-    font-size: 2rem;
-  }
-
-  .books-header p {
-    font-size: 1rem;
-  }
-
   .books-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;

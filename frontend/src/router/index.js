@@ -20,6 +20,11 @@ const router = createRouter({
       path: '/books/:id',
       name: 'book-detail',
       component: BookDetailView
+    },
+    {
+      path: '/tag/:tag',
+      name: 'books-by-tag',
+      component: () => import('../views/BooksByTagView.vue')
     }
   ]
 })

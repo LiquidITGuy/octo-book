@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'http://localhost:3001'
+const API_BASE_URL = 'http://localhost:3200'
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -26,6 +26,11 @@ export const booksApi = {
   // Récupérer tous les tags
   getTags() {
     return api.get('/api/tags')
+  },
+
+  // Récupérer les livres par tag avec pagination
+  getBooksByTag(tag, page = 1, limit = 10) {
+    return api.get(`/api/books/tag/${encodeURIComponent(tag)}?page=${page}&limit=${limit}`)
   },
 
   // Vérifier la santé de l'API
