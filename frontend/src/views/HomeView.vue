@@ -138,13 +138,11 @@ export default {
 }
 
 .about-section h2 {
-  color: #333;
   margin-bottom: 1rem;
   font-size: 2rem;
 }
 
 .about-section p {
-  color: #666;
   margin-bottom: 2rem;
   font-size: 1.1rem;
 }

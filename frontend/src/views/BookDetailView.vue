@@ -38,12 +38,15 @@
           <header class="book-header">
             <div class="title-section">
               <h1>{{ book.title }}</h1>
-              <span 
-                :class="['availability-badge', book.disponible ? 'available' : 'unavailable']"
-                :aria-label="book.disponible ? 'Livre disponible' : 'Livre archivé'"
-              >
-                {{ book.disponible ? 'Disponible' : 'Archive' }}
-              </span>
+              <div class="title-controls">
+                <span 
+                  :class="['availability-badge', book.disponible ? 'available' : 'unavailable']"
+                  :aria-label="book.disponible ? 'Livre disponible' : 'Livre archivé'"
+                >
+                  {{ book.disponible ? 'Disponible' : 'Archive' }}
+                </span>
+                <FavoriteButton :book-id="book.id" :show-text="true" />
+              </div>
             </div>
             <div class="authors">
               <strong>Auteur{{ book.authors.length > 1 ? 's' : '' }} :</strong>
@@ -123,9 +126,13 @@
 
 <script>
 import { booksApi } from '@/services/api'
+import FavoriteButton from '@/components/FavoriteButton.vue'
 
 export default {
   name: 'BookDetailView',
+  components: {
+    FavoriteButton
+  },
   data() {
     return {
       book: null,
@@ -305,6 +312,13 @@ export default {
   flex: 1;
 }
 
+.title-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
 .availability-badge {
   padding: 0.5rem 1rem;
   border-radius: 1.5rem;
@@ -457,6 +471,11 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+  }
+
+  .title-controls {
+    align-self: stretch;
+    justify-content: space-between;
   }
 
   .availability-badge {

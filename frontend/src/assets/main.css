@@ -1,3 +1,34 @@
+/* Variables CSS pour les thèmes */
+:root {
+  /* Mode clair (défaut) */
+  --color-primary: #0E2356;
+  --color-secondary: #586586;
+  --color-background: #ffffff;
+  --color-background-secondary: #f7fafc;
+  --color-text: #0E2356;
+  --color-text-secondary: #586586;
+  --color-border: #e2e8f0;
+  --color-border-hover: #0E2356;
+  --color-card-background: #ffffff;
+  --color-error: #e53e3e;
+  --color-success: #22c55e;
+}
+
+/* Mode sombre */
+:root.dark {
+  --color-primary: #ffffff;
+  --color-secondary: #a0aec0;
+  --color-background: #1a202c;
+  --color-background-secondary: #2d3748;
+  --color-text: #ffffff;
+  --color-text-secondary: #a0aec0;
+  --color-border: #4a5568;
+  --color-border-hover: #ffffff;
+  --color-card-background: #2d3748;
+  --color-error: #fc8181;
+  --color-success: #68d391;
+}
+
 /* Reset et base - Charte Graphique Octo Premium */
 * {
   margin: 0;
@@ -9,13 +40,15 @@ html {
   font-family: 'Arial', 'Helvetica', sans-serif;
   line-height: 1.8;
   letter-spacing: 0.05em;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
-  background: #ffffff;
+  background: var(--color-background);
   min-height: 100vh;
-  color: #0E2356;
+  color: var(--color-text);
   font-weight: 300;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #app {
@@ -27,8 +60,9 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-weight: 300;
-  color: #0E2356;
+  color: var(--color-text);
   margin-bottom: 2rem;
+  transition: color 0.3s ease;
 }
 
 h1 {
@@ -53,12 +87,13 @@ p {
 
 /* Header minimaliste */
 .header {
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
   padding: 2rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .header-content {
@@ -70,16 +105,23 @@ p {
   align-items: center;
 }
 
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .logo {
   font-size: 1.5rem;
   font-weight: 300;
-  color: #0E2356;
+  color: var(--color-text);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: color 0.3s ease;
 }
 
 /* Élément géométrique wireframe pour le logo */
@@ -87,10 +129,11 @@ p {
   content: "";
   width: 32px;
   height: 32px;
-  border: 2px solid #0E2356;
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
   position: relative;
   display: inline-block;
+  transition: border-color 0.3s ease;
 }
 
 .nav {
@@ -100,7 +143,7 @@ p {
 }
 
 .nav a {
-  color: #586586;
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-weight: 300;
   text-transform: uppercase;
@@ -112,8 +155,8 @@ p {
 
 .nav a:hover,
 .nav a.router-link-active {
-  color: #0E2356;
-  border-bottom-color: #0E2356;
+  color: var(--color-text);
+  border-bottom-color: var(--color-primary);
 }
 
 /* Container principal avec beaucoup d'espace blanc */
@@ -125,8 +168,8 @@ p {
 
 /* Cards minimalistes */
 .card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--color-card-background);
+  border: 1px solid var(--color-border);
   padding: 3rem;
   margin-bottom: 3rem;
   transition: all 0.3s ease;
@@ -140,7 +183,7 @@ p {
   left: 0;
   width: 4px;
   height: 100%;
-  background: #0E2356;
+  background: var(--color-primary);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -150,8 +193,8 @@ p {
 }
 
 .card:hover {
-  border-color: #0E2356;
-  box-shadow: 0 0 0 1px #0E2356;
+  border-color: var(--color-border-hover);
+  box-shadow: 0 0 0 1px var(--color-border-hover);
 }
 
 /* Boutons minimalistes */
@@ -159,9 +202,9 @@ p {
   display: inline-block;
   padding: 1rem 2rem;
   background: transparent;
-  color: #0E2356;
+  color: var(--color-primary);
   text-decoration: none;
-  border: 2px solid #0E2356;
+  border: 2px solid var(--color-primary);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -172,28 +215,28 @@ p {
 }
 
 .btn:hover {
-  background: #0E2356;
-  color: #ffffff;
+  background: var(--color-primary);
+  color: var(--color-background);
 }
 
 .btn-secondary {
-  border-color: #586586;
-  color: #586586;
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 .btn-secondary:hover {
-  background: #586586;
-  color: #ffffff;
+  background: var(--color-secondary);
+  color: var(--color-background);
 }
 
 .btn-download {
-  border-color: #0E2356;
-  color: #0E2356;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .btn-download:hover {
-  background: #0E2356;
-  color: #ffffff;
+  background: var(--color-primary);
+  color: var(--color-background);
 }
 
 /* Grid minimaliste avec espacement généreux */
@@ -315,7 +358,6 @@ p {
 
 .hero-content h1 {
   font-size: 3.5rem;
-  color: #0E2356;
   margin-bottom: 2rem;
   font-weight: 100;
 }
@@ -467,6 +509,10 @@ p {
 
   .nav {
     gap: 2rem;
+  }
+
+  .header-controls {
+    order: -1;
   }
 
   .container {

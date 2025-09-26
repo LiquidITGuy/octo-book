@@ -10,8 +10,12 @@
           <ul class="nav">
             <li><router-link to="/">Accueil</router-link></li>
             <li><router-link to="/books">Livres</router-link></li>
+            <li><router-link to="/favorites">Favoris ({{ favoritesCount }})</router-link></li>
           </ul>
         </nav>
+        <div class="header-controls">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
 
@@ -26,12 +30,31 @@
 </template>
 
 <script>
+import { onMounted } from 'vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
+import ThemeToggle from './components/ThemeToggle.vue'
+import { useTheme } from './composables/useTheme'
+import { useFavorites } from './composables/useFavorites'
 
 export default {
   name: 'App',
   components: {
-    OfflineIndicator
+    OfflineIndicator,
+    ThemeToggle
+  },
+  setup() {
+    const { initTheme } = useTheme()
+    const { initFavorites, favoritesCount } = useFavorites()
+
+    onMounted(() => {
+      // Initialiser le thème et les favoris au démarrage
+      initTheme()
+      initFavorites()
+    })
+
+    return {
+      favoritesCount
+    }
   },
   methods: {
     handleConnectionRestored() {
