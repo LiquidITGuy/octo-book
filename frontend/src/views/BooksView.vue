@@ -196,7 +196,17 @@ export default {
     // Récupérer la page depuis l'URL
     const page = parseInt(this.$route.query.page) || 1
     this.currentPage = page
-    await this.loadBooks(page)
+    
+    // Récupérer la recherche depuis l'URL
+    const searchQuery = this.$route.query.search
+    if (searchQuery) {
+      this.searchQuery = searchQuery
+      this.currentSearchQuery = searchQuery
+      this.isSearchMode = true
+      await this.performSearch(page)
+    } else {
+      await this.loadBooks(page)
+    }
   },
   watch: {
     '$route.query.page'(newPage, oldPage) {
