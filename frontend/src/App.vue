@@ -3,6 +3,9 @@
     <!-- Indicateur hors ligne -->
     <OfflineIndicator @connection-restored="handleConnectionRestored" />
     
+    <!-- Prompt d'installation PWA -->
+    <InstallPWA />
+    
     <header class="header">
       <div class="header-content">
         <router-link to="/" class="logo">Octo Books</router-link>
@@ -33,6 +36,7 @@
 import { onMounted } from 'vue'
 import OfflineIndicator from './components/OfflineIndicator.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
+import InstallPWA from './components/InstallPWA.vue'
 import { useTheme } from './composables/useTheme'
 import { useFavorites } from './composables/useFavorites'
 import { usePerformance } from './composables/usePerformance'
@@ -41,7 +45,8 @@ export default {
   name: 'App',
   components: {
     OfflineIndicator,
-    ThemeToggle
+    ThemeToggle,
+    InstallPWA
   },
   setup() {
     const { initTheme } = useTheme()
