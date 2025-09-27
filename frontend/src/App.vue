@@ -42,6 +42,7 @@
 
 <script>
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import OfflineIndicator from './components/OfflineIndicator.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
 import InstallPWA from './components/InstallPWA.vue'
@@ -63,6 +64,7 @@ export default {
     BackToTop
   },
   setup() {
+    const router = useRouter()
     const { initTheme } = useTheme()
     const { initFavorites, favoritesCount } = useFavorites()
     const { metrics, logMetrics } = usePerformance()
@@ -76,6 +78,16 @@ export default {
       setTimeout(() => {
         logMetrics()
       }, 2000)
+
+      // Écouter les messages du service worker pour la navigation
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === 'NAVIGATE_TO') {
+            // Naviguer vers l'URL demandée
+            router.push(event.data.url)
+          }
+        })
+      }
     })
 
     return {

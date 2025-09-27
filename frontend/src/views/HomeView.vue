@@ -63,6 +63,18 @@
       </div>
     </section>
 
+    <!-- Notifications Section -->
+    <section class="notifications-section">
+      <div class="card">
+        <h2>Restez informé</h2>
+        <p>
+          Ne manquez aucun nouveau livre ! Activez les notifications push pour être alerté 
+          dès qu'un nouveau livre est ajouté à notre bibliothèque.
+        </p>
+        <PushNotifications />
+      </div>
+    </section>
+
     <!-- About Section -->
     <section class="about-section">
       <div class="card">
@@ -93,9 +105,13 @@
 
 <script>
 import { booksApi } from '@/services/api'
+import PushNotifications from '@/components/PushNotifications.vue'
 
 export default {
   name: 'HomeView',
+  components: {
+    PushNotifications
+  },
   data() {
     return {
       featuredBooks: [],
@@ -131,6 +147,21 @@ export default {
 <style scoped>
 .featured-section {
   margin-bottom: 3rem;
+}
+
+.notifications-section {
+  margin-bottom: 3rem;
+}
+
+.notifications-section h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.notifications-section p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #666;
 }
 
 .about-section {
