@@ -321,9 +321,41 @@ app.post('/api/push/unsubscribe', (req, res) => {
   }
 });
 
-// Route pour envoyer une notification à tous les abonnés
+// Route pour envoyer une notification à tous les abonnés (sécurisée)
 app.post('/api/push/notify', (req, res) => {
   try {
+    // Vérification du mot de passe dans le header
+    const providedPassword = req.headers['x-notification-password'] || req.headers['authorization'];
+    const requiredPassword = process.env.NOTIFICATION_PASSWORD;
+    
+    if (!requiredPassword) {
+      console.error('❌ NOTIFICATION_PASSWORD non configuré dans les variables d\'environnement');
+      return res.status(500).json({ error: 'Configuration serveur incorrecte' });
+    }
+    
+    if (!providedPassword) {
+      console.log('❌ Tentative d\'accès non autorisée - mot de passe manquant');
+      return res.status(401).json({ 
+        error: 'Accès non autorisé', 
+        message: 'Header X-Notification-Password requis' 
+      });
+    }
+    
+    // Nettoyage du mot de passe si format Bearer
+    const cleanPassword = providedPassword.startsWith('Bearer ') 
+      ? providedPassword.slice(7) 
+      : providedPassword;
+    
+    if (cleanPassword !== requiredPassword) {
+      console.log('❌ Tentative d\'accès non autorisée - mot de passe incorrect');
+      return res.status(401).json({ 
+        error: 'Accès non autorisé', 
+        message: 'Mot de passe incorrect' 
+      });
+    }
+    
+    console.log('✅ Authentification réussie pour l\'envoi de notifications');
+    
     const { title, body, bookId, url } = req.body;
     
     if (!title || !body) {
