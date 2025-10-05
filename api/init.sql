@@ -44,9 +44,14 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
--- Trigger pour mettre à jour automatiquement updated_at
-CREATE TRIGGER update_books_updated_at BEFORE UPDATE ON books
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+-- Trigger pour mettre à jour automatiquement updated_at (avec vérification d'existence)
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_books_updated_at') THEN
+        CREATE TRIGGER update_books_updated_at BEFORE UPDATE ON books
+            FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+    END IF;
+END $$;
 
 -- Message de confirmation
 DO $$
