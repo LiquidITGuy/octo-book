@@ -189,9 +189,7 @@ self.addEventListener('fetch', (event) => {
           return fetch(event.request)
             .then((response) => {
               // Vérifier si la réponse est valide
-              if (!response || response.status !== 200 ) {
-                console.dir(response.type)
-                console.dir(response)
+              if (!response || response.status !== 200 || response.type !== 'basic') {
                 console.log('Service Worker: Réponse image invalide:', event.request.url);
                 return response;
               }

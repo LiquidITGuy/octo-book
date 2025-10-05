@@ -2,694 +2,1135 @@
   {
     "id": "1",
     "title": "Les Géants du Web",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Analyse des stratégies et architectures des géants du web.",
     "longSummary": "De l'autre côté de l'Atlantique, mais aussi à d'autres endroits du monde comme en France, des entreprises sont en train de réinventer la façon de faire de l'informatique. Ils s'appellent Amazon, Facebook, Google, Netflix ou LinkedIn pour les plus connus. On les appelle les Géants du Web.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-geants-web",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/les_geants_du_web.jpg",
-    "tags": ["livre blanc", "architecture", "web", "stratégie"],
+    "thumbnail": "/images/les_geants_du_web.jpg",
+    "tags": [
+      "livre blanc",
+      "architecture",
+      "web",
+      "stratégie"
+    ],
     "disponible": true
   },
   {
     "id": "2",
     "title": "RefCard RESTful API Design",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Guide de référence pour concevoir des APIs de qualité.",
     "longSummary": "Lorsque l'on souhaite concevoir une API, on est rapidement confronté à la problématique du « design d'API ». Ce point constitue un enjeu majeur, dans la mesure où une API mal conçue ne sera vraisemblablement peu ou pas utilisée par nos clients : les développeurs d'applications.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-restful-api-design",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_restful_api_design.jpg",
-    "tags": ["refcard", "api", "rest", "design"],
+    "thumbnail": "/images/refcard_restful_api_design.jpg",
+    "tags": [
+      "refcard",
+      "api",
+      "rest",
+      "design"
+    ],
     "disponible": true
   },
   {
     "id": "3",
     "title": "RefCard API Security",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les fondamentaux de la sécurité applicative.",
     "longSummary": "Lorsque l'on souhaite mettre en oeuvre une API, on est rapidement confronté aux problématiques de sécurisation. Ce point constitue un enjeu majeur, dans la mesure où le principe Open API consiste à bâtir un « écosystème ouvert » via l'exposition de services utilisables par des tiers.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-api-security-principles",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_api_security.jpg",
-    "tags": ["refcard", "api", "sécurité", "cybersécurité"],
+    "thumbnail": "/images/refcard_api_security.jpg",
+    "tags": [
+      "refcard",
+      "api",
+      "sécurité",
+      "cybersécurité"
+    ],
     "disponible": true
   },
   {
     "id": "4",
     "title": "RefCard API Management",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Bonnes pratiques de management des APIs.",
     "longSummary": "L'API Management est un produit dont vous en avez certainement entendu parler au détour d'une conférence… ou bien est-ce parce que vous en avez déjà installé une dans votre Système d'Information ? Ce produit, qui offre des briques de portails de management et de développeurs, ou encore de sécurité, s'avère nécessaire dans les SI.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-api-management-essentials",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_api_management.jpg",
-    "tags": ["refcard", "api", "management", "si"],
+    "thumbnail": "/images/refcard_api_management.jpg",
+    "tags": [
+      "refcard",
+      "api",
+      "management",
+      "si"
+    ],
     "disponible": true
   },
   {
     "id": "5",
     "title": "Rewind USI 2023",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "L'entreprise à l'épreuve des limites du monde.",
     "longSummary": "L'entreprise à l'épreuve des limites du monde : quelles motivations pour une bifurcation des modèles d'affaires ? Retrouvez les temps forts de l'USI 2023 et les réflexions sur l'avenir des entreprises.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-rewind-usi-2023",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/rewind_usi_2023.jpg",
-    "tags": ["conférence", "usi", "entreprise", "transformation"],
+    "thumbnail": "/images/rewind_usi_2023.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "entreprise",
+      "transformation"
+    ],
     "disponible": true
   },
   {
     "id": "6",
     "title": "Inside USI 2021",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les temps forts de l'Université du Système d'Information 2021.",
     "longSummary": "La conférence USI, organisée par OCTO Technology, décrypte les transformations sociétales au sens large en conviant des visionnaires engagés. Retrouvez Mehdi Moussaïd, Nicole Forsgren, Kevin Kelly, Justine Cassell et bien d'autres encore…",
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2021",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2021.jpg",
-    "tags": ["conférence", "usi", "visionnaires", "société"],
+    "thumbnail": "/images/inside_usi_2021.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "visionnaires",
+      "société"
+    ],
     "disponible": true
   },
   {
     "id": "7",
     "title": "Inside USI 2019",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les temps forts de l'Université du Système d'Information 2019.",
     "longSummary": "La conférence USI, organisée par OCTO Technology, décrypte les transformations sociétales au sens large en conviant des visionnaires engagés. Retrouvez Sylvia Earle, Jane Goodall, Julien Bobroff, Marcel Gauchet et bien d'autres encore…",
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2019",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2019.jpg",
-    "tags": ["conférence", "usi", "visionnaires", "société"],
+    "thumbnail": "/images/inside_usi_2019.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "visionnaires",
+      "société"
+    ],
     "disponible": true
   },
   {
     "id": "8",
     "title": "Inside USI 2018",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les temps forts de l'Université du Système d'Information 2018.",
     "longSummary": "La conférence USI, organisée par OCTO Technology, décrypte les transformations sociétales au sens large en conviant des visionnaires engagés. Retrouvez Mae Jeminson, Etienne Klein, Marc Raibert, Dan Ariely et bien d'autres encore…",
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2018",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2018.jpg",
-    "tags": ["conférence", "usi", "visionnaires", "société"],
+    "thumbnail": "/images/inside_usi_2018.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "visionnaires",
+      "société"
+    ],
     "disponible": true
   },
   {
     "id": "9",
     "title": "Inside USI 2017",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les temps forts de l'Université du Système d'Information 2017.",
     "longSummary": "La conférence USI, organisée par OCTO Technology, décrypte les transformations sociétales au sens large en conviant des visionnaires engagés. Retrouvez Kevin Kelly, Virginie Guyot, Moran Cerf, Leila Janah et bien d'autres encore…",
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2017",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2017.jpg",
-    "tags": ["conférence", "usi", "visionnaires", "société"],
+    "thumbnail": "/images/inside_usi_2017.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "visionnaires",
+      "société"
+    ],
     "disponible": true
   },
   {
     "id": "10",
     "title": "Inside USI 2016",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les temps forts de l'Université du Système d'Information 2016.",
     "longSummary": "La conférence USI, organisée par OCTO Technology, décrypte les transformations sociétales au sens large en conviant des visionnaires engagés. Retrouvez Yuval Harari, Monica Lewinsky, Kathryn Myronuk, Jean-Louis Missika et bien d'autres encore…",
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2016",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2016.jpg",
-    "tags": ["conférence", "usi", "visionnaires", "société"],
+    "thumbnail": "/images/inside_usi_2016.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "visionnaires",
+      "société"
+    ],
     "disponible": true
   },
   {
     "id": "11",
     "title": "Inside USI 2015",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les temps forts de l'Université du Système d'Information 2015.",
     "longSummary": "USI décrypte les transformations sociétales au sens large en conviant des visionnaires engagés. Retrouvez Aaron Dignan, Cédric Villani, Hilary Mason et bien d'autres encore…",
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2015",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2015.jpg",
-    "tags": ["conférence", "usi", "visionnaires", "société"],
+    "thumbnail": "/images/inside_usi_2015.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "visionnaires",
+      "société"
+    ],
     "disponible": true
   },
   {
     "id": "12",
     "title": "Banque Digitale",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "La transformation numérique du secteur bancaire.",
     "longSummary": "Dans tous les secteurs, la montée en puissance du digital stigmatise les entreprises qui ne s'adaptent pas aux changements économiques et sociaux.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-banque-digitale",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/banque_digitale.jpg",
-    "tags": ["livre blanc", "banque", "fintech", "transformation"],
+    "thumbnail": "/images/banque_digitale.jpg",
+    "tags": [
+      "livre blanc",
+      "banque",
+      "fintech",
+      "transformation"
+    ],
     "disponible": true
   },
   {
     "id": "13",
     "title": "OCTO Magazine #3",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Troisième numéro du magazine OCTO.",
     "longSummary": "Au sommaire de ce numéro, des chiffres et des lettres : 360, MCP, LLM, IA et bien plus encore.",
     "downloadLink": "https://publication.octo.com/octo-mag-3",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/octo_magazine_3.jpg",
-    "tags": ["magazine", "ia", "llm", "innovation"],
+    "thumbnail": "/images/octo_magazine_3.jpg",
+    "tags": [
+      "magazine",
+      "ia",
+      "llm",
+      "innovation"
+    ],
     "disponible": true
   },
   {
     "id": "14",
     "title": "OCTO Magazine #2",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Deuxième numéro du magazine OCTO.",
     "longSummary": "Découvrez le second numéro d'OCTO Magazine et reprenez le contrôle de vos applications et de votre SI ! Dans ce numéro, nous abordons le Domain-Driven Design Stratégique, le Gen AI et la Clean Architecture.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-octo-magazine-2",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/octo_magazine_2.jpg",
-    "tags": ["magazine", "ddd", "ia", "architecture"],
+    "thumbnail": "/images/octo_magazine_2.jpg",
+    "tags": [
+      "magazine",
+      "ddd",
+      "ia",
+      "architecture"
+    ],
     "disponible": true
   },
   {
     "id": "15",
     "title": "OCTO Magazine #1",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Premier numéro du magazine OCTO sur l'innovation technologique.",
     "longSummary": "À travers ce magazine, notre ambition est de mettre en lumière l'expertise de nos consultants pour vous accompagner efficacement dans votre quotidien. Dans ce numéro, nous abordons des sujets clés pour maximiser vos impacts en minimisant vos efforts.",
     "downloadLink": "https://publication.octo.com/magazine-octo-episode-1",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/octo_magazine_1.jpg",
-    "tags": ["magazine", "innovation", "technologie", "expertise"],
+    "thumbnail": "/images/octo_magazine_1.jpg",
+    "tags": [
+      "magazine",
+      "innovation",
+      "technologie",
+      "expertise"
+    ],
     "disponible": true
   },
   {
     "id": "16",
     "title": "Digital Studies Volume 3",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Troisième volume des études digitales.",
     "longSummary": "Le monde de l'ingénierie, tout particulièrement dans le numérique, adore les problèmes. Et c'est bien normal car ils sont leur raison d'être : pas de problème, pas d'ingénieur. Et dans le monde des startups technologiques cela va jusqu'à : pas de problème, pas de business.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-digital-studies-vol-3",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/digital_studies_volume_3.jpg",
-    "tags": ["livre blanc", "digital", "ingénierie", "startups"],
+    "thumbnail": "/images/digital_studies_volume_3.jpg",
+    "tags": [
+      "livre blanc",
+      "digital",
+      "ingénierie",
+      "startups"
+    ],
     "disponible": true
   },
   {
     "id": "17",
     "title": "Digital Studies Volume 2",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Deuxième volume des études digitales.",
     "longSummary": "Dans ce deuxième volume, nous posons un regard inédit sur les architecture digitales, avec comme fil directeur la question du temps dans les architectures distribuées.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-digital-studies-vol-2",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/digital_studies_volume_2.jpg",
-    "tags": ["livre blanc", "digital", "architecture", "distribué"],
+    "thumbnail": "/images/digital_studies_volume_2.jpg",
+    "tags": [
+      "livre blanc",
+      "digital",
+      "architecture",
+      "distribué"
+    ],
     "disponible": true
   },
   {
     "id": "18",
     "title": "Digital Studies Volume 1",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Premier volume des études digitales.",
     "longSummary": "Avec la vague des « transformations digitales », il nous a semblé important de formuler les enjeux sociétaux du numérique au travers d'une grille d'interprétation du phénomène digital que nous avons souhaitée partager dans cet ouvrage.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-digital-studies-vol-1",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/digital_studies_volume_1.jpg",
-    "tags": ["livre blanc", "digital", "transformation", "société"],
+    "thumbnail": "/images/digital_studies_volume_1.jpg",
+    "tags": [
+      "livre blanc",
+      "digital",
+      "transformation",
+      "société"
+    ],
     "disponible": true
   },
   {
     "id": "19",
     "title": "Rewind USI 2024",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "La technologie dans l'exercice de la souveraineté.",
     "longSummary": "Retour sur l'USI 2024 et les réflexions sur la technologie dans l'exercice de la souveraineté. Synthèse des conférences et débats sur les enjeux technologiques et sociétaux.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-rewind-usi-2024",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/rewind_usi_2024.jpg",
-    "tags": ["conférence", "usi", "souveraineté", "technologie"],
+    "thumbnail": "/images/rewind_usi_2024.jpg",
+    "tags": [
+      "conférence",
+      "usi",
+      "souveraineté",
+      "technologie"
+    ],
     "disponible": true
   },
   {
     "id": "20",
     "title": "Devenir une entreprise agile",
-    "authors": ["Ludovic Cinquin"],
+    "authors": [
+      "Ludovic Cinquin"
+    ],
     "summary": "Guide pour transformer son organisation avec l'agilité.",
     "longSummary": "En prenant la plume, Ludovic Cinquin, co-fondateur et CEO d'OCTO Technology, désormais filiale du groupe Accenture, joue la carte du partage. L'entreprise, récemment certifiée Bcorp, est bien connue sur le marché français des ESN pour ses méthodes de travail et ses choix innovants de gouvernance.",
     "downloadLink": "https://publication.octo.com/fr/devenir-entreprise-agile-ludovic-cinquin",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/devenir_une_entreprise_agile.jpg",
-    "tags": ["livre blanc", "agilité", "transformation", "management"],
+    "thumbnail": "/images/devenir_une_entreprise_agile.jpg",
+    "tags": [
+      "livre blanc",
+      "agilité",
+      "transformation",
+      "management"
+    ],
     "disponible": true
   },
   {
     "id": "21",
     "title": "Culture Produit",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Développer une culture produit dans votre organisation.",
     "longSummary": "Nous avons cherché à décrire le développement produit de manière holistique. Cette quête de l'optimum global nous a amené à notre graal : livrer vite de la valeur, tout en étant capable de répéter la performance.",
     "downloadLink": "https://publication.octo.com/fr/fr/telechargement-livre-blanc-culture-produit",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_produit.jpg",
-    "tags": ["livre blanc", "produit", "culture", "design"],
+    "thumbnail": "/images/culture_produit.jpg",
+    "tags": [
+      "livre blanc",
+      "produit",
+      "culture",
+      "design"
+    ],
     "disponible": true
   },
   {
     "id": "22",
     "title": "OKRs : Piloter le produit par l'impact",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Maîtriser les Objectives and Key Results pour aligner vos équipes.",
     "longSummary": "Le produit n'existe que par l'impact, petit ou grand, bénéfique ou agaçant, qu'il a sur ses utilisateurs. Ce livre décrit une façon de mettre l'impact au centre de la réflexion, de la fabrication.",
     "downloadLink": "https://publication.octo.com/fr/piloter-produit-impact-okr",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/okrs___piloter_le_produit_par_l_impact.jpg",
-    "tags": ["livre blanc", "okr", "produit", "impact"],
+    "thumbnail": "/images/okrs___piloter_le_produit_par_l_impact.jpg",
+    "tags": [
+      "livre blanc",
+      "okr",
+      "produit",
+      "impact"
+    ],
     "disponible": true
   },
   {
     "id": "23",
     "title": "S'organiser pour avoir de l'impact",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Structurer son organisation pour maximiser l'impact.",
     "longSummary": "Comment incarner et partager l'enjeu de la transformation et se mettre en ordre de marche ? Comment mesurer les impacts et bénéfices de la transformation pour mieux la piloter ? Quels sont les écueils ?",
     "downloadLink": "https://publication.octo.com/fr/organiser-pour-avoir-impact",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/s_organiser_pour_avoir_de_l_impact.jpg",
-    "tags": ["livre blanc", "organisation", "impact", "transformation"],
+    "thumbnail": "/images/s_organiser_pour_avoir_de_l_impact.jpg",
+    "tags": [
+      "livre blanc",
+      "organisation",
+      "impact",
+      "transformation"
+    ],
     "disponible": true
   },
   {
     "id": "24",
     "title": "Poster Culture Innov",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Visualiser et cultiver l'innovation dans votre entreprise.",
     "longSummary": "Gérer un portefeuille de produits et services, c'est comme travailler la carte d'un restaurant. Il faut la réinventer sans retirer ce qui fonctionne déjà. Alors comment être sûr d'investir du temps sur les produits qui auront du succès ?",
     "downloadLink": "https://publication.octo.com/fr/telecharger-poster-culture-innov",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/poster_culture_innov.jpg",
-    "tags": ["poster", "innovation", "culture", "produits"],
+    "thumbnail": "/images/poster_culture_innov.jpg",
+    "tags": [
+      "poster",
+      "innovation",
+      "culture",
+      "produits"
+    ],
     "disponible": true
   },
   {
     "id": "25",
     "title": "Pour une roadmap produit",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Construire et gérer efficacement sa roadmap produit.",
     "longSummary": "La roadmap fait partie des artefacts incontournables du monde de l'informatique. Elle répond à des besoins essentiels de priorisation, de synchronisation, d'illustration d'un projet. Et pourtant… a-t-elle réellement du sens ?",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-roadmap-produit",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/pour_une_roadmap_produit.jpg",
-    "tags": ["livre blanc", "roadmap", "produit", "priorisation"],
+    "thumbnail": "/images/pour_une_roadmap_produit.jpg",
+    "tags": [
+      "livre blanc",
+      "roadmap",
+      "produit",
+      "priorisation"
+    ],
     "disponible": true
   },
   {
     "id": "26",
     "title": "RefCard EROOM",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Optimiser l'existant avec la démarche EROOM.",
     "longSummary": "« Faire plus avec la même chose et pour moins cher » est devenu plus que jamais le mot d'ordre. La loi de Moore nous a longtemps offert des machines toujours plus puissantes, mais l'urgence métier a souvent favorisé la rapidité de développement au détriment de la qualité du code.",
     "downloadLink": "https://publication.octo.com/decouvrez-notre-refcard-eroom",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_eroom.jpg",
-    "tags": ["refcard", "optimisation", "performance", "environnement"],
+    "thumbnail": "/images/refcard_eroom.jpg",
+    "tags": [
+      "refcard",
+      "optimisation",
+      "performance",
+      "environnement"
+    ],
     "disponible": true
   },
   {
     "id": "27",
     "title": "RefCard DDD Stratégique",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Domain Driven Design pour aligner vision produit et architecture.",
     "longSummary": "Dans cette refcard, nous aidons les équipes produit (architectes, développeurs, product managers, product owners…) à aligner leurs visions de leurs produits et à les architecturer/ré-architecturer.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-ddd-strategique",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_ddd_strategique.jpg",
-    "tags": ["refcard", "ddd", "architecture", "stratégie"],
+    "thumbnail": "/images/refcard_ddd_strategique.jpg",
+    "tags": [
+      "refcard",
+      "ddd",
+      "architecture",
+      "stratégie"
+    ],
     "disponible": true
   },
   {
     "id": "28",
     "title": "RefCard Éco-conception des Apps Mobiles",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Développer des applications mobiles respectueuses de l'environnement.",
     "longSummary": "Avec cette RefCard, qui se focalise sur le développement mobile, que vous soyez développeurs, designers ou bien product owners, vous découvrirez comment vous fixer une trajectoire, sur quels leviers travailler en priorité et quelle méthodologie mettre en place.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-%C3%A9co-conception-des-apps-mobile",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_eco_conception_des_apps_mobiles.jpg",
-    "tags": ["refcard", "éco-conception", "mobile", "environnement"],
+    "thumbnail": "/images/refcard_eco_conception_des_apps_mobiles.jpg",
+    "tags": [
+      "refcard",
+      "éco-conception",
+      "mobile",
+      "environnement"
+    ],
     "disponible": true
   },
   {
     "id": "29",
     "title": "RefCard Accessibilité",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Rendre vos applications accessibles à tous.",
     "longSummary": "Cette RefCard est là pour vous aider : l'accessibilité, on s'en fait toute une montagne, mais ce n'est pas si compliqué !",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-accessibilite",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_accessibilite.jpg",
-    "tags": ["refcard", "accessibilité", "inclusion", "ux"],
+    "thumbnail": "/images/refcard_accessibilite.jpg",
+    "tags": [
+      "refcard",
+      "accessibilité",
+      "inclusion",
+      "ux"
+    ],
     "disponible": true
   },
   {
     "id": "30",
     "title": "OCTO Pulse : Tech Trends 2025",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Les tendances technologiques 2025 en Software Engineering.",
     "longSummary": "Cet ouvrage a pour vocation de partager notre point de vue, synthétique mais surtout pas superficiel, sur les Tech Trends 2025 du Software Engineering.",
     "downloadLink": "https://publication.octo.com/tech-trends-2025-software-engineering",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/octo_pulse___tech_trends_2025.jpg",
-    "tags": ["livre blanc", "tendances", "software", "engineering"],
+    "thumbnail": "/images/octo_pulse___tech_trends_2025.jpg",
+    "tags": [
+      "livre blanc",
+      "tendances",
+      "software",
+      "engineering"
+    ],
     "disponible": true
   },
   {
     "id": "31",
     "title": "Tech Radar 2025 : Préparez votre roadmap",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Guide stratégique pour les CTO en 2025.",
     "longSummary": "Ce guide stratégique met en lumière les priorités des CTO en Software Engineering, Cloud & Platform, et Data & IA, pour vous permettre de maîtriser vos assets technologiques et d'aborder l'avenir avec sérénité.",
     "downloadLink": "https://publication.octo.com/radar-octo-tech-trends-2025",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/tech_radar_2025___preparez_votre_roadmap.jpg",
-    "tags": ["livre blanc", "tech radar", "cto", "stratégie"],
+    "thumbnail": "/images/tech_radar_2025___preparez_votre_roadmap.jpg",
+    "tags": [
+      "livre blanc",
+      "tech radar",
+      "cto",
+      "stratégie"
+    ],
     "disponible": true
   },
   {
     "id": "32",
     "title": "RefCard Stratégie de tests sur tous les fronts",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Maîtriser et fiabiliser son code avec une stratégie de tests complète.",
     "longSummary": "Maîtriser et fiabiliser son code sont aujourd'hui devenus incontournables pour tout développeur devant faire face à des architectures Web de plus en plus riches et complexes.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-strat%C3%A9gie-de-tests-sur-tous-les-fronts",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_strategie_de_tests_sur_tous_les_fronts.jpg",
-    "tags": ["refcard", "tests", "qualité", "web"],
+    "thumbnail": "/images/refcard_strategie_de_tests_sur_tous_les_fronts.jpg",
+    "tags": [
+      "refcard",
+      "tests",
+      "qualité",
+      "web"
+    ],
     "disponible": true
   },
   {
     "id": "33",
     "title": "RefCard Low Code / No Code",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Éclairage sur le Low Code et No Code.",
     "longSummary": "Un éclairage sur ce que sont le Low Code et le No Code, leurs applications potentielles, les acteurs impliqués, les critères pour opter pour l'un de ces modèles ou pour un développement spécifique.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-low-code-no-code",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_low_code_no_code.jpg",
-    "tags": ["refcard", "low code", "no code", "développement"],
+    "thumbnail": "/images/refcard_low_code_no_code.jpg",
+    "tags": [
+      "refcard",
+      "low code",
+      "no code",
+      "développement"
+    ],
     "disponible": true
   },
   {
     "id": "34",
     "title": "Culture Code",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Faire émerger une culture du code de qualité.",
     "longSummary": "Produire du code de qualité est une question de culture. Faire émerger cette culture du code de qualité dans une organisation prend du temps, car elle implique non seulement l'individu, qu'il soit développeur ou non, mais aussi l'équipe et l'entreprise dans son ensemble.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-culture-code",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_code.jpg",
-    "tags": ["livre blanc", "code", "qualité", "culture"],
+    "thumbnail": "/images/culture_code.jpg",
+    "tags": [
+      "livre blanc",
+      "code",
+      "qualité",
+      "culture"
+    ],
     "disponible": true
   },
   {
     "id": "35",
     "title": "Culture Test Volume 3",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Tests automatisés et code legacy.",
     "longSummary": "La dernière aventure de Gaël et son équipe aborde les tests automatisés et le code legacy, leur intérêt, la place qu'ils prennent dans le monde du logiciel, le lien qui existe avec le métier, leur nature profonde, grâce à la narration et à des encarts techniques.",
     "downloadLink": "https://publication.octo.com/culture-test-vol-3",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_test_volume_3.jpg",
-    "tags": ["livre blanc", "tests", "legacy", "automatisation"],
+    "thumbnail": "/images/culture_test_volume_3.jpg",
+    "tags": [
+      "livre blanc",
+      "tests",
+      "legacy",
+      "automatisation"
+    ],
     "disponible": true
   },
   {
     "id": "36",
     "title": "Culture Test Volume 2",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Aventure fictive sur les tests et leurs déclinaisons.",
     "longSummary": "Retrouvez Gaël et son équipe dans le volume 2 de cette aventure fictive qui aborde les tests et leurs déclinaisons, leur intérêt, la place qu'ils prennent dans le monde du logiciel, le lien qui existe avec le métier, leur nature profonde, grâce à la narration et à des encarts techniques.",
     "downloadLink": "https://publication.octo.com/culture-test-vol-2",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_test_volume_2.jpg",
-    "tags": ["livre blanc", "tests", "fiction", "métier"],
+    "thumbnail": "/images/culture_test_volume_2.jpg",
+    "tags": [
+      "livre blanc",
+      "tests",
+      "fiction",
+      "métier"
+    ],
     "disponible": true
   },
   {
     "id": "37",
     "title": "Culture Test Volume 1",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Philosophie du test : mieux faire, faire plus rapidement.",
     "longSummary": "À travers une aventure fictive ponctuée d'encarts techniques, ces livres esquissent une philosophie à partir de laquelle on peut forger qualité et efficacité grâce au pragmatisme et à l'humilité. Et si tester, c'était mieux faire, faire plus rapidement ?",
     "downloadLink": "https://publication.octo.com/culture-test-vol-1",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_test_volume_1.jpg",
-    "tags": ["livre blanc", "tests", "philosophie", "qualité"],
+    "thumbnail": "/images/culture_test_volume_1.jpg",
+    "tags": [
+      "livre blanc",
+      "tests",
+      "philosophie",
+      "qualité"
+    ],
     "disponible": true
   },
   {
     "id": "38",
     "title": "À la découverte du DevOps",
-    "authors": ["Aryana Pezé"],
+    "authors": [
+      "Aryana Pezé"
+    ],
     "summary": "Bande dessinée sur la découverte du DevOps.",
     "longSummary": "Derrière OCTO, il y a des centaines d'Octos, et autant de talents cachés… À travers cette bande dessinée, la collection OCTO Presents tourne ses projecteurs sur la talentueuse Octo Aryana Pezé.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-decouverte-devops",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/a_la_decouverte_du_devops.jpg",
-    "tags": ["livre blanc", "devops", "bd", "découverte"],
+    "thumbnail": "/images/a_la_decouverte_du_devops.jpg",
+    "tags": [
+      "livre blanc",
+      "devops",
+      "bd",
+      "découverte"
+    ],
     "disponible": true
   },
   {
     "id": "39",
     "title": "Apprendre le japonais",
-    "authors": ["Sylvie"],
+    "authors": [
+      "Sylvie"
+    ],
     "summary": "Récit d'un projet agile raconté de l'intérieur.",
     "longSummary": "Développeuse, chef de projet, coach agile, Sylvie se passionne pour le développement de logiciels utiles, fiables et agréables à utiliser. Afin de transmettre encore mieux ses convictions comme ses apprentissages, elle décide d'écrire un livre qui raconterait de l'intérieur un projet agile…",
     "downloadLink": "https://publication.octo.com/fr/fr/telechargement-livre-blanc-apprendre-le-japonais",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/apprendre_le_japonais.jpg",
-    "tags": ["livre blanc", "agile", "projet", "récit"],
+    "thumbnail": "/images/apprendre_le_japonais.jpg",
+    "tags": [
+      "livre blanc",
+      "agile",
+      "projet",
+      "récit"
+    ],
     "disponible": true
   },
   {
     "id": "40",
     "title": "RefCard GraphQL",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Bonnes pratiques pour les APIs GraphQL.",
     "longSummary": "Cette refcard est un condensé de bonnes pratiques qui s'adresse autant aux consommateurs qu'aux développeurs d'API GraphQL. Elle aborde notamment la documentation, le versioning, le code first, le monitoring, la découvrabilité, la sécurité et le design de schéma.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-graphql",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_graphql.jpg",
-    "tags": ["refcard", "graphql", "api", "bonnes pratiques"],
+    "thumbnail": "/images/refcard_graphql.jpg",
+    "tags": [
+      "refcard",
+      "graphql",
+      "api",
+      "bonnes pratiques"
+    ],
     "disponible": true
   },
-    {
+  {
     "id": "41",
     "title": "RefCard PWA",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Progressive Web Apps : l'avenir des applications web.",
     "longSummary": "Si aujourd'hui, sur mobile, les « applications » sont assez éloignées des web apps, demain, avec l'évolution du web, il sera naturel d'installer les sites Internet que nous visitons en mode applicatif.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-pwa",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_pwa.jpg",
-    "tags": ["refcard", "pwa", "web", "mobile"],
+    "thumbnail": "/images/refcard_pwa.jpg",
+    "tags": [
+      "refcard",
+      "pwa",
+      "web",
+      "mobile"
+    ],
     "disponible": true
   },
   {
     "id": "42",
     "title": "RefCard Mobile App",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Créer des applications mobiles qui s'installent durablement.",
     "longSummary": "Alors que des millions d'applications peuplent les stores, rares sont celles qui parviennent à s'installer durablement sur nos téléphones. Pourtant, l'usage mobile est la clé de l'engagement des utilisateurs.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-mobile-app",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_mobile_app.jpg",
-    "tags": ["refcard", "mobile", "app", "engagement"],
+    "thumbnail": "/images/refcard_mobile_app.jpg",
+    "tags": [
+      "refcard",
+      "mobile",
+      "app",
+      "engagement"
+    ],
     "disponible": true
   },
   {
     "id": "43",
     "title": "RefCard Mob Trends",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Tendances et expérience mobile optimale.",
     "longSummary": "Quand le passage au mobile n'est plus une option, comment proposer à vos utilisateurs une expérience mobile confortable, intuitive et attrayante ?",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-mob-trends",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_mob_trends.jpg",
-    "tags": ["refcard", "mobile", "tendances", "ux"],
+    "thumbnail": "/images/refcard_mob_trends.jpg",
+    "tags": [
+      "refcard",
+      "mobile",
+      "tendances",
+      "ux"
+    ],
     "disponible": true
   },
   {
     "id": "44",
     "title": "Culture Produit Data",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Adopter une culture produit dans les écosystèmes data.",
     "longSummary": "Et si exploiter la donnée ne suffisait plus ? Créer de la valeur ne repose plus seulement sur la technologie, mais sur la façon de concevoir la donnée comme un produit pensé pour l'usage.",
     "downloadLink": "https://publication.octo.com/culture-produit-data",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_produit_data.jpg",
-    "tags": ["livre blanc", "data", "produit", "culture"],
+    "thumbnail": "/images/culture_produit_data.jpg",
+    "tags": [
+      "livre blanc",
+      "data",
+      "produit",
+      "culture"
+    ],
     "disponible": true
   },
   {
     "id": "45",
     "title": "Culture MLOps",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Traiter le ML comme un logiciel avec l'approche MLOps.",
     "longSummary": "Et si nous traitions le ML comme un logiciel comme les autres ? Notre approche MLOps est à la croisée du craftsmanship, de l'architecture émergente, de l'Ops, de l'agilité et du Lean.",
     "downloadLink": "https://publication.octo.com/culture-mlops",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_mlops.jpg",
-    "tags": ["livre blanc", "mlops", "machine learning", "ops"],
+    "thumbnail": "/images/culture_mlops.jpg",
+    "tags": [
+      "livre blanc",
+      "mlops",
+      "machine learning",
+      "ops"
+    ],
     "disponible": true
   },
   {
     "id": "46",
     "title": "Culture Data et Industrie Vol. 1",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Évolution des systèmes d'information industriels.",
     "longSummary": "Ce livre décrit comment, au fil des siècles, se sont progressivement structurés les systèmes d'informations industriels et comment les nouvelles technologies s'y sont adaptées.",
     "downloadLink": "https://publication.octo.com/culture-data-et-industrie-1",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_data_et_industrie_vol._1.jpg",
-    "tags": ["livre blanc", "data", "industrie", "systèmes"],
+    "thumbnail": "/images/culture_data_et_industrie_vol._1.jpg",
+    "tags": [
+      "livre blanc",
+      "data",
+      "industrie",
+      "systèmes"
+    ],
     "disponible": true
   },
   {
     "id": "47",
     "title": "Culture Data et Industrie Vol. 2",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "De l'OT à la BI et l'IA : approche globale des nouvelles architectures.",
     "longSummary": "De l'OT jusqu'à la BI et l'IA, Culture Data et Industrie vol. 2 propose une approche globale qui illustre la capacité des nouvelles architectures à atteindre de nouvelles sources de valeur.",
     "downloadLink": "https://publication.octo.com/culture-data-et-industrie-2",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_data_et_industrie_vol._2.jpg",
-    "tags": ["livre blanc", "data", "industrie", "architecture"],
+    "thumbnail": "/images/culture_data_et_industrie_vol._2.jpg",
+    "tags": [
+      "livre blanc",
+      "data",
+      "industrie",
+      "architecture"
+    ],
     "disponible": true
   },
   {
     "id": "48",
     "title": "RefCard Apache Spark",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Tour d'horizon des possibilités d'Apache Spark.",
     "longSummary": "Cette Cheat Sheet propose un tour d'horizon des possibilités de cet outil et répondra aux principales questions que pourra se poser un data scientist.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-apache-spark",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_apache_spark.jpg",
-    "tags": ["refcard", "spark", "big data", "data science"],
+    "thumbnail": "/images/refcard_apache_spark.jpg",
+    "tags": [
+      "refcard",
+      "spark",
+      "big data",
+      "data science"
+    ],
     "disponible": true
   },
   {
     "id": "49",
     "title": "Hadoop : Feuille de route",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "L'avenir d'Hadoop dans l'analyse de données massives.",
     "longSummary": "La R&D open source d'Hadoop est portée par des sociétés comme Yahoo!, Facebook, eBay, Criteo, et une myriade d'éditeurs… Web, mobile, réseaux sociaux, machine to machine et bientôt Internet des objets… notre avenir, régi par l'analyse de dizaines de téra-octets, ouvre une voie royale à Hadoop.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-feuille-de-route-hadoop",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/hadoop___feuille_de_route.jpg",
-    "tags": ["livre blanc", "hadoop", "big data", "open source"],
+    "thumbnail": "/images/hadoop___feuille_de_route.jpg",
+    "tags": [
+      "livre blanc",
+      "hadoop",
+      "big data",
+      "open source"
+    ],
     "disponible": true
   },
   {
     "id": "50",
     "title": "Hors-série : Souveraineté numérique",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Manifeste sur l'autonomie stratégique et la résilience numérique.",
     "longSummary": "Ce manifeste propose une réflexion sur l'autonomie stratégique et la résilience numérique. Il ne s'agit pas de souveraineté nationaliste, mais de mieux maîtriser nos dépendances technologiques.",
     "downloadLink": "https://publication.octo.com/hors-serie-sur-la-souverainete-numerique",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/hors_serie___souverainete_numerique.jpg",
-    "tags": ["livre blanc", "souveraineté", "numérique", "résilience"],
+    "thumbnail": "/images/hors_serie___souverainete_numerique.jpg",
+    "tags": [
+      "livre blanc",
+      "souveraineté",
+      "numérique",
+      "résilience"
+    ],
     "disponible": true
   },
   {
     "id": "51",
     "title": "RefCard Prod Ready",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Équilibre entre rapidité et stabilité en production.",
     "longSummary": "Comment faire pour y aller vite sans pour autant tout casser ? Comment faire pour avoir un équilibre sain entre rapidité de mise en production et stabilité ?",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-prod-ready",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_prod_ready.jpg",
-    "tags": ["refcard", "production", "stabilité", "rapidité"],
+    "thumbnail": "/images/refcard_prod_ready.jpg",
+    "tags": [
+      "refcard",
+      "production",
+      "stabilité",
+      "rapidité"
+    ],
     "disponible": true
   },
   {
     "id": "52",
     "title": "Culture DevOps Volume 3",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "La qualité au centre de la démarche DevOps.",
     "longSummary": "Aujourd'hui, c'est un fait : le mot DevOps est sur toutes les lèvres dans le milieu IT. Ce dernier volume de notre trilogie Culture DevOps met la qualité au centre de notre démarche DevOps.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-culture-devops-vol-3",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_devops_volume_3.jpg",
-    "tags": ["livre blanc", "devops", "qualité", "culture"],
+    "thumbnail": "/images/culture_devops_volume_3.jpg",
+    "tags": [
+      "livre blanc",
+      "devops",
+      "qualité",
+      "culture"
+    ],
     "disponible": true
   },
   {
     "id": "53",
     "title": "Culture DevOps Volume 2",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Déploiement et automatisation des applications et infrastructures.",
     "longSummary": "Nous poursuivons notre tour d'horizon des enjeux et bonnes pratiques DevOps. Plus technique, ce second volume se penche sur les problématiques de déploiement et d'automatisation des applications et des infrastructures.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-culture-devops-vol-2",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_devops_volume_2.jpg",
-    "tags": ["livre blanc", "devops", "automatisation", "infrastructure"],
+    "thumbnail": "/images/culture_devops_volume_2.jpg",
+    "tags": [
+      "livre blanc",
+      "devops",
+      "automatisation",
+      "infrastructure"
+    ],
     "disponible": true
   },
   {
     "id": "54",
     "title": "Culture DevOps Volume 1",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Courants de pensée et modèles d'organisation DevOps.",
     "longSummary": "Aujourd'hui, c'est un fait : le mot DevOps est sur toutes les lèvres dans le milieu IT. Ce premier volume de notre trilogie Culture DevOps vous présente les courants de pensée qui donnent naissance aux traits culturels et aux modèles d'organisation propices à DevOps.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-culture-devops-vol-1",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_devops_volume_1.jpg",
-    "tags": ["livre blanc", "devops", "culture", "organisation"],
+    "thumbnail": "/images/culture_devops_volume_1.jpg",
+    "tags": [
+      "livre blanc",
+      "devops",
+      "culture",
+      "organisation"
+    ],
     "disponible": true
   },
   {
     "id": "55",
     "title": "RefCard API Architecture Strategy",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Vision et convictions sur l'architecture des APIs.",
     "longSummary": "En matière d'architectue des APIs, beaucoup de croyances et de mythes se révèlent faux ou inexacts. Une architecture d'API mal conçue va conduire à un mauvais usage.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-api-architecture-strategy",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_api_architecture_strategy.jpg",
-    "tags": ["refcard", "api", "architecture", "stratégie"],
+    "thumbnail": "/images/refcard_api_architecture_strategy.jpg",
+    "tags": [
+      "refcard",
+      "api",
+      "architecture",
+      "stratégie"
+    ],
     "disponible": true
   },
   {
     "id": "56",
     "title": "Cloud Ready Apps",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Applications adaptées aux environnements cloud.",
     "longSummary": "Les applications d'aujourd'hui et leurs futures évolutions doivent être un avantage concurrentiel et s'adapter à un environnement changeant. Le cloud offre des opportunités pour répondre à ces nouveaux challenges.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-cloud-ready-apps",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/cloud_ready_apps.jpg",
-    "tags": ["livre blanc", "cloud", "applications", "adaptation"],
+    "thumbnail": "/images/cloud_ready_apps.jpg",
+    "tags": [
+      "livre blanc",
+      "cloud",
+      "applications",
+      "adaptation"
+    ],
     "disponible": true
   },
   {
     "id": "57",
     "title": "Le Livre de la Duck",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Guide 2021 pour les amoureux de l'architecture de systèmes d'informations.",
     "longSummary": "Découvrez le Guide 2021 pour les amoureux et amoureuses de l'architecture de système d'informations.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-duck-conf",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/le_livre_de_la_duck.jpg",
-    "tags": ["livre blanc", "architecture", "systèmes", "guide"],
+    "thumbnail": "/images/le_livre_de_la_duck.jpg",
+    "tags": [
+      "livre blanc",
+      "architecture",
+      "systèmes",
+      "guide"
+    ],
     "disponible": true
   },
   {
     "id": "58",
     "title": "Culture OKR",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Construction et pilotage des OKR avec un collectif engagé.",
     "longSummary": "De la description des différentes étapes de construction de vos OKR avec un collectif engagé, au pilotage et au suivi de vos résultats clés, vous verrez comment capitaliser sur vos apprentissages et améliorer l'impact de vos actions.",
     "downloadLink": "https://publication.octo.com/culture-okr",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_okr.jpg",
-    "tags": ["livre blanc", "okr", "pilotage", "collectif"],
+    "thumbnail": "/images/culture_okr.jpg",
+    "tags": [
+      "livre blanc",
+      "okr",
+      "pilotage",
+      "collectif"
+    ],
     "disponible": true
   },
   {
     "id": "59",
     "title": "RefCard Équipe Agile",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Portrait des équipes agiles avec plus de 20 ans d'expérience.",
     "longSummary": "Plus de 20 ans d'agilité, ça en fait des expériences ! Cette RefCard aborde toutes ces questions et dresse, avec humour, un portrait des équipes agiles.",
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-agile",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_equipe_agile.jpg",
-    "tags": ["refcard", "agile", "équipe", "expérience"],
+    "thumbnail": "/images/refcard_equipe_agile.jpg",
+    "tags": [
+      "refcard",
+      "agile",
+      "équipe",
+      "expérience"
+    ],
     "disponible": true
   },
   {
     "id": "60",
     "title": "Culture Kaizen",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "La valeur du Lean originel pour les organisations technologiques.",
     "longSummary": "Cet ouvrage est destiné à des décideurs, des managers et à tous les métiers des entreprises numériques. Son objectif est de présenter la valeur inestimable que peut apporter le Lean originel et ses pratiques aux organisations technologiques.",
     "downloadLink": "https://publication.octo.com/culture-kaizen",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_kaizen.jpg",
-    "tags": ["livre blanc", "kaizen", "lean", "management"],
+    "thumbnail": "/images/culture_kaizen.jpg",
+    "tags": [
+      "livre blanc",
+      "kaizen",
+      "lean",
+      "management"
+    ],
     "disponible": true
   },
   {
     "id": "61",
     "title": "Culture Hacking",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Accompagner le changement dans les systèmes vivants.",
     "longSummary": "Tout collectif, équipe, organisation est un système vivant en perpétuel mouvement. Pour perdurer, il doit s'adapter en permanence. Le changement est inhérent à la vie, mais le vivre peut s'avérer difficile.",
     "downloadLink": "https://publication.octo.com/culture-hacking",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_hacking.jpg",
-    "tags": ["livre blanc", "hacking", "changement", "adaptation"],
+    "thumbnail": "/images/culture_hacking.jpg",
+    "tags": [
+      "livre blanc",
+      "hacking",
+      "changement",
+      "adaptation"
+    ],
     "disponible": true
   },
   {
     "id": "62",
     "title": "Culture Flow",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Trouver son rythme pour évoluer rapidement.",
     "longSummary": "Avoir une approche Flow, c'est mettre en place les pratiques qui permettent d'évoluer rapidement, tant au niveau de la valeur générée qu'au niveau de l'organisation.",
     "downloadLink": "https://publication.octo.com/culture-flow-livre-blanc-octo-technology",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_flow.jpg",
-    "tags": ["livre blanc", "flow", "rythme", "évolution"],
+    "thumbnail": "/images/culture_flow.jpg",
+    "tags": [
+      "livre blanc",
+      "flow",
+      "rythme",
+      "évolution"
+    ],
     "disponible": true
   },
   {
     "id": "63",
     "title": "Culture Change",
-    "authors": ["OCTO Technology"],
+    "authors": [
+      "OCTO Technology"
+    ],
     "summary": "Questionner les façons de collaborer, décider et manager.",
     "longSummary": "Ces dernières années, de nombreuses entreprises tentent de porter l'Agilité à l'échelle de tout ou d'une partie de leur organisation. Pour autant, nous constatons qu'elles s'arrêtent souvent à un rafraîchissement de façade.",
     "downloadLink": "https://publication.octo.com/fr/fr/telechargement-livre-blanc-culture-change",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/culture_change.jpg",
-    "tags": ["livre blanc", "change", "collaboration", "management"],
+    "thumbnail": "/images/culture_change.jpg",
+    "tags": [
+      "livre blanc",
+      "change",
+      "collaboration",
+      "management"
+    ],
     "disponible": true
   }
 ]
