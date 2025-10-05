@@ -229,10 +229,16 @@ export function usePushNotifications() {
           isSubscribed.value = true
           console.log('✅ Abonnement existant détecté!')
           console.log('📋 Endpoint:', existingSubscription.endpoint.substring(0, 50) + '...')
-          console.log('📋 Keys:', {
-            p256dh: existingSubscription.keys.p256dh.substring(0, 20) + '...',
-            auth: existingSubscription.keys.auth.substring(0, 20) + '...'
-          })
+          
+          // Vérifier que les keys existent avant d'y accéder
+          if (existingSubscription.keys && existingSubscription.keys.p256dh && existingSubscription.keys.auth) {
+            console.log('📋 Keys:', {
+              p256dh: existingSubscription.keys.p256dh.substring(0, 20) + '...',
+              auth: existingSubscription.keys.auth.substring(0, 20) + '...'
+            })
+          } else {
+            console.log('⚠️ Keys manquantes dans l\'abonnement existant')
+          }
         } else {
           subscription.value = null
           isSubscribed.value = false
@@ -269,16 +275,24 @@ export function usePushNotifications() {
     permission.value === 'denied'
   )
 
-  // Initialiser au chargement
+  // Fonction d'initialisation automatique appelée à chaque utilisation du composable
+  const ensureInitialized = async () => {
+    if (!isSupported.value) {
+      checkSupport()
+    }
+    
+    if (isSupported.value && subscription.value === null && !isLoading.value) {
+      await checkExistingSubscription()
+    }
+  }
+
+  // Initialiser au chargement immédiatement
   const initialize = async () => {
     console.log('🔄 Initialisation des push notifications...')
     checkSupport()
     
     if (isSupported.value) {
-      // Attendre un peu pour laisser le temps au navigateur de se préparer
-      setTimeout(async () => {
-        await checkExistingSubscription()
-      }, 100)
+      await checkExistingSubscription()
     } else {
       console.log('❌ Push notifications non supportées par ce navigateur')
     }
@@ -286,7 +300,17 @@ export function usePushNotifications() {
 
   // Lancer l'initialisation seulement si on est dans le navigateur
   if (typeof window !== 'undefined') {
+    // Initialisation immédiate
     initialize()
+    
+    // Aussi vérifier après le chargement complet de la page
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(checkExistingSubscription, 500)
+      })
+    } else {
+      setTimeout(checkExistingSubscription, 500)
+    }
   }
 
   return {
