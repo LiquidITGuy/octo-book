@@ -9,6 +9,8 @@
   --color-text-secondary: #586586;
   --color-border: #e2e8f0;
   --color-border-hover: #0E2356;
+  --color-background-hover: #0E2356;
+  --text-color-background-hover: #fff;
   --color-card-background: #ffffff;
   --color-error: #e53e3e;
   --color-success: #22c55e;
@@ -24,6 +26,8 @@
   --color-text-secondary: #a0aec0;
   --color-border: #4a5568;
   --color-border-hover: #ffffff;
+  --color-background-hover: #fff;
+  --text-color-background-hover: #0E2356;
   --color-card-background: #2d3748;
   --color-error: #fc8181;
   --color-success: #68d391;
@@ -245,8 +249,8 @@ p {
 .tag {
   display: inline-block;
   background: transparent;
-  color: #0E2356;
-  border: 1px solid #0E2356;
+  color: var(--color-text-secondary);
+  border: 1px solid --color-border;
   padding: 0.5rem 1rem;
   font-size: 0.7rem;
   margin: 0.25rem;
@@ -263,8 +267,8 @@ p {
 }
 
 .tag-link:hover {
-  background: #0E2356;
-  color: #ffffff;
+  background: var(--color-background-hover);
+  color: var(--text-color-background-hover);
   transform: translateY(-1px);
 }
 
@@ -375,7 +379,7 @@ p {
   transition: all 0.3s ease;
   border: 1px solid #e2e8f0;
   padding: 2rem;
-  background: #ffffff;
+  background: var(--color-background);
 }
 
 .book-card:hover {
@@ -440,7 +444,7 @@ p {
 
 .book-info h2,
 .book-info h3 {
-  color: #0E2356;
+  color: var(--color-primary);
   margin-bottom: 1rem;
   font-size: 1.2rem;
   line-height: 1.4;
@@ -448,7 +452,7 @@ p {
 }
 
 .authors {
-  color: #0E2356;
+  color: var(--color-text-secondary);
   font-weight: 300;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
