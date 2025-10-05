@@ -36,7 +36,7 @@ const bookService = {
       
       // Récupérer les livres paginés
       const result = await client.query(
-        'SELECT id, title, authors, summary, thumbnail, tags, disponible FROM books ORDER BY created_at DESC LIMIT $1 OFFSET $2',
+        'SELECT id, title, authors, summary, thumbnail, tags, disponible, download_link FROM books ORDER BY created_at DESC LIMIT $1 OFFSET $2',
         [limit, offset]
       );
       
@@ -88,7 +88,7 @@ const bookService = {
       
       // Récupérer les résultats paginés
       const result = await client.query(`
-        SELECT id, title, authors, summary, thumbnail, tags, disponible 
+        SELECT id, title, authors, summary, thumbnail, tags, disponible, download_link 
         FROM books 
         WHERE LOWER(title) LIKE $1 
         OR EXISTS(SELECT 1 FROM unnest(authors) AS author WHERE LOWER(author) LIKE $1)
@@ -148,7 +148,7 @@ const bookService = {
       
       // Récupérer les livres paginés
       const result = await client.query(`
-        SELECT id, title, authors, summary, thumbnail, tags, disponible 
+        SELECT id, title, authors, summary, thumbnail, tags, disponible, download_link 
         FROM books 
         WHERE EXISTS(SELECT 1 FROM unnest(tags) AS book_tag WHERE LOWER(book_tag) = LOWER($1))
         ORDER BY created_at DESC 

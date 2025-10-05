@@ -78,7 +78,7 @@
           <div class="book-actions">
             <a 
               v-if="book.disponible"
-              :href="book.downloadLink" 
+              :href="book.download_link" 
               class="btn btn-download" 
               target="_blank" 
               rel="noopener noreferrer"
