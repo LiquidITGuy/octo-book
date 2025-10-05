@@ -198,6 +198,33 @@ export function usePushNotifications() {
     })
   }
 
+  // Vérifier l'abonnement existant
+  const checkExistingSubscription = async () => {
+    if (!isSupported.value) {
+      return
+    }
+
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js')
+      await navigator.serviceWorker.ready
+      
+      const existingSubscription = await registration.pushManager.getSubscription()
+      
+      if (existingSubscription) {
+        subscription.value = existingSubscription
+        isSubscribed.value = true
+        console.log('Abonnement existant détecté')
+      } else {
+        subscription.value = null
+        isSubscribed.value = false
+      }
+    } catch (err) {
+      console.error('Erreur lors de la vérification de l\'abonnement existant:', err)
+      subscription.value = null
+      isSubscribed.value = false
+    }
+  }
+
   // Propriétés calculées
   const canSubscribe = computed(() => 
     isSupported.value && 
@@ -215,7 +242,15 @@ export function usePushNotifications() {
   )
 
   // Initialiser au chargement
-  checkSupport()
+  const initialize = async () => {
+    checkSupport()
+    if (isSupported.value) {
+      await checkExistingSubscription()
+    }
+  }
+
+  // Lancer l'initialisation
+  initialize()
 
   return {
     // État
