@@ -1,16 +1,5 @@
 [
   {
-    "id": "41",
-    "title": "RefCard PWA",
-    "authors": ["OCTO Technology"],
-    "summary": "Progressive Web Apps : l'avenir des applications web.",
-    "longSummary": "Si aujourd'hui, sur mobile, les « applications » sont assez éloignées des web apps, demain, avec l'évolution du web, il sera naturel d'installer les sites Internet que nous visitons en mode applicatif.",
-    "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-pwa",
-    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_pwa.jpg",
-    "tags": ["refcard", "pwa", "web", "mobile"],
-    "disponible": true
-  },
-  {
     "id": "1",
     "title": "Les Géants du Web",
     "authors": ["OCTO Technology"],
@@ -448,6 +437,17 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-graphql",
     "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_graphql.jpg",
     "tags": ["refcard", "graphql", "api", "bonnes pratiques"],
+    "disponible": true
+  },
+    {
+    "id": "41",
+    "title": "RefCard PWA",
+    "authors": ["OCTO Technology"],
+    "summary": "Progressive Web Apps : l'avenir des applications web.",
+    "longSummary": "Si aujourd'hui, sur mobile, les « applications » sont assez éloignées des web apps, demain, avec l'évolution du web, il sera naturel d'installer les sites Internet que nous visitons en mode applicatif.",
+    "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-pwa",
+    "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_pwa.jpg",
+    "tags": ["refcard", "pwa", "web", "mobile"],
     "disponible": true
   },
   {

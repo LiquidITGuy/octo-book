@@ -127,7 +127,9 @@ export default {
       try {
         this.loading = true
         this.error = null
-        const response = await booksApi.getBooks(1, 3)
+        const response = await booksApi.getBooks(1, 2)
+        console.log('chargement de ' + response.data.books.length + 'livres');
+        
         this.featuredBooks = response.data.books
       } catch (error) {
         console.error('Erreur lors du chargement des livres:', error)
