@@ -6,7 +6,7 @@
         <h1>Bienvenue dans la bibliothèque Octo</h1>
         <p>Découvrez notre collection de livres techniques et méthodologiques pour accompagner votre transformation numérique.</p>
         <div class="hero-actions">
-          <router-link to="/books" class="btn">Explorer les livres</router-link>
+          <router-link to="/books" class="btn btn-primary">Explorer les livres</router-link>
           <a href="#featured" class="btn btn-secondary">Voir les nouveautés</a>
         </div>
       </div>
@@ -127,9 +127,7 @@ export default {
       try {
         this.loading = true
         this.error = null
-        const response = await booksApi.getBooks(1, 2)
-        console.log('chargement de ' + response.data.books.length + 'livres');
-        
+        const response = await booksApi.getBooks(1, 2)        
         this.featuredBooks = response.data.books
       } catch (error) {
         console.error('Erreur lors du chargement des livres:', error)

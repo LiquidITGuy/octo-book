@@ -132,7 +132,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .push-notifications {
   margin: 2rem 0;
 }
@@ -245,8 +245,8 @@ export default {
 }
 
 .btn-primary {
-  background-color: var(--color-primary, #007bff);
-  color: white;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 .btn-primary:hover:not(:disabled) {
