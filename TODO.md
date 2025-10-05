@@ -218,6 +218,7 @@ Ce fichier contient une liste complète d'améliorations techniques et fonctionn
 
 - [ ] **Composants et design system**
   - Bibliothèque de composants
+  - atomic design
   - Storybook
   - Design tokens
   - Thème cohérent

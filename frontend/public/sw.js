@@ -1,5 +1,5 @@
 // Service Worker pour Octo Books PWA avec notifications push
-const CACHE_NAME = 'octo-books-v1';
+const CACHE_NAME = 'octo-books-v2'; // Version mise à jour pour les images
 const BOOKS_CACHE_KEY = 'cached-books-data';
 
 // Assets essentiels à mettre en cache
@@ -52,6 +52,7 @@ async function storeBooksData(request, response) {
 
 // Fonction pour effectuer une recherche locale dans les données mises en cache
 async function performOfflineSearch(searchQuery, page = 1, limit = 10) {
+  console.log("perform offline search")
   try {
     const cache = await caches.open(CACHE_NAME);
     const booksResponse = await cache.match(BOOKS_CACHE_KEY);
@@ -146,7 +147,15 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Stratégie de cache avec gestion de la recherche hors ligne
+// Fonction pour déterminer si une requête est une image
+function isImageRequest(request) {
+  const url = new URL(request.url);
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.bmp', '.ico'];
+  return imageExtensions.some(ext => url.pathname.toLowerCase().includes(ext)) ||
+         request.destination === 'image';
+}
+
+// Stratégie de cache avec gestion spéciale des images et de la recherche hors ligne
 self.addEventListener('fetch', (event) => {
   // Ne pas intercepter les requêtes non-GET
   if (event.request.method !== 'GET') {
@@ -163,6 +172,57 @@ self.addEventListener('fetch', (event) => {
   if (url.protocol === 'chrome-extension:' || 
       url.protocol === 'moz-extension:' || 
       url.protocol === 'safari-extension:') {
+    return;
+  }
+
+  // Gestion spéciale pour les images (stratégie Cache First avec fallback)
+  if (isImageRequest(event.request)) {
+    event.respondWith(
+      caches.match(event.request)
+        .then((cachedResponse) => {
+          if (cachedResponse) {
+            console.log('Service Worker: Image servie depuis le cache:', event.request.url);
+            return cachedResponse;
+          }
+
+          // Image pas en cache, tenter de la récupérer
+          return fetch(event.request)
+            .then((response) => {
+              // Vérifier si la réponse est valide
+              if (!response || response.status !== 200 || response.type !== 'basic') {
+                console.log('Service Worker: Réponse image invalide:', event.request.url);
+                return response;
+              }
+
+              // Cloner la réponse pour la mettre en cache
+              const responseToCache = response.clone();
+
+              caches.open(CACHE_NAME)
+                .then((cache) => {
+                  console.log('Service Worker: Mise en cache de l\'image:', event.request.url);
+                  cache.put(event.request, responseToCache);
+                })
+                .catch((error) => {
+                  console.error('Service Worker: Erreur mise en cache image:', error);
+                });
+
+              return response;
+            })
+            .catch((error) => {
+              console.error('Service Worker: Erreur réseau pour image:', event.request.url, error);
+              // Retourner une image placeholder par défaut en cas d'erreur
+              return new Response(
+                '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300" viewBox="0 0 200 300"><rect width="200" height="300" fill="#f0f0f0"/><text x="100" y="150" text-anchor="middle" font-family="Arial" font-size="16" fill="#666">📚</text><text x="100" y="180" text-anchor="middle" font-family="Arial" font-size="12" fill="#999">Image non disponible</text></svg>',
+                {
+                  headers: {
+                    'Content-Type': 'image/svg+xml',
+                    'Cache-Control': 'public, max-age=86400'
+                  }
+                }
+              );
+            });
+        })
+    );
     return;
   }
 
