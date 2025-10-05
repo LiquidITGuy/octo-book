@@ -28,6 +28,9 @@ RUN npm ci --only=production
 # Copier le code source de l'API
 COPY api/ ./
 
+# Rendre le script de démarrage exécutable
+RUN chmod +x start.sh
+
 # Retourner au répertoire racine
 WORKDIR /app
 
@@ -41,5 +44,5 @@ EXPOSE 3200
 ENV NODE_ENV=production
 ENV PORT=3200
 
-# Commande de démarrage directe
-CMD ["node", "api/server.js"]
+# Commande de démarrage avec initialisation de la base de données
+CMD ["sh", "api/start.sh"]

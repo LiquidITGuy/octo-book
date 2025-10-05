@@ -1,176 +1,305 @@
-# Octo Books - Bibliothèque Numérique
+# 📚 Octo Books - Bibliothèque Numérique
 
-Une application complète avec une API Node.js et un front-end Astro pour gérer une bibliothèque de livres numériques, inspirée de la charte graphique d'Octo Technology.
+Une application web moderne pour explorer et découvrir des livres, publications et ressources d'OCTO Technology avec support PostgreSQL et notifications push sécurisées.
 
-## 🚀 Fonctionnalités
+## 🌟 Fonctionnalités
 
-- **API REST** complète avec Node.js et Express
-- **Front-end moderne** avec Astro et rendu côté serveur
-- **Pagination** intelligente (10 livres par page)
-- **Pages détaillées** pour chaque livre
-- **Design responsive** inspiré d'Octo
-- **Interface élégante** avec effets visuels modernes
+- **Interface moderne** : Application Vue.js 3 avec design responsive
+- **PWA** : Installation possible sur mobile et desktop
+- **Recherche avancée** : Recherche par titre, auteur, tags, contenu
+- **Notifications push** : Système de notifications sécurisé par mot de passe
+- **Base de données** : PostgreSQL pour la persistance des données
+- **Cache intelligent** : Stratégie Network First pour une expérience optimale
+- **Pagination** : Navigation efficace dans le catalogue
+- **Filtrage par tags** : Organisation thématique des ressources
 
-## 📁 Structure du projet
+## 🏗️ Architecture
 
 ```
-octo-book/
-├── api/                    # API Node.js
-│   ├── server.js          # Serveur Express
-│   ├── books.json         # Base de données JSON
-│   └── package.json       # Dépendances API
-├── frontend/              # Front-end Astro
-│   ├── src/
-│   │   ├── layouts/       # Layouts Astro
-│   │   └── pages/         # Pages de l'application
-│   ├── astro.config.mjs   # Configuration Astro
-│   └── package.json       # Dépendances front-end
-└── README.md              # Ce fichier
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Frontend      │    │   API Node.js   │    │   PostgreSQL    │
+│   (Vue.js 3)    │◄───┤   (Express)     │◄───┤   Database      │
+│   PWA Support   │    │   Notifications │    │   Books & Subs  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 🛠️ Installation et démarrage
+### Stack Technique
+
+- **Frontend** : Vue.js 3, Vite, PWA
+- **Backend** : Node.js, Express.js
+- **Base de données** : PostgreSQL 15
+- **Notifications** : Web Push API avec VAPID
+- **Conteneurisation** : Docker & Docker Compose
+- **Déploiement** : CapRover compatible
+
+## 🚀 Démarrage rapide
 
 ### Prérequis
-- Node.js (version 18 ou supérieure)
-- npm
 
-### 1. Démarrer l'API
+- Node.js 18+
+- Docker & Docker Compose
+- PostgreSQL (si installation locale)
 
+### Installation avec Docker (Recommandé)
+
+1. **Cloner le projet**
 ```bash
-cd api
-npm install
-npm start
+git clone https://github.com/your-repo/octo-book.git
+cd octo-book
 ```
 
-L'API sera disponible sur `http://localhost:3200`
-
-### 2. Démarrer le front-end
-
-Dans un nouveau terminal :
-
+2. **Configurer les variables d'environnement**
 ```bash
-cd frontend
+cp api/.env.example api/.env.local
+# Éditer api/.env.local avec vos valeurs
+```
+
+3. **Démarrer les services**
+```bash
+docker-compose up -d
+```
+
+4. **Accéder à l'application**
+- Interface web : http://localhost:3200
+- API : http://localhost:3200/api
+
+### Installation locale
+
+1. **Installer les dépendances**
+```bash
+# Backend
+cd api
 npm install
+
+# Frontend
+cd ../frontend
+npm install
+```
+
+2. **Configurer PostgreSQL**
+```bash
+# Créer la base de données
+createdb octobooks
+psql octobooks < api/init.sql
+```
+
+3. **Configurer les variables d'environnement**
+```bash
+cp api/.env.example api/.env
+# Éditer api/.env avec vos valeurs PostgreSQL
+```
+
+4. **Démarrer les services**
+```bash
+# Terminal 1 - API
+cd api
+npm start
+
+# Terminal 2 - Frontend (développement)
+cd frontend
 npm run dev
 ```
 
-Le site sera disponible sur `http://localhost:3000`
+## 🐳 Déploiement avec CapRover
 
-## 📚 API Endpoints
+Consultez le guide détaillé : [CAPROVER_DEPLOYMENT.md](./CAPROVER_DEPLOYMENT.md)
 
-### Livres
-- `GET /api/books` - Liste des livres avec pagination
-  - Paramètres : `page` (défaut: 1), `limit` (défaut: 10)
-- `GET /api/books/:id` - Détail d'un livre
-- `GET /api/books/search/:query` - Recherche de livres
-- `GET /api/tags` - Liste de tous les tags
-- `GET /api/health` - Statut de l'API
+### Résumé des étapes
 
-### Exemples d'utilisation
+1. **Créer l'application PostgreSQL dans CapRover**
+2. **Configurer les variables d'environnement**
+3. **Déployer l'application principale**
+4. **Vérifier la connectivité**
+
+### Variables d'environnement requises
 
 ```bash
-# Récupérer les 10 premiers livres
-curl http://localhost:3200/api/books
+# VAPID (Notifications Push)
+VAPID_PUBLIC_KEY=your_vapid_public_key
+VAPID_PRIVATE_KEY=your_vapid_private_key
+VAPID_EMAIL=mailto:your-email@example.com
 
-# Récupérer la page 2
-curl http://localhost:3200/api/books?page=2
+# Sécurité
+NOTIFICATION_PASSWORD=your_secure_password
 
-# Détail du livre avec l'ID 1
-curl http://localhost:3200/api/books/1
-
-# Rechercher des livres
-curl http://localhost:3200/api/books/search/devops
+# Base de données PostgreSQL
+DB_HOST=srv-captain--your-postgres-app
+DB_PORT=5432
+DB_NAME=octobooks
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DATABASE_URL=postgresql://user:pass@host:5432/octobooks
 ```
 
-## 🎨 Design et charte graphique
+## 🔧 Configuration
 
-L'application respecte la charte graphique d'Octo Technology avec :
+### Génération des clés VAPID
 
-- **Couleurs principales** : Dégradés bleu-violet (#667eea, #764ba2)
-- **Typographie** : Segoe UI, moderne et lisible
-- **Effets visuels** : Glassmorphism, ombres douces, transitions fluides
-- **Layout responsive** : Optimisé pour mobile, tablette et desktop
-- **Navigation intuitive** : Breadcrumbs, pagination claire
+```bash
+cd api
+node generate-vapid-keys.js
+```
 
-## 📱 Pages disponibles
+### Base de données
 
-### Page d'accueil (`/`)
-- Hero section avec présentation
-- Aperçu des livres à la une
-- Section "À propos" avec les fonctionnalités
+La base de données est automatiquement initialisée avec :
+- Tables : `books`, `push_subscriptions`
+- Index optimisés pour les performances
+- Données d'exemple (RefCard PWA, etc.)
 
-### Liste des livres (`/books`)
-- Affichage de tous les livres
-- Pagination (10 livres par page)
-- Navigation entre les pages
-- Informations de pagination
+### Notifications Push
 
-### Détail d'un livre (`/books/:id`)
-- Informations complètes du livre
-- Résumé court et description détaillée
-- Tags et métadonnées
-- Lien de téléchargement
-- Navigation breadcrumb
+Les notifications sont sécurisées par un mot de passe dans le header :
 
-## 🔧 Personnalisation
+```bash
+curl -X POST https://your-app.com/api/push/notify \
+  -H "Content-Type: application/json" \
+  -H "X-Notification-Password: your_password" \
+  -d '{"title": "Nouveau livre", "body": "Description"}'
+```
 
-### Modifier les livres
-Éditez le fichier `api/books.json` pour ajouter, modifier ou supprimer des livres.
+## 🧪 Tests
 
-### Changer les couleurs
-Modifiez les variables CSS dans `frontend/src/layouts/Layout.astro`.
+### Tests des notifications
 
-### Ajuster la pagination
-Changez la valeur `limit` dans `frontend/src/pages/books/index.astro`.
+```bash
+cd api
+node test-notification.js
+```
 
-## 🚀 Déploiement
+### Tests du frontend
 
-### API
-L'API peut être déployée sur n'importe quelle plateforme supportant Node.js :
-- Heroku
-- Vercel
-- Railway
-- DigitalOcean
+```bash
+cd frontend
+npm test
+```
 
-### Front-end
-Le front-end Astro peut être déployé sur :
-- Vercel
-- Netlify
-- GitHub Pages (avec build statique)
+### Tests d'intégration
 
-## 📝 Technologies utilisées
+```bash
+# Vérifier l'API
+curl http://localhost:3200/api/health
 
-### Backend
-- **Node.js** - Runtime JavaScript
-- **Express** - Framework web
-- **CORS** - Gestion des requêtes cross-origin
+# Vérifier PostgreSQL
+curl http://localhost:3200/api/books?limit=5
+```
 
-### Frontend
-- **Astro** - Framework web moderne
-- **CSS3** - Styles avancés avec glassmorphism
-- **JavaScript** - Interactivité côté client
+## 📊 Monitoring
+
+### Logs
+
+```bash
+# Docker Compose
+docker-compose logs -f app
+docker-compose logs -f postgres
+
+# CapRover
+# Consultez les logs dans l'interface CapRover
+```
+
+### Métriques
+
+- **Santé de l'API** : `/api/health`
+- **Statistiques push** : `/api/push/stats`
+- **Nombre de livres** : `/api/books?limit=1`
+
+## 🔒 Sécurité
+
+- **Notifications push** : Authentification par mot de passe
+- **Base de données** : Requêtes préparées (protection SQL injection)
+- **Variables d'environnement** : Secrets externalisés
+- **HTTPS** : Support SSL en production
+- **CORS** : Configuration adaptée
+
+## 🛠️ Développement
+
+### Structure du projet
+
+```
+octo-book/
+├── api/                    # Backend Node.js
+│   ├── server.js          # Serveur Express
+│   ├── database.js        # Services PostgreSQL
+│   ├── init.sql          # Initialisation DB
+│   └── package.json
+├── frontend/              # Frontend Vue.js
+│   ├── src/
+│   │   ├── components/    # Composants Vue
+│   │   ├── views/         # Pages
+│   │   └── services/      # Services API
+│   └── package.json
+├── docker-compose.yml     # Configuration Docker
+└── CAPROVER_DEPLOYMENT.md # Guide déploiement
+```
+
+### Scripts utiles
+
+```bash
+# Développement frontend
+npm run dev
+
+# Build production
+npm run build
+
+# Tests
+npm test
+
+# Linting
+npm run lint
+
+# Génération des clés VAPID
+node api/generate-vapid-keys.js
+```
+
+## 📝 API Documentation
+
+### Endpoints principaux
+
+- `GET /api/books` - Liste des livres (paginée)
+- `GET /api/books/:id` - Détail d'un livre
+- `GET /api/books/search/:query` - Recherche
+- `GET /api/tags` - Liste des tags
+- `GET /api/books/tag/:tag` - Livres par tag
+- `POST /api/push/subscribe` - Abonnement notifications
+- `POST /api/push/notify` - Envoi notifications (sécurisé)
+- `GET /api/push/stats` - Statistiques abonnements
+
+### Formats de réponse
+
+```json
+{
+  "books": [...],
+  "pagination": {
+    "currentPage": 1,
+    "totalPages": 10,
+    "totalBooks": 100,
+    "hasNext": true,
+    "hasPrev": false
+  }
+}
+```
 
 ## 🤝 Contribution
 
-1. Forkez le projet
-2. Créez une branche pour votre fonctionnalité
-3. Committez vos changements
-4. Poussez vers la branche
-5. Ouvrez une Pull Request
+1. Fork le projet
+2. Créer une branche feature (`git checkout -b feature/amazing-feature`)
+3. Commit les changements (`git commit -m 'Add amazing feature'`)
+4. Push vers la branche (`git push origin feature/amazing-feature`)
+5. Ouvrir une Pull Request
 
-## 📄 Licence
+## 📄 License
 
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
-## 🎯 Prochaines fonctionnalités
+## 🔗 Liens utiles
 
-- [ ] Recherche avancée avec filtres
-- [ ] Système de favoris
-- [ ] Commentaires et notes
-- [ ] Interface d'administration
-- [ ] API d'authentification
-- [ ] Base de données PostgreSQL/MongoDB
+- [Documentation Vue.js 3](https://vuejs.org/)
+- [Express.js Guide](https://expressjs.com/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Web Push Protocol](https://web.dev/push-notifications/)
+- [PWA Best Practices](https://web.dev/progressive-web-apps/)
+- [CapRover Documentation](https://caprover.com/docs/)
 
 ---
 
-Développé avec ❤️ pour Octo Technology
+**Développé avec ❤️ pour OCTO Technology**

@@ -3,6 +3,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const webpush = require('web-push');
+const { bookService, subscriptionService, testConnection } = require('./database');
 
 // Charger les variables d'environnement
 require('dotenv').config();
@@ -31,8 +32,19 @@ webpush.setVapidDetails(
 
 console.log('✅ Configuration VAPID chargée depuis les variables d\'environnement');
 
-// Stockage en mémoire des abonnements (en production, utiliser une base de données)
-let subscriptions = [];
+// Test de connexion à la base de données au démarrage
+(async () => {
+  try {
+    const isConnected = await testConnection();
+    if (!isConnected) {
+      console.error('❌ Impossible de se connecter à PostgreSQL');
+      process.exit(1);
+    }
+  } catch (error) {
+    console.error('❌ Erreur lors du test de connexion PostgreSQL:', error);
+    process.exit(1);
+  }
+})();
 
 // Middleware
 app.use(cors());
@@ -41,19 +53,8 @@ app.use(express.json());
 // Servir les fichiers statiques du frontend
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-// Charger les données des livres
-const loadBooks = () => {
-  try {
-    const booksData = fs.readFileSync(path.join(__dirname, 'books.json'), 'utf8');
-    return JSON.parse(booksData);
-  } catch (error) {
-    console.error('Erreur lors du chargement des livres:', error);
-    return [];
-  }
-};
-
 // Route pour obtenir tous les livres avec pagination
-app.get('/api/books', (req, res) => {
+app.get('/api/books', async (req, res) => {
   try {
     // En-têtes de cache pour Network First
     res.set({
@@ -62,35 +63,11 @@ app.get('/api/books', (req, res) => {
       'Last-Modified': new Date().toUTCString()
     });
 
-    const books = loadBooks();
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-
-    const paginatedBooks = books.slice(startIndex, endIndex);
     
-    // Retourner uniquement les informations de base (sans longSummary)
-    const booksWithoutLongSummary = paginatedBooks.map(book => ({
-      id: book.id,
-      title: book.title,
-      authors: book.authors,
-      summary: book.summary,
-      thumbnail: book.thumbnail,
-      tags: book.tags,
-      disponible: book.disponible
-    }));
-
-    res.json({
-      books: booksWithoutLongSummary,
-      pagination: {
-        currentPage: page,
-        totalPages: Math.ceil(books.length / limit),
-        totalBooks: books.length,
-        hasNext: endIndex < books.length,
-        hasPrev: page > 1
-      }
-    });
+    const result = await bookService.getAllBooks(page, limit);
+    res.json(result);
   } catch (error) {
     console.error('Erreur lors de la récupération des livres:', error);
     res.status(500).json({ error: 'Erreur serveur' });
@@ -98,11 +75,10 @@ app.get('/api/books', (req, res) => {
 });
 
 // Route pour obtenir un livre spécifique par ID
-app.get('/api/books/:id', (req, res) => {
+app.get('/api/books/:id', async (req, res) => {
   try {
-    const books = loadBooks();
     const bookId = req.params.id;
-    const book = books.find(b => b.id === bookId);
+    const book = await bookService.getBookById(bookId);
 
     if (!book) {
       return res.status(404).json({ error: 'Livre non trouvé' });
@@ -116,7 +92,7 @@ app.get('/api/books/:id', (req, res) => {
 });
 
 // Route pour rechercher des livres par titre, auteur, tags, résumé ou description
-app.get('/api/books/search/:query', (req, res) => {
+app.get('/api/books/search/:query', async (req, res) => {
   try {
     // En-têtes de cache pour Network First
     res.set({
@@ -125,45 +101,12 @@ app.get('/api/books/search/:query', (req, res) => {
       'Last-Modified': new Date().toUTCString()
     });
 
-    const books = loadBooks();
-    const query = req.params.query.toLowerCase();
+    const query = req.params.query;
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     
-    const filteredBooks = books.filter(book => 
-      book.title.toLowerCase().includes(query) ||
-      book.authors.some(author => author.toLowerCase().includes(query)) ||
-      book.tags.some(tag => tag.toLowerCase().includes(query)) ||
-      book.summary.toLowerCase().includes(query) ||
-      book.longSummary.toLowerCase().includes(query)
-    );
-
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
-
-    // Retourner sans longSummary pour la recherche
-    const booksWithoutLongSummary = paginatedBooks.map(book => ({
-      id: book.id,
-      title: book.title,
-      authors: book.authors,
-      summary: book.summary,
-      thumbnail: book.thumbnail,
-      tags: book.tags,
-      disponible: book.disponible
-    }));
-
-    res.json({
-      books: booksWithoutLongSummary,
-      query: query,
-      pagination: {
-        currentPage: page,
-        totalPages: Math.ceil(filteredBooks.length / limit),
-        totalBooks: filteredBooks.length,
-        hasNext: endIndex < filteredBooks.length,
-        hasPrev: page > 1
-      }
-    });
+    const result = await bookService.searchBooks(query, page, limit);
+    res.json(result);
   } catch (error) {
     console.error('Erreur lors de la recherche:', error);
     res.status(500).json({ error: 'Erreur serveur' });
@@ -171,19 +114,10 @@ app.get('/api/books/search/:query', (req, res) => {
 });
 
 // Route pour obtenir tous les tags disponibles
-app.get('/api/tags', (req, res) => {
+app.get('/api/tags', async (req, res) => {
   try {
-    const books = loadBooks();
-    const allTags = books.reduce((tags, book) => {
-      book.tags.forEach(tag => {
-        if (!tags.includes(tag)) {
-          tags.push(tag);
-        }
-      });
-      return tags;
-    }, []);
-
-    res.json({ tags: allTags.sort() });
+    const tags = await bookService.getAllTags();
+    res.json({ tags: tags.sort() });
   } catch (error) {
     console.error('Erreur lors de la récupération des tags:', error);
     res.status(500).json({ error: 'Erreur serveur' });
@@ -191,7 +125,7 @@ app.get('/api/tags', (req, res) => {
 });
 
 // Route pour obtenir les livres par tag avec pagination
-app.get('/api/books/tag/:tag', (req, res) => {
+app.get('/api/books/tag/:tag', async (req, res) => {
   try {
     // En-têtes de cache pour Network First
     res.set({
@@ -200,42 +134,12 @@ app.get('/api/books/tag/:tag', (req, res) => {
       'Last-Modified': new Date().toUTCString()
     });
 
-    const books = loadBooks();
     const tag = decodeURIComponent(req.params.tag);
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     
-    // Filtrer les livres par tag
-    const filteredBooks = books.filter(book => 
-      book.tags.some(bookTag => bookTag.toLowerCase() === tag.toLowerCase())
-    );
-
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
-    
-    // Retourner uniquement les informations de base (sans longSummary)
-    const booksWithoutLongSummary = paginatedBooks.map(book => ({
-      id: book.id,
-      title: book.title,
-      authors: book.authors,
-      summary: book.summary,
-      thumbnail: book.thumbnail,
-      tags: book.tags,
-      disponible: book.disponible
-    }));
-
-    res.json({
-      books: booksWithoutLongSummary,
-      tag: tag,
-      pagination: {
-        currentPage: page,
-        totalPages: Math.ceil(filteredBooks.length / limit),
-        totalBooks: filteredBooks.length,
-        hasNext: endIndex < filteredBooks.length,
-        hasPrev: page > 1
-      }
-    });
+    const result = await bookService.getBooksByTag(tag, page, limit);
+    res.json(result);
   } catch (error) {
     console.error('Erreur lors de la récupération des livres par tag:', error);
     res.status(500).json({ error: 'Erreur serveur' });
@@ -243,7 +147,7 @@ app.get('/api/books/tag/:tag', (req, res) => {
 });
 
 // Routes pour les notifications push
-app.post('/api/push/subscribe', (req, res) => {
+app.post('/api/push/subscribe', async (req, res) => {
   try {
     console.log('📱 Nouvelle demande d\'abonnement reçue');
     console.log('Body:', JSON.stringify(req.body, null, 2));
@@ -255,37 +159,17 @@ app.post('/api/push/subscribe', (req, res) => {
       return res.status(400).json({ error: 'Abonnement invalide' });
     }
 
-    // Vérifier si l'abonnement existe déjà
-    const existingIndex = subscriptions.findIndex(sub => 
-      sub.subscription.endpoint === subscription.endpoint
-    );
+    // Enregistrer dans PostgreSQL
+    await subscriptionService.upsertSubscription(subscription, userAgent);
+    console.log('✅ Abonnement push enregistré:', subscription.endpoint.substring(0, 50) + '...');
 
-    if (existingIndex !== -1) {
-      // Mettre à jour l'abonnement existant
-      subscriptions[existingIndex] = {
-        subscription,
-        userAgent,
-        timestamp,
-        subscribedAt: subscriptions[existingIndex].subscribedAt
-      };
-      console.log('✅ Abonnement push mis à jour:', subscription.endpoint.substring(0, 50) + '...');
-    } else {
-      // Ajouter un nouvel abonnement
-      subscriptions.push({
-        subscription,
-        userAgent,
-        timestamp,
-        subscribedAt: new Date().toISOString()
-      });
-      console.log('✅ Nouvel abonnement push ajouté:', subscription.endpoint.substring(0, 50) + '...');
-    }
-
-    console.log(`📊 Total des abonnements: ${subscriptions.length}`);
+    // Obtenir les statistiques mises à jour
+    const stats = await subscriptionService.getStats();
 
     res.json({ 
       success: true, 
       message: 'Abonnement enregistré avec succès',
-      totalSubscriptions: subscriptions.length
+      totalSubscriptions: stats.totalSubscriptions
     });
   } catch (error) {
     console.error('❌ Erreur lors de l\'enregistrement de l\'abonnement:', error);
@@ -293,7 +177,7 @@ app.post('/api/push/subscribe', (req, res) => {
   }
 });
 
-app.post('/api/push/unsubscribe', (req, res) => {
+app.post('/api/push/unsubscribe', async (req, res) => {
   try {
     const { subscription } = req.body;
     
@@ -301,19 +185,17 @@ app.post('/api/push/unsubscribe', (req, res) => {
       return res.status(400).json({ error: 'Abonnement invalide' });
     }
 
-    // Supprimer l'abonnement
-    const initialLength = subscriptions.length;
-    subscriptions = subscriptions.filter(sub => 
-      sub.subscription.endpoint !== subscription.endpoint
-    );
+    // Supprimer de PostgreSQL
+    const removed = await subscriptionService.removeSubscription(subscription.endpoint);
+    console.log(`Abonnement push ${removed ? 'supprimé' : 'non trouvé'}`);
 
-    const removed = initialLength - subscriptions.length;
-    console.log(`${removed} abonnement(s) push supprimé(s)`);
+    // Obtenir les statistiques mises à jour
+    const stats = await subscriptionService.getStats();
 
     res.json({ 
       success: true, 
       message: 'Désabonnement effectué avec succès',
-      totalSubscriptions: subscriptions.length
+      totalSubscriptions: stats.totalSubscriptions
     });
   } catch (error) {
     console.error('Erreur lors du désabonnement:', error);
@@ -322,7 +204,7 @@ app.post('/api/push/unsubscribe', (req, res) => {
 });
 
 // Route pour envoyer une notification à tous les abonnés (sécurisée)
-app.post('/api/push/notify', (req, res) => {
+app.post('/api/push/notify', async (req, res) => {
   try {
     // Vérification du mot de passe dans le header
     const providedPassword = req.headers['x-notification-password'] || req.headers['authorization'];
@@ -362,6 +244,9 @@ app.post('/api/push/notify', (req, res) => {
       return res.status(400).json({ error: 'Titre et corps de la notification requis' });
     }
 
+    // Récupérer les abonnements depuis PostgreSQL
+    const subscriptionsFromDb = await subscriptionService.getAllSubscriptions();
+
     const payload = JSON.stringify({
       title,
       body,
@@ -370,18 +255,16 @@ app.post('/api/push/notify', (req, res) => {
       timestamp: new Date().toISOString()
     });
 
-    const promises = subscriptions.map(async (sub) => {
+    const promises = subscriptionsFromDb.map(async (sub) => {
       try {
         await webpush.sendNotification(sub.subscription, payload);
         return { success: true, endpoint: sub.subscription.endpoint };
       } catch (error) {
         console.error('Erreur envoi notification:', error);
         
-        // Si l'abonnement n'est plus valide, le supprimer
+        // Si l'abonnement n'est plus valide, le supprimer de la base
         if (error.statusCode === 410 || error.statusCode === 404) {
-          subscriptions = subscriptions.filter(s => 
-            s.subscription.endpoint !== sub.subscription.endpoint
-          );
+          await subscriptionService.removeSubscription(sub.subscription.endpoint);
           console.log('Abonnement invalide supprimé:', sub.subscription.endpoint);
         }
         
@@ -412,15 +295,14 @@ app.post('/api/push/notify', (req, res) => {
 });
 
 // Route pour obtenir les statistiques des abonnements
-app.get('/api/push/stats', (req, res) => {
-  res.json({
-    totalSubscriptions: subscriptions.length,
-    subscriptions: subscriptions.map(sub => ({
-      endpoint: sub.subscription.endpoint.substring(0, 50) + '...',
-      userAgent: sub.userAgent,
-      subscribedAt: sub.subscribedAt
-    }))
-  });
+app.get('/api/push/stats', async (req, res) => {
+  try {
+    const stats = await subscriptionService.getStats();
+    res.json(stats);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des statistiques:', error);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
 });
 
 // Route pour obtenir la clé publique VAPID

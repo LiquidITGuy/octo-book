@@ -19,7 +19,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-geants-web",
     "thumbnail": "https://octo.com/assets/publications-categories-images/les_geants_du_web.jpg",
     "tags": ["livre blanc", "architecture", "web", "stratégie"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "2",
@@ -30,7 +30,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-restful-api-design",
     "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_restful_api_design.jpg",
     "tags": ["refcard", "api", "rest", "design"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "3",
@@ -41,7 +41,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-api-security-principles",
     "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_api_security.jpg",
     "tags": ["refcard", "api", "sécurité", "cybersécurité"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "4",
@@ -52,7 +52,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-refcard-api-management-essentials",
     "thumbnail": "https://octo.com/assets/publications-categories-images/refcard_api_management.jpg",
     "tags": ["refcard", "api", "management", "si"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "5",
@@ -63,7 +63,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-rewind-usi-2023",
     "thumbnail": "https://octo.com/assets/publications-categories-images/rewind_usi_2023.jpg",
     "tags": ["conférence", "usi", "entreprise", "transformation"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "6",
@@ -74,7 +74,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2021",
     "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2021.jpg",
     "tags": ["conférence", "usi", "visionnaires", "société"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "7",
@@ -85,7 +85,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2019",
     "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2019.jpg",
     "tags": ["conférence", "usi", "visionnaires", "société"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "8",
@@ -96,7 +96,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2018",
     "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2018.jpg",
     "tags": ["conférence", "usi", "visionnaires", "société"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "9",
@@ -107,7 +107,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2017",
     "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2017.jpg",
     "tags": ["conférence", "usi", "visionnaires", "société"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "10",
@@ -118,7 +118,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2016",
     "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2016.jpg",
     "tags": ["conférence", "usi", "visionnaires", "société"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "11",
@@ -129,7 +129,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-inside-usi-2015",
     "thumbnail": "https://octo.com/assets/publications-categories-images/inside_usi_2015.jpg",
     "tags": ["conférence", "usi", "visionnaires", "société"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "12",
@@ -140,7 +140,7 @@
     "downloadLink": "https://publication.octo.com/fr/telechargement-livre-blanc-banque-digitale",
     "thumbnail": "https://octo.com/assets/publications-categories-images/banque_digitale.jpg",
     "tags": ["livre blanc", "banque", "fintech", "transformation"],
-    "disponible": false
+    "disponible": true
   },
   {
     "id": "13",

@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "start:full": "sh start.sh",
+    "init-db": "node init-database.js",
     "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +19,7 @@
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "node-fetch": "^2.7.0",
+    "pg": "^8.11.3",
     "web-push": "^3.6.7"
   }
 }
