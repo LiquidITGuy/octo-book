@@ -1,5 +1,6 @@
 // Service Worker pour Octo Books PWA avec notifications push
 const CACHE_NAME = 'octo-books-v1';
+const BOOKS_CACHE_KEY = 'cached-books-data';
 
 // Assets essentiels à mettre en cache
 const STATIC_ASSETS = [
@@ -7,6 +8,109 @@ const STATIC_ASSETS = [
   '/index.html',
   '/manifest.json'
 ];
+
+// Fonction pour extraire et stocker les données de livres depuis les réponses
+async function storeBooksData(request, response) {
+  if (request.url.includes('/api/books')) {
+    try {
+      const responseClone = response.clone();
+      const data = await responseClone.json();
+      
+      if (data && data.books && Array.isArray(data.books)) {
+        // Récupérer les données existantes
+        const cache = await caches.open(CACHE_NAME);
+        let existingBooksData = [];
+        
+        try {
+          const existingResponse = await cache.match(BOOKS_CACHE_KEY);
+          if (existingResponse) {
+            const existingData = await existingResponse.json();
+            existingBooksData = existingData.books || [];
+          }
+        } catch (e) {
+          console.log('Aucune donnée de livres existante trouvée');
+        }
+        
+        // Fusionner les nouveaux livres avec les existants (éviter les doublons)
+        const existingIds = new Set(existingBooksData.map(book => book.id));
+        const newBooks = data.books.filter(book => !existingIds.has(book.id));
+        const allBooks = [...existingBooksData, ...newBooks];
+        
+        // Stocker les données combinées
+        const booksDataResponse = new Response(JSON.stringify({ books: allBooks }), {
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        await cache.put(BOOKS_CACHE_KEY, booksDataResponse);
+        console.log(`Service Worker: ${newBooks.length} nouveaux livres ajoutés au cache (total: ${allBooks.length})`);
+      }
+    } catch (error) {
+      console.error('Erreur lors du stockage des données de livres:', error);
+    }
+  }
+}
+
+// Fonction pour effectuer une recherche locale dans les données mises en cache
+async function performOfflineSearch(searchQuery, page = 1, limit = 10) {
+  try {
+    const cache = await caches.open(CACHE_NAME);
+    const booksResponse = await cache.match(BOOKS_CACHE_KEY);
+    
+    if (!booksResponse) {
+      throw new Error('Aucune donnée de livres en cache');
+    }
+    
+    const booksData = await booksResponse.json();
+    const allBooks = booksData.books || [];
+    
+    if (allBooks.length === 0) {
+      throw new Error('Aucun livre trouvé dans le cache');
+    }
+    
+    // Effectuer la recherche dans les données locales
+    const query = searchQuery.toLowerCase();
+    const filteredBooks = allBooks.filter(book => {
+      const searchableText = [
+        book.title,
+        book.description || '',
+        book.summary || '',
+        ...(book.authors || []),
+        ...(book.tags || [])
+      ].join(' ').toLowerCase();
+      
+      return searchableText.includes(query);
+    });
+    
+    // Pagination
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+    
+    const totalBooks = filteredBooks.length;
+    const totalPages = Math.ceil(totalBooks / limit);
+    
+    const result = {
+      books: paginatedBooks,
+      pagination: {
+        currentPage: page,
+        totalPages: totalPages,
+        totalBooks: totalBooks,
+        hasNext: page < totalPages,
+        hasPrev: page > 1
+      },
+      offline: true // Indicateur que c'est une recherche hors ligne
+    };
+    
+    console.log(`Service Worker: Recherche hors ligne "${searchQuery}" - ${totalBooks} résultats trouvés`);
+    return new Response(JSON.stringify(result), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
+  } catch (error) {
+    console.error('Erreur lors de la recherche hors ligne:', error);
+    throw error;
+  }
+}
 
 // Installation du service worker
 self.addEventListener('install', (event) => {
@@ -42,7 +146,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Stratégie de cache simple
+// Stratégie de cache avec gestion de la recherche hors ligne
 self.addEventListener('fetch', (event) => {
   // Ne pas intercepter les requêtes non-GET
   if (event.request.method !== 'GET') {
@@ -62,6 +166,55 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Gestion spéciale pour les requêtes de recherche
+  if (url.pathname.includes('/api/books/search/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Mettre en cache la réponse si elle est valide
+          if (response.ok) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseClone);
+              })
+              .catch((error) => {
+                console.log('Erreur mise en cache de la recherche:', error);
+              });
+            
+            // Stocker aussi les données des livres retournés
+            storeBooksData(event.request, response);
+          }
+          return response;
+        })
+        .catch(async () => {
+          console.log('Service Worker: Réseau indisponible, tentative de recherche hors ligne');
+          
+          // Extraire les paramètres de recherche de l'URL
+          const pathParts = url.pathname.split('/');
+          const searchQuery = decodeURIComponent(pathParts[pathParts.length - 1]);
+          const urlParams = new URLSearchParams(url.search);
+          const page = parseInt(urlParams.get('page')) || 1;
+          const limit = parseInt(urlParams.get('limit')) || 10;
+          
+          try {
+            return await performOfflineSearch(searchQuery, page, limit);
+          } catch (error) {
+            console.error('Service Worker: Échec de la recherche hors ligne:', error);
+            return new Response(JSON.stringify({
+              error: 'Recherche hors ligne indisponible',
+              message: 'Aucune donnée de livres n\'est disponible en cache pour effectuer une recherche hors ligne.'
+            }), {
+              status: 503,
+              headers: { 'Content-Type': 'application/json' }
+            });
+          }
+        })
+    );
+    return;
+  }
+
+  // Gestion générale des autres requêtes
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -87,6 +240,9 @@ self.addEventListener('fetch', (event) => {
                 .catch((error) => {
                   console.log('Erreur mise en cache:', error);
                 });
+                
+              // Stocker les données des livres si c'est une requête d'API de livres
+              storeBooksData(event.request, response);
             }
             return response;
           })
