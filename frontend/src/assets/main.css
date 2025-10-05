@@ -222,8 +222,8 @@ p {
 }
 
 .btn-download {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: #0E2356;
+  color: #0E2356;
 }
 
 .btn-download:hover {
