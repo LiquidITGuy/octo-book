@@ -201,25 +201,53 @@ export function usePushNotifications() {
   // Vérifier l'abonnement existant
   const checkExistingSubscription = async () => {
     if (!isSupported.value) {
+      console.log('🚫 Push notifications non supportées, skip de la vérification')
       return
     }
 
     try {
-      const registration = await navigator.serviceWorker.register('/sw.js')
-      await navigator.serviceWorker.ready
+      console.log('🔍 Vérification de l\'abonnement existant...')
+      console.log('🔍 État actuel:', { 
+        isSupported: isSupported.value, 
+        isSubscribed: isSubscribed.value,
+        permission: permission.value 
+      })
       
-      const existingSubscription = await registration.pushManager.getSubscription()
-      
-      if (existingSubscription) {
-        subscription.value = existingSubscription
-        isSubscribed.value = true
-        console.log('Abonnement existant détecté')
+      // Attendre que le service worker soit disponible
+      if ('serviceWorker' in navigator) {
+        console.log('📝 Enregistrement du service worker...')
+        const registration = await navigator.serviceWorker.register('/sw.js')
+        console.log('⏳ Attente que le service worker soit prêt...')
+        await navigator.serviceWorker.ready
+        console.log('✅ Service worker prêt')
+        
+        console.log('🔍 Recherche d\'un abonnement existant...')
+        const existingSubscription = await registration.pushManager.getSubscription()
+        
+        if (existingSubscription) {
+          subscription.value = existingSubscription
+          isSubscribed.value = true
+          console.log('✅ Abonnement existant détecté!')
+          console.log('📋 Endpoint:', existingSubscription.endpoint.substring(0, 50) + '...')
+          console.log('📋 Keys:', {
+            p256dh: existingSubscription.keys.p256dh.substring(0, 20) + '...',
+            auth: existingSubscription.keys.auth.substring(0, 20) + '...'
+          })
+        } else {
+          subscription.value = null
+          isSubscribed.value = false
+          console.log('ℹ️ Aucun abonnement existant trouvé')
+        }
+        
+        console.log('🔍 État final après vérification:', { 
+          isSubscribed: isSubscribed.value,
+          hasSubscription: !!subscription.value 
+        })
       } else {
-        subscription.value = null
-        isSubscribed.value = false
+        console.log('❌ Service Worker non supporté')
       }
     } catch (err) {
-      console.error('Erreur lors de la vérification de l\'abonnement existant:', err)
+      console.error('❌ Erreur lors de la vérification de l\'abonnement existant:', err)
       subscription.value = null
       isSubscribed.value = false
     }
@@ -243,14 +271,23 @@ export function usePushNotifications() {
 
   // Initialiser au chargement
   const initialize = async () => {
+    console.log('🔄 Initialisation des push notifications...')
     checkSupport()
+    
     if (isSupported.value) {
-      await checkExistingSubscription()
+      // Attendre un peu pour laisser le temps au navigateur de se préparer
+      setTimeout(async () => {
+        await checkExistingSubscription()
+      }, 100)
+    } else {
+      console.log('❌ Push notifications non supportées par ce navigateur')
     }
   }
 
-  // Lancer l'initialisation
-  initialize()
+  // Lancer l'initialisation seulement si on est dans le navigateur
+  if (typeof window !== 'undefined') {
+    initialize()
+  }
 
   return {
     // État

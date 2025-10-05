@@ -44,6 +44,24 @@ self.addEventListener('activate', (event) => {
 
 // Stratégie de cache simple
 self.addEventListener('fetch', (event) => {
+  // Ne pas intercepter les requêtes non-GET
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
+  // Ne pas intercepter les requêtes avec des schémas non supportés
+  const url = new URL(event.request.url);
+  if (!url.protocol.startsWith('http')) {
+    return;
+  }
+
+  // Ne pas intercepter les requêtes vers des extensions ou autres origines non supportées
+  if (url.protocol === 'chrome-extension:' || 
+      url.protocol === 'moz-extension:' || 
+      url.protocol === 'safari-extension:') {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -55,12 +73,19 @@ self.addEventListener('fetch', (event) => {
         // Sinon, faire la requête réseau
         return fetch(event.request)
           .then((response) => {
-            // Mettre en cache les réponses valides
-            if (response.ok) {
+            // Mettre en cache les réponses valides 
+            if (response.ok && event.request.method === 'GET') {
               const responseClone = response.clone();
               caches.open(CACHE_NAME)
                 .then((cache) => {
-                  cache.put(event.request, responseClone);
+                  // Vérifier à nouveau le schéma avant de mettre en cache
+                  const requestUrl = new URL(event.request.url);
+                  if (requestUrl.protocol.startsWith('http')) {
+                    cache.put(event.request, responseClone);
+                  }
+                })
+                .catch((error) => {
+                  console.log('Erreur mise en cache:', error);
                 });
             }
             return response;
