@@ -6,7 +6,7 @@
         <div class="banner-icon">⚠️</div>
         <div class="banner-content">
           <strong>Navigateur non compatible</strong>
-          <span>Les notifications push ne sont pas supportées</span>
+          <span>Installez l'application pour pour activer les notifications</span>
         </div>
       </div>
 
