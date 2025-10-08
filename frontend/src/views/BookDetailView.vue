@@ -63,7 +63,7 @@
 
           <div class="book-summary">
             <h2>Résumé</h2>
-            <p>{{ book.summary }}</p>
+            <p>{{ book.long_summary }}</p>
           </div>
 
           <div class="book-long-summary">
@@ -203,6 +203,7 @@ export default {
           this.updateMetaTags({
             title: this.book.title,
             summary: this.book.summary,
+            long_summary: this.book.long_summary,
             thumbnail: this.book.thumbnail,
             authors: this.book.authors,
             url: this.getBookUrl()
