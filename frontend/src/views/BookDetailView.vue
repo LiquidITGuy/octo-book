@@ -63,7 +63,7 @@
 
           <div class="book-summary">
             <h2>Résumé</h2>
-            <p>{{ book.long_summary }}</p>
+            <p>{{ book.summary }}</p>
           </div>
 
           <div class="book-long-summary">
@@ -223,8 +223,8 @@ export default {
       }
     },
     getLongSummaryParagraphs() {
-      if (!this.book?.longSummary) return []
-      return this.book.longSummary.split('\n').filter(p => p.trim())
+      if (!this.book?.long_summary) return []
+      return this.book.long_summary.split('\n').filter(p => p.trim())
     },
     getBookUrl() {
       return `${window.location.origin}/books/${this.book?.id}`
