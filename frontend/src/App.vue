@@ -8,6 +8,9 @@
     
     <header class="header">
       <div class="header-content">
+        <!-- Menu burger mobile (à gauche sur mobile) -->
+        <MobileMenu class="mobile-menu-left" />
+        
         <router-link to="/" class="logo">Octo Books</router-link>
         
         <!-- Navigation desktop -->
@@ -21,7 +24,6 @@
         
         <div class="header-controls">
           <SearchBar />
-          <MobileMenu />
         </div>
       </div>
     </header>

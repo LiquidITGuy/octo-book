@@ -200,20 +200,20 @@ export default {
 .mobile-nav {
   position: fixed;
   top: 0;
-  right: -100%;
+  left: -100%;
   width: 280px;
   height: 100vh;
   background: var(--color-background);
-  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
   z-index: 999;
-  transition: right 0.3s ease;
+  transition: left 0.3s ease;
   display: flex;
   flex-direction: column;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-open {
-  right: 0;
+  left: 0;
 }
 
 .mobile-nav-header {
@@ -281,14 +281,14 @@ export default {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
-  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
 }
 
 .mobile-nav-link:hover,
 .mobile-nav-link.router-link-active {
   color: var(--color-text);
   background: var(--color-background-secondary);
-  border-left-color: var(--color-primary);
+  border-right-color: var(--color-primary);
 }
 
 .favorites-count {
@@ -326,10 +326,10 @@ export default {
 /* Animation d'entrée */
 @keyframes slideIn {
   from {
-    right: -100%;
+    left: -100%;
   }
   to {
-    right: 0;
+    left: 0;
   }
 }
 
