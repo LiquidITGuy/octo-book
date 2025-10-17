@@ -264,17 +264,18 @@ export default {
 }
 
 .error h1 {
-  color: #e74c3c;
+  color: var(--color-error);
   margin-bottom: 1rem;
   font-size: 2rem;
 }
 
 .error code {
-  background: rgba(102, 126, 234, 0.1);
+  background: var(--color-background-secondary);
   padding: 0.5rem 1rem;
   border-radius: 5px;
   display: inline-block;
   margin: 1rem 0;
+  color: var(--color-text);
 }
 
 .error-actions {
@@ -293,8 +294,8 @@ export default {
 .breadcrumb {
   margin-bottom: 3rem;
   padding: 1.5rem;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--color-card-background);
+  border: 1px solid var(--color-border);
   font-weight: 300;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -302,22 +303,23 @@ export default {
 }
 
 .breadcrumb a {
-  color: #586586;
+  color: var(--color-text-secondary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .breadcrumb a:hover {
-  color: #0E2356;
+  color: var(--color-primary);
 }
 
 .separator {
   margin: 0 0.75rem;
-  color: #a0aec0;
+  color: var(--color-text-secondary);
+  opacity: 0.6;
 }
 
 .current {
-  color: #0E2356;
+  color: var(--color-text);
   font-weight: 400;
 }
 
@@ -346,8 +348,8 @@ export default {
 }
 
 .book-details {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--color-card-background);
+  border: 1px solid var(--color-border);
   padding: 3rem;
   transition: all 0.3s ease;
   position: relative;
@@ -360,7 +362,7 @@ export default {
   left: 0;
   width: 4px;
   height: 100%;
-  background: #0E2356;
+  background: var(--color-primary);
   opacity: 1;
 }
 
@@ -396,37 +398,38 @@ export default {
 }
 
 .availability-badge.available {
-  background-color: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background-color: rgba(34, 197, 94, 0.15);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
 }
 
 .availability-badge.unavailable {
-  background-color: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
 }
 
 .btn-disabled {
-  background-color: rgba(102, 126, 234, 0.3) !important;
-  color: rgba(255, 255, 255, 0.6) !important;
+  background-color: var(--color-background-secondary) !important;
+  color: var(--color-text-secondary) !important;
+  border-color: var(--color-border) !important;
   cursor: not-allowed !important;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .btn-disabled:hover {
-  background-color: rgba(102, 126, 234, 0.3) !important;
+  background-color: var(--color-background-secondary) !important;
   transform: none !important;
 }
 
 .authors {
-  color: #667eea;
+  color: var(--color-primary);
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
 }
 
 .authors strong {
-  color: #333;
+  color: var(--color-text);
 }
 
 .tags {
@@ -442,21 +445,21 @@ export default {
 
 .book-summary h2,
 .book-long-summary h2 {
-  color: #333;
+  color: var(--color-text);
   font-size: 1.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid var(--color-primary);
 }
 
 .book-summary p {
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 1.1rem;
   line-height: 1.6;
 }
 
 .long-summary-content {
-  color: #555;
+  color: var(--color-text-secondary);
   line-height: 1.7;
 }
 
@@ -470,7 +473,7 @@ export default {
   flex-wrap: wrap;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(102, 126, 234, 0.2);
+  border-top: 1px solid var(--color-border);
 }
 
 .book-share {
@@ -484,7 +487,7 @@ export default {
 }
 
 .book-meta h3 {
-  color: #333;
+  color: var(--color-text);
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
 }
@@ -500,25 +503,26 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
-  background: rgba(102, 126, 234, 0.05);
+  background: var(--color-background-secondary);
   border-radius: 8px;
+  border: 1px solid var(--color-border);
 }
 
 .meta-item strong {
-  color: #333;
+  color: var(--color-text);
 }
 
 .meta-item span {
-  color: #666;
+  color: var(--color-text-secondary);
 }
 
 .available {
-  color: #27ae60 !important;
+  color: var(--color-success) !important;
   font-weight: 500;
 }
 
 .unavailable {
-  color: #e74c3c !important;
+  color: var(--color-error) !important;
   font-weight: 500;
 }
 
