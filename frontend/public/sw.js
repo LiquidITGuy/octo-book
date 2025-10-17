@@ -1,5 +1,5 @@
 // Service Worker pour Octo Books PWA avec notifications push
-const CACHE_NAME = 'octo-books-v2'; // Version mise à jour pour les images
+const CACHE_NAME = 'octo-books-v3'; // Version avec système de mise à jour automatique
 const BOOKS_CACHE_KEY = 'cached-books-data';
 
 // Assets essentiels à mettre en cache

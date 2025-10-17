@@ -3,6 +3,13 @@
     <!-- Indicateur hors ligne -->
     <OfflineIndicator @connection-restored="handleConnectionRestored" />
     
+    <!-- Notification de mise à jour -->
+    <UpdateNotification 
+      :update-available="updateAvailable"
+      @update="handleUpdate"
+      @dismiss="handleDismiss"
+    />
+    
     <!-- Prompt d'installation PWA -->
     <InstallPWA />
     
@@ -16,7 +23,7 @@
         <!-- Navigation desktop -->
         <nav class="desktop-nav">
           <ul class="nav">
-            <li><router-link to="/">Accueil</router-link></li>
+            <li><router-link to="/">Accueil </router-link></li>
             <li><router-link to="/books">Livres</router-link></li>
             <li><router-link to="/favorites">Favoris ({{ favoritesCount }})</router-link></li>
           </ul>
@@ -45,17 +52,20 @@
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import OfflineIndicator from './components/OfflineIndicator.vue'
+import UpdateNotification from './components/UpdateNotification.vue'
 import InstallPWA from './components/InstallPWA.vue'
 import SearchBar from './components/SearchBar.vue'
 import MobileMenu from './components/MobileMenu.vue'
 import BackToTop from './components/BackToTop.vue'
 import { useFavorites } from './composables/useFavorites'
 import { usePerformance } from './composables/usePerformance'
+import { useServiceWorkerUpdate } from './composables/useServiceWorkerUpdate'
 
 export default {
   name: 'App',
   components: {
     OfflineIndicator,
+    UpdateNotification,
     InstallPWA,
     SearchBar,
     MobileMenu,
@@ -65,6 +75,7 @@ export default {
     const router = useRouter()
     const { initFavorites, favoritesCount } = useFavorites()
     const { metrics, logMetrics } = usePerformance()
+    const { updateAvailable, activateUpdate } = useServiceWorkerUpdate()
 
     onMounted(() => {
       // Initialiser les favoris au démarrage
@@ -86,9 +97,21 @@ export default {
       }
     })
 
+    const handleUpdate = () => {
+      console.log('Activation de la mise à jour...')
+      activateUpdate()
+    }
+
+    const handleDismiss = () => {
+      console.log('Mise à jour reportée')
+    }
+
     return {
       favoritesCount,
-      metrics
+      metrics,
+      updateAvailable,
+      handleUpdate,
+      handleDismiss
     }
   },
   methods: {
