@@ -106,6 +106,7 @@
 <script>
 import { booksApi } from '@/services/api'
 import PushNotifications from '@/components/PushNotifications.vue'
+import { usePrefetch } from '@/composables/usePrefetch'
 
 export default {
   name: 'HomeView',
@@ -119,6 +120,15 @@ export default {
       error: null
     }
   },
+  setup() {
+    const { smartPrefetch, isPrefetching, getStats } = usePrefetch()
+    
+    return {
+      smartPrefetch,
+      isPrefetching,
+      getPrefetchStats: getStats
+    }
+  },
   async mounted() {
     await this.loadFeaturedBooks()
   },
@@ -129,6 +139,18 @@ export default {
         this.error = null
         const response = await booksApi.getBooks(1, 2)        
         this.featuredBooks = response.data.books
+        
+        // Précharger les détails des livres à la une en arrière-plan
+        if (this.featuredBooks.length > 0) {
+          console.log(`[HomeView] ${this.featuredBooks.length} livres à la une chargés, démarrage du préchargement...`)
+          
+          // Préchargement intelligent : attendre 500ms puis charger les détails + images
+          this.smartPrefetch(this.featuredBooks, {
+            priority: 0, // Haute priorité pour les livres à la une
+            includeImages: true,
+            delay: 500
+          })
+        }
       } catch (error) {
         console.error('Erreur lors du chargement des livres:', error)
         if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
