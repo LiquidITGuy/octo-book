@@ -21,7 +21,6 @@
         
         <div class="header-controls">
           <SearchBar />
-          <ThemeToggle class="desktop-theme-toggle" />
           <MobileMenu />
         </div>
       </div>
@@ -44,12 +43,10 @@
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import OfflineIndicator from './components/OfflineIndicator.vue'
-import ThemeToggle from './components/ThemeToggle.vue'
 import InstallPWA from './components/InstallPWA.vue'
 import SearchBar from './components/SearchBar.vue'
 import MobileMenu from './components/MobileMenu.vue'
 import BackToTop from './components/BackToTop.vue'
-import { useTheme } from './composables/useTheme'
 import { useFavorites } from './composables/useFavorites'
 import { usePerformance } from './composables/usePerformance'
 
@@ -57,7 +54,6 @@ export default {
   name: 'App',
   components: {
     OfflineIndicator,
-    ThemeToggle,
     InstallPWA,
     SearchBar,
     MobileMenu,
@@ -65,13 +61,11 @@ export default {
   },
   setup() {
     const router = useRouter()
-    const { initTheme } = useTheme()
     const { initFavorites, favoritesCount } = useFavorites()
     const { metrics, logMetrics } = usePerformance()
 
     onMounted(() => {
-      // Initialiser le thème et les favoris au démarrage
-      initTheme()
+      // Initialiser les favoris au démarrage
       initFavorites()
 
       // Logger les métriques après un délai pour laisser l'app se charger

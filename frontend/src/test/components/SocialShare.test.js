@@ -2,13 +2,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SocialShare from '@/components/SocialShare.vue'
 
-// Mock du composable useTheme
-vi.mock('@/composables/useTheme', () => ({
-  useTheme: () => ({
-    isDark: false
-  })
-}))
-
 describe('SocialShare', () => {
   let wrapper
 
@@ -214,13 +207,6 @@ describe('SocialShare', () => {
   })
 
   describe('États du composant', () => {
-    it('devrait utiliser le composable useTheme', () => {
-      wrapper = mount(SocialShare, {
-        props: defaultProps
-      })
-      expect(wrapper.vm.isDark).toBeDefined()
-    })
-
     it('devrait initialiser linkCopied à false', () => {
       wrapper = mount(SocialShare, {
         props: defaultProps

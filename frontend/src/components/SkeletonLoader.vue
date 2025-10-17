@@ -1,5 +1,5 @@
 <template>
-  <div class="skeleton-loader" :class="{ 'dark-mode': isDark }">
+  <div class="skeleton-loader">
     <!-- Skeleton pour une carte de livre -->
     <div v-if="type === 'book-card'" class="skeleton-book-card">
       <div class="skeleton-thumbnail"></div>
@@ -94,8 +94,6 @@
 </template>
 
 <script>
-import { useTheme } from '@/composables/useTheme'
-
 export default {
   name: 'SkeletonLoader',
   props: {
@@ -108,10 +106,6 @@ export default {
       type: Number,
       default: 6
     }
-  },
-  setup() {
-    const { isDark } = useTheme()
-    return { isDark }
   }
 }
 </script>
@@ -120,11 +114,6 @@ export default {
 .skeleton-loader {
   --skeleton-color: #e2e8f0;
   --skeleton-highlight: #f7fafc;
-}
-
-.skeleton-loader.dark-mode {
-  --skeleton-color: #4a5568;
-  --skeleton-highlight: #2d3748;
 }
 
 /* Animation de pulsation */

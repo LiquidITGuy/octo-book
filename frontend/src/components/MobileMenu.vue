@@ -84,13 +84,6 @@
             </router-link>
           </li>
         </ul>
-
-        <div class="mobile-nav-actions">
-          <div class="theme-toggle-container">
-            <span class="theme-label">Thème</span>
-            <ThemeToggle />
-          </div>
-        </div>
       </div>
     </nav>
   </div>
@@ -98,13 +91,11 @@
 
 <script>
 import { ref, onMounted, onUnmounted } from 'vue'
-import ThemeToggle from './ThemeToggle.vue'
 import { useFavorites } from '@/composables/useFavorites'
 
 export default {
   name: 'MobileMenu',
   components: {
-    ThemeToggle
   },
   setup() {
     const isOpen = ref(false)

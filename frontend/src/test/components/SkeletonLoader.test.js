@@ -2,13 +2,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
-// Mock du composable useTheme
-vi.mock('@/composables/useTheme', () => ({
-  useTheme: () => ({
-    isDark: false
-  })
-}))
-
 describe('SkeletonLoader', () => {
   let wrapper
 
@@ -28,11 +21,6 @@ describe('SkeletonLoader', () => {
     it('devrait avoir la classe skeleton-loader', () => {
       wrapper = mount(SkeletonLoader)
       expect(wrapper.find('.skeleton-loader').exists()).toBe(true)
-    })
-
-    it('devrait utiliser le composable useTheme', () => {
-      wrapper = mount(SkeletonLoader)
-      expect(wrapper.vm.isDark).toBeDefined()
     })
   })
 

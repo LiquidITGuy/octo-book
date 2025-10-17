@@ -1,6 +1,5 @@
-/* Variables CSS pour les thèmes */
+/* Variables CSS */
 :root {
-  /* Mode clair (défaut) */
   --color-primary: #0E2356;
   --color-secondary: #586586;
   --color-background: #ffffff;
@@ -16,23 +15,6 @@
   --color-success: #22c55e;
 }
 
-/* Mode sombre */
-:root.dark {
-  --color-primary: #ffffff;
-  --color-secondary: #a0aec0;
-  --color-background: #1a202c;
-  --color-background-secondary: #2d3748;
-  --color-text: #ffffff;
-  --color-text-secondary: #a0aec0;
-  --color-border: #4a5568;
-  --color-border-hover: #ffffff;
-  --color-background-hover: #fff;
-  --text-color-background-hover: #0E2356;
-  --color-card-background: #2d3748;
-  --color-error: #fc8181;
-  --color-success: #68d391;
-}
-
 /* Reset et base - Charte Graphique Octo Premium */
 * {
   margin: 0;
@@ -44,7 +26,6 @@ html {
   font-family: 'Arial', 'Helvetica', sans-serif;
   line-height: 1.8;
   letter-spacing: 0.05em;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -52,7 +33,6 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   font-weight: 300;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #app {
@@ -66,7 +46,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   color: var(--color-text);
   margin-bottom: 2rem;
-  transition: color 0.3s ease;
 }
 
 h1 {
@@ -101,7 +80,6 @@ p {
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .header-content {
@@ -129,7 +107,6 @@ p {
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: color 0.3s ease;
 }
 
 .nav {
@@ -501,10 +478,6 @@ p {
   display: flex;
 }
 
-.desktop-theme-toggle {
-  display: flex;
-}
-
 /* Responsive avec espacement préservé */
 @media (max-width: 768px) {
   .header-content {
@@ -517,10 +490,6 @@ p {
   }
 
   .desktop-nav {
-    display: none;
-  }
-
-  .desktop-theme-toggle {
     display: none;
   }
 
@@ -727,52 +696,6 @@ p {
 .btn-outline:hover:not(:disabled) {
   background-color: var(--color-primary, #007bff);
   color: white;
-}
-
-/* Mode sombre */
-@media (prefers-color-scheme: dark) {
-  .notification-card {
-    background: var(--color-background-soft, #1a1a1a);
-    border-color: var(--color-border, #333);
-  }
-
-  .card-header h3 {
-    color: var(--color-heading, #ffffff);
-  }
-
-  .card-header p {
-    color: var(--color-text-light, #adb5bd);
-  }
-
-  .status-message.success {
-    background-color: #1e4d2b;
-    border-color: #2d5a3d;
-    color: #a3d9a5;
-  }
-
-  .status-message.error {
-    background-color: #4d1e24;
-    border-color: #5a2d32;
-    color: #f1aeb5;
-  }
-
-  .status-message.warning {
-    background-color: #4d3d1e;
-    border-color: #5a4a2d;
-    color: #f0d9a3;
-  }
-
-  .status-message.info {
-    background-color: #1e3a4d;
-    border-color: #2d4a5a;
-    color: #a3c9d9;
-  }
-
-  .error-message {
-    background-color: #4d1e24;
-    border-color: #5a2d32;
-    color: #f1aeb5;
-  }
 }
 
 /* Responsive */

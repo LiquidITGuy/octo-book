@@ -10,12 +10,6 @@ vi.mock('@/composables/useFavorites', () => ({
   })
 }))
 
-// Mock du composant ThemeToggle
-const ThemeToggleMock = {
-  name: 'ThemeToggle',
-  template: '<div class="theme-toggle-mock">Theme Toggle</div>'
-}
-
 describe('MobileMenu', () => {
   let wrapper
 
@@ -25,9 +19,6 @@ describe('MobileMenu', () => {
     
     wrapper = mount(MobileMenu, {
       global: {
-        components: {
-          ThemeToggle: ThemeToggleMock
-        },
         stubs: {
           'router-link': {
             template: '<a><slot /></a>',
@@ -155,23 +146,6 @@ describe('MobileMenu', () => {
         const icon = link.find('svg')
         expect(icon.exists()).toBe(true)
       })
-    })
-  })
-
-  describe('Thème toggle', () => {
-    beforeEach(async () => {
-      await wrapper.find('.hamburger-button').trigger('click')
-    })
-
-    it('devrait afficher le composant ThemeToggle', () => {
-      const themeToggle = wrapper.find('.theme-toggle-mock')
-      expect(themeToggle.exists()).toBe(true)
-    })
-
-    it('devrait avoir un label pour le thème', () => {
-      const themeLabel = wrapper.find('.theme-label')
-      expect(themeLabel.exists()).toBe(true)
-      expect(themeLabel.text()).toBe('Thème')
     })
   })
 

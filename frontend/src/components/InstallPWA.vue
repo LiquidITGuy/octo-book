@@ -1,6 +1,6 @@
 <template>
   <div v-if="showInstallPrompt" class="install-pwa">
-    <div class="install-banner" :class="{ 'dark-mode': isDark }">
+    <div class="install-banner">
       <div class="install-content">
         <div class="install-icon">📱</div>
         <div class="install-text">
@@ -22,12 +22,10 @@
 
 <script>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useTheme } from '@/composables/useTheme'
 
 export default {
   name: 'InstallPWA',
   setup() {
-    const { isDark } = useTheme()
     const showInstallPrompt = ref(false)
     const deferredPrompt = ref(null)
 
@@ -126,7 +124,6 @@ export default {
     })
 
     return {
-      isDark,
       showInstallPrompt,
       installApp,
       dismissPrompt
@@ -155,9 +152,6 @@ export default {
   animation: slideUp 0.3s ease-out;
 }
 
-.install-banner.dark-mode {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
 
 @keyframes slideUp {
   from {

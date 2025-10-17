@@ -1,5 +1,5 @@
 <template>
-  <div class="social-share" :class="{ 'dark-mode': isDark }">
+  <div class="social-share">
     <div v-if="showLabel" class="share-label">
       <span>{{ label }}</span>
     </div>
@@ -106,7 +106,6 @@
 
 <script>
 import { ref, computed, onMounted } from 'vue'
-import { useTheme } from '@/composables/useTheme'
 
 export default {
   name: 'SocialShare',
@@ -155,7 +154,6 @@ export default {
   },
   emits: ['share'],
   setup(props, { emit }) {
-    const { isDark } = useTheme()
     const linkCopied = ref(false)
     const canUseWebShare = ref(false)
 
@@ -303,7 +301,6 @@ Bonne lecture ! 📚`
     }
 
     return {
-      isDark,
       linkCopied,
       canUseWebShare,
       shareOnTwitter,
@@ -427,10 +424,6 @@ Bonne lecture ! 📚`
   border-color: var(--color-secondary);
 }
 
-/* Mode sombre */
-.social-share.dark-mode .share-btn:hover {
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-}
 
 /* Responsive */
 @media (max-width: 768px) {

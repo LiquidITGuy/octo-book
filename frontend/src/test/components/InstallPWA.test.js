@@ -3,13 +3,6 @@ import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import InstallPWA from '@/components/InstallPWA.vue'
 
-// Mock du composable useTheme
-vi.mock('@/composables/useTheme', () => ({
-  useTheme: () => ({
-    isDark: vi.fn(() => false)
-  })
-}))
-
 describe('InstallPWA', () => {
   let wrapper
   let localStorageMock
@@ -84,11 +77,6 @@ describe('InstallPWA', () => {
 
     it('devrait avoir le nom de composant correct', () => {
       expect(InstallPWA.name).toBe('InstallPWA')
-    })
-
-    it('devrait utiliser le composable useTheme', () => {
-      wrapper = mount(InstallPWA)
-      expect(wrapper.vm.isDark).toBeDefined()
     })
   })
 
@@ -185,19 +173,6 @@ describe('InstallPWA', () => {
       expect(wrapper.find('p').text()).toContain('Accédez rapidement')
       expect(wrapper.find('.btn-install').text()).toBe('Installer')
       expect(wrapper.find('.btn-dismiss').text()).toBe('✕')
-    })
-
-    it('devrait appliquer la classe dark-mode si isDark est true', async () => {
-      // Mock isDark pour retourner true
-      vi.mocked(vi.importActual('@/composables/useTheme')).useTheme = () => ({
-        isDark: vi.fn(() => true)
-      })
-      
-      wrapper = mount(InstallPWA)
-      wrapper.vm.showInstallPrompt = true
-      await nextTick()
-      
-      expect(wrapper.find('.install-banner.dark-mode').exists()).toBe(true)
     })
   })
 
