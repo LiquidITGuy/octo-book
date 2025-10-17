@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <!-- Indicateur de pull-to-refresh -->
+    <PullToRefresh 
+      :is-pull-to-refresh-enabled="isPullToRefreshEnabled"
+      :is-refreshing="isRefreshing"
+      :pull-distance="pullDistance"
+    />
+    
     <!-- Indicateur hors ligne -->
     <OfflineIndicator @connection-restored="handleConnectionRestored" />
     
@@ -52,6 +59,7 @@
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import OfflineIndicator from './components/OfflineIndicator.vue'
+import PullToRefresh from './components/PullToRefresh.vue'
 import UpdateNotification from './components/UpdateNotification.vue'
 import InstallPWA from './components/InstallPWA.vue'
 import SearchBar from './components/SearchBar.vue'
@@ -60,11 +68,13 @@ import BackToTop from './components/BackToTop.vue'
 import { useFavorites } from './composables/useFavorites'
 import { usePerformance } from './composables/usePerformance'
 import { useServiceWorkerUpdate } from './composables/useServiceWorkerUpdate'
+import { useGestures } from './composables/useGestures'
 
 export default {
   name: 'App',
   components: {
     OfflineIndicator,
+    PullToRefresh,
     UpdateNotification,
     InstallPWA,
     SearchBar,
@@ -76,6 +86,7 @@ export default {
     const { initFavorites, favoritesCount } = useFavorites()
     const { metrics, logMetrics } = usePerformance()
     const { updateAvailable, activateUpdate } = useServiceWorkerUpdate()
+    const { isRefreshing, pullDistance, isPullToRefreshEnabled, isGestureSupported } = useGestures()
 
     onMounted(() => {
       // Initialiser les favoris au démarrage
@@ -111,7 +122,11 @@ export default {
       metrics,
       updateAvailable,
       handleUpdate,
-      handleDismiss
+      handleDismiss,
+      isRefreshing,
+      pullDistance,
+      isPullToRefreshEnabled,
+      isGestureSupported
     }
   },
   methods: {
